@@ -1,0 +1,158 @@
+{
+  "commands":
+    [
+      {
+        "data":
+          {
+            "get":
+              [
+                {
+                  "reqired":
+                    {
+                      "block": "<targetPos>",
+                      "entity": "<target>",
+                      "storage": "<target>",
+                    },
+                  "optional": ["<path>", "<scale>"],
+                },
+              ],
+            "merge":
+              [
+                {
+                  "required":
+                    {
+                      "block": "<targetPos>",
+                      "entity": "<target>",
+                      "storage": "<target>",
+                    },
+                  "optional": ["<nbt>"],
+                },
+              ],
+            "modify":
+              [
+                {
+                  "reqired":
+                    {
+                      "block": "<targetPos>",
+                      "entity": "<target>",
+                      "storage": "<target>",
+                    },
+                  "optional": ["<targetPath>"],
+                },
+                {
+                  "append":
+                    {
+                      "required":
+                        {
+                          "from":
+                            {
+                              "required":
+                                {
+                                  "block": "<sourcePos>",
+                                  "entity": "<source>",
+                                  "storage": "<source>",
+                                },
+                              "optional": ["<sourcePath>"],
+                            },
+                          "value": { "required": ["<value>"] },
+                        },
+                    },
+                },
+                {
+                  "insert":
+                    {
+                      "required":
+                        [
+                          "<index>",
+                          {
+                            "from":
+                              {
+                                "required":
+                                  {
+                                    "block": "<sourcePos>",
+                                    "entity": "<source>",
+                                    "storage": "<source>",
+                                  },
+                                "optional": ["<sourcePath>"],
+                              },
+                            "value": { "required": ["<value>"] },
+                          },
+                        ],
+                    },
+                },
+                {
+                  "merge":
+                    {
+                      "required":
+                        {
+                          "from":
+                            {
+                              "required":
+                                {
+                                  "block": "<sourcePos>",
+                                  "entity": "<source>",
+                                  "storage": "<source>",
+                                },
+                              "optional": ["<sourcePath>"],
+                            },
+                          "value": { "required": ["<value>"] },
+                        },
+                    },
+                },
+                {
+                  "prepend":
+                    {
+                      "required":
+                        {
+                          "from":
+                            {
+                              "required":
+                                {
+                                  "block": "<sourcePos>",
+                                  "entity": "<source>",
+                                  "storage": "<source>",
+                                },
+                              "optional": ["<sourcePath>"],
+                            },
+                          "value": { "required": ["<value>"] },
+                        },
+                    },
+                },
+                {
+                  "set":
+                    {
+                      "required":
+                        {
+                          "from":
+                            {
+                              "required":
+                                {
+                                  "block": "<sourcePos>",
+                                  "entity": "<source>",
+                                  "storage": "<source>",
+                                },
+                              "optional": ["<sourcePath>"],
+                            },
+                          "value": { "required": ["<value>"] },
+                        },
+                    },
+                },
+              ],
+            "remove":
+              [
+                {
+                  "reqired":
+                    [
+                      {
+                        "block": "<targetPos>",
+                        "entity": "<target>",
+                        "storage": "<target>",
+                      },
+                      "<path>",
+                    ],
+                },
+              ],
+          },
+      },
+    ],
+}
