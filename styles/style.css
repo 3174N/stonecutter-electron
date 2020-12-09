@@ -3,3 +3,22 @@
 * {
     font-family: 'Roboto';
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        'explorer file-view file-view file-view'
+        'explorer file-view file-view file-view'
+        'explorer file-view file-view file-view';
+}
+
+.explorer {
+    grid-area: explorer;
+}
+
+.file-view {
+    grid-area: file-view;
+}
