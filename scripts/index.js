@@ -47,47 +47,51 @@ document
     });
 
 // Save files
-function save() {
+function saveFile() {
     if (filePath != '') {
         fs.writeFile(filePath, $('.file-content').text(), function (err) {
             if (err) return console.log(err);
         });
     } else {
-        // Create file
-        dialog
-            .showSaveDialog({
-                title: 'Select the File Path to save',
-                buttonLabel: 'Save',
-                filters: [
-                    {
-                        name: 'MC Function',
-                        extensions: ['mcfunction'],
-                    },
-                    {
-                        name: 'JSON',
-                        extensions: ['json'],
-                    },
-                    {
-                        name: 'Text Files',
-                        extensions: ['txt', 'md'],
-                    },
-                ],
-                properties: [],
-            })
-            .then(function (response) {
-                if (!response.canceled) {
-                    filePath = response.filePath.toString();
-
-                    fs.writeFile(
-                        response.filePath.toString(),
-                        $('.file-content').text(),
-                        function (err) {
-                            if (err) console.log(err);
-                        }
-                    );
-                } else {
-                    console.log('no file selected');
-                }
-            });
+        saveFileAs();
     }
+}
+
+function saveFileAs() {
+    // Save as
+    dialog
+        .showSaveDialog({
+            title: 'Select the File Path to save',
+            buttonLabel: 'Save',
+            filters: [
+                {
+                    name: 'MC Function',
+                    extensions: ['mcfunction'],
+                },
+                {
+                    name: 'JSON',
+                    extensions: ['json'],
+                },
+                {
+                    name: 'Text Files',
+                    extensions: ['txt', 'md'],
+                },
+            ],
+            properties: [],
+        })
+        .then(function (response) {
+            if (!response.canceled) {
+                filePath = response.filePath.toString();
+
+                fs.writeFile(
+                    response.filePath.toString(),
+                    $('.file-content').text(),
+                    function (err) {
+                        if (err) console.log(err);
+                    }
+                );
+            } else {
+                console.log('no file selected');
+            }
+        });
 }
