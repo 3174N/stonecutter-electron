@@ -14,14 +14,7 @@ document
                     fs.readFile(response.filePaths[0], function (err, data) {
                         if (err) return console.log(err);
 
-                        $('.file-content').text('');
-
-                        const lines = data.toString().split('\n');
-
-                        for (let i = 0; i < lines.length; i++) {
-                            $('.file-content').append(lines[i] + '<br>');
-                            console.log(lines[i]);
-                        }
+                        $('.file-content').text(data.toString());
                     });
                 } else {
                     console.log('no file selected');
