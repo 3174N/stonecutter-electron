@@ -1,5 +1,5 @@
 {
-  "commands":
+  commands:
     [
       {
         "data":
@@ -7,75 +7,75 @@
             "get":
               [
                 {
-                  "required":
+                  required:
                     {
                       "block": "<targetPos>",
                       "entity": "<target>",
                       "storage": "<target>",
                     },
-                  "optional": ["<path>", "<scale>"],
+                  optional: ["<path>", "<scale>"],
                 },
               ],
             "merge":
               [
                 {
-                  "required":
+                  required:
                     {
                       "block": "<targetPos>",
                       "entity": "<target>",
                       "storage": "<target>",
                     },
-                  "optional": ["<nbt>"],
+                  optional: ["<nbt>"],
                 },
               ],
             "modify":
               [
                 {
-                  "required":
+                  required:
                     {
                       "block": "<targetPos>",
                       "entity": "<target>",
                       "storage": "<target>",
                     },
-                  "optional": ["<targetPath>"],
+                  optional: ["<targetPath>"],
                 },
                 {
                   "append":
                     {
-                      "required":
+                      required:
                         {
                           "from":
                             {
-                              "required":
+                              required:
                                 {
                                   "block": "<sourcePos>",
                                   "entity": "<source>",
                                   "storage": "<source>",
                                 },
-                              "optional": ["<sourcePath>"],
+                              optional: ["<sourcePath>"],
                             },
-                          "value": { "required": ["<value>"] },
+                          "value": { required: ["<value>"] },
                         },
                     },
                 },
                 {
                   "insert":
                     {
-                      "required":
+                      required:
                         [
                           "<index>",
                           {
                             "from":
                               {
-                                "required":
+                                required:
                                   {
                                     "block": "<sourcePos>",
                                     "entity": "<source>",
                                     "storage": "<source>",
                                   },
-                                "optional": ["<sourcePath>"],
+                                optional: ["<sourcePath>"],
                               },
-                            "value": { "required": ["<value>"] },
+                            "value": { required: ["<value>"] },
                           },
                         ],
                     },
@@ -83,57 +83,57 @@
                 {
                   "merge":
                     {
-                      "required":
+                      required:
                         {
                           "from":
                             {
-                              "required":
+                              required:
                                 {
                                   "block": "<sourcePos>",
                                   "entity": "<source>",
                                   "storage": "<source>",
                                 },
-                              "optional": ["<sourcePath>"],
+                              optional: ["<sourcePath>"],
                             },
-                          "value": { "required": ["<value>"] },
+                          "value": { required: ["<value>"] },
                         },
                     },
                 },
                 {
                   "prepend":
                     {
-                      "required":
+                      required:
                         {
                           "from":
                             {
-                              "required":
+                              required:
                                 {
                                   "block": "<sourcePos>",
                                   "entity": "<source>",
                                   "storage": "<source>",
                                 },
-                              "optional": ["<sourcePath>"],
+                              optional: ["<sourcePath>"],
                             },
-                          "value": { "required": ["<value>"] },
+                          "value": { required: ["<value>"] },
                         },
                     },
                 },
                 {
                   "set":
                     {
-                      "required":
+                      required:
                         {
                           "from":
                             {
-                              "required":
+                              required:
                                 {
                                   "block": "<sourcePos>",
                                   "entity": "<source>",
                                   "storage": "<source>",
                                 },
-                              "optional": ["<sourcePath>"],
+                              optional: ["<sourcePath>"],
                             },
-                          "value": { "required": ["<value>"] },
+                          "value": { required: ["<value>"] },
                         },
                     },
                 },
@@ -141,7 +141,7 @@
             "remove":
               [
                 {
-                  "required":
+                  required:
                     [
                       {
                         "block": "<targetPos>",
