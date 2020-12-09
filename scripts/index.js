@@ -1,17 +1,33 @@
-const fs = require('fs');
+// Import modules
 const $ = require('jquery');
+const fs = require('fs');
+const path = require('path');
+const readline = require('readline');
 
 const { dialog } = require('electron').remote;
 
+var filePath = '';
+
+// Open files
 document
     .querySelector('#openfileBtn')
     .addEventListener('click', function (event) {
         dialog
-            .showOpenDialog({ properties: ['openFile'] })
+            .showOpenDialog({
+                title: 'Select a File to Open',
+                filters: [
+                    {
+                        name: 'MC Function',
+                        extensions: ['mcfunction'],
+                    },
+                ],
+                properties: ['openFile'],
+            })
             .then(function (response) {
                 if (!response.canceled) {
-                    console.log('file: ' + response.filePaths[0]);
-                    fs.readFile(response.filePaths[0], function (err, data) {
+                    filePath = response.filePaths[0];
+
+                    fs.readFile(filePath, function (err, data) {
                         if (err) return console.log(err);
 
                         $('.file-content').text(data.toString());
@@ -21,3 +37,41 @@ document
                 }
             });
     });
+
+// Save files
+function save() {
+    if (filePath != '') {
+        fs.writeFile(filePath, $('.file-content').text(), function (err) {
+            if (err) return console.log(err);
+        });
+    } else {
+        // Create file
+        dialog
+            .showSaveDialog({
+                title: 'Select the File Path to save',
+                buttonLabel: 'Save',
+                filters: [
+                    {
+                        name: 'MC Function',
+                        extensions: ['mcfunction'],
+                    },
+                ],
+                properties: [],
+            })
+            .then(function (response) {
+                if (!response.canceled) {
+                    filePath = response.filePath.toString();
+
+                    fs.writeFile(
+                        response.filePath.toString(),
+                        $('.file-content').text(),
+                        function (err) {
+                            if (err) console.log(err);
+                        }
+                    );
+                } else {
+                    console.log('no file selected');
+                }
+            });
+    }
+}
