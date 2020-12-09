@@ -20,6 +20,14 @@ document
                         name: 'MC Function',
                         extensions: ['mcfunction'],
                     },
+                    {
+                        name: 'JSON',
+                        extensions: ['json'],
+                    },
+                    {
+                        name: 'Text Files',
+                        extensions: ['txt', 'md'],
+                    },
                 ],
                 properties: ['openFile'],
             })
@@ -54,6 +62,14 @@ function save() {
                     {
                         name: 'MC Function',
                         extensions: ['mcfunction'],
+                    },
+                    {
+                        name: 'JSON',
+                        extensions: ['json'],
+                    },
+                    {
+                        name: 'Text Files',
+                        extensions: ['txt', 'md'],
                     },
                 ],
                 properties: [],
