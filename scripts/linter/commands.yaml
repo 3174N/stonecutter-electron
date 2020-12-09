@@ -7,7 +7,7 @@
             "get":
               [
                 {
-                  "reqired":
+                  "required":
                     {
                       "block": "<targetPos>",
                       "entity": "<target>",
@@ -31,7 +31,7 @@
             "modify":
               [
                 {
-                  "reqired":
+                  "required":
                     {
                       "block": "<targetPos>",
                       "entity": "<target>",
@@ -141,7 +141,7 @@
             "remove":
               [
                 {
-                  "reqired":
+                  "required":
                     [
                       {
                         "block": "<targetPos>",
