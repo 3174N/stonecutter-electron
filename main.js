@@ -8,6 +8,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 800,
         height: 600,
+        // icon: 'Path to icon',
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
