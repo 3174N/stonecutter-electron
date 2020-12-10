@@ -27,3 +27,12 @@
     margin-top: 10px;
     margin-bottom: 10px;
 } */
+
+ul.files {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.files li:hover {
+    background-color: rgb(195, 195, 195);
+}
