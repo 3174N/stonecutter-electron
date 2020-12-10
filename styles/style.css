@@ -4,6 +4,20 @@
     font-family: 'Roboto';
 }
 
+:not(input):not(textarea),
+:not(input):not(textarea)::after,
+:not(input):not(textarea)::before {
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+input,
+button,
+textarea,
+:focus {
+    outline: none;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -35,4 +49,9 @@ ul.files {
 
 ul.files li:hover {
     background-color: rgb(195, 195, 195);
+    cursor: pointer;
+}
+
+ul.files li:active {
+    background-color: rgb(180, 180, 180);
 }
