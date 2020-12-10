@@ -6,7 +6,7 @@ const readline = require('readline');
 
 const { dialog } = require('electron').remote;
 
-// * Used to get text with in-line breaks * //
+// Used to get text with in-line breaks
 (function ($) {
     $.fn.innerText = function (msg) {
         if (msg) {
@@ -34,7 +34,8 @@ const { dialog } = require('electron').remote;
     };
 })($);
 
-var filePath = '';
+var filePaths = {};
+var currentFile = '';
 
 // Open files
 document
@@ -61,14 +62,16 @@ document
             })
             .then(function (response) {
                 if (!response.canceled) {
-                    filePath = response.filePaths[0];
+                    currentFile = path.basename(response.filePaths[0]);
+                    filePaths[currentFile] = response.filePaths[0];
 
-                    // TODO: Open file on <li> press
                     $('.files').append(
-                        '<li>' + path.basename(filePath) + '</li>'
+                        '<li onclick="openFile($(this).text());">' +
+                            currentFile +
+                            '</li>'
                     );
 
-                    fs.readFile(filePath, function (err, data) {
+                    fs.readFile(filePaths[currentFile], function (err, data) {
                         if (err) return console.log(err);
 
                         $('.file-content').text(data.toString());
@@ -79,12 +82,29 @@ document
             });
     });
 
+function openFile(fileName) {
+    // Open file on <li> click
+
+    currentFile = fileName;
+    filePath = filePaths[currentFile];
+
+    fs.readFile(filePaths[currentFile], function (err, data) {
+        if (err) return console.log(err);
+
+        $('.file-content').text(data.toString());
+    });
+}
+
 // Save files
 function saveFile() {
-    if (filePath != '') {
-        fs.writeFile(filePath, $('.file-content').innerText(), function (err) {
-            if (err) return console.log(err);
-        });
+    if (currentFile != '') {
+        fs.writeFile(
+            filePaths[currentFile],
+            $('.file-content').innerText(),
+            function (err) {
+                if (err) return console.log(err);
+            }
+        );
     } else {
         saveFileAs();
     }
@@ -114,12 +134,17 @@ function saveFileAs() {
         })
         .then(function (response) {
             if (!response.canceled) {
-                filePath = response.filePath.toString();
+                currentFile = path.basename(response.filePath.toString());
+                filePaths[currentFile] = response.filePath.toString();
 
-                $('.files').append('<li>' + path.basename(filePath) + '</li>');
+                $('.files').append(
+                    '<li onclick="openFile($(this).text());">' +
+                        currentFile +
+                        '</li>'
+                );
 
                 fs.writeFile(
-                    filePath,
+                    filePaths[currentFile],
                     $('.file-content').innerText(),
                     function (err) {
                         if (err) console.log(err);
