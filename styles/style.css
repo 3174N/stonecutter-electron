@@ -22,3 +22,8 @@
 .file-view {
     grid-area: file-view;
 }
+
+/* .file-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+} */
