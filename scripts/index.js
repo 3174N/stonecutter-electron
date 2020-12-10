@@ -112,8 +112,8 @@ function saveFileAs() {
                 filePath = response.filePath.toString();
 
                 fs.writeFile(
-                    response.filePath.toString(),
-                    $('.file-content').text(),
+                    filePath,
+                    $('.file-content').innerText(),
                     function (err) {
                         if (err) console.log(err);
                     }
