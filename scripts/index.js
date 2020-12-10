@@ -62,6 +62,10 @@ document
                 if (!response.canceled) {
                     filePath = response.filePaths[0];
 
+                    $('.files').append(
+                        '<li>' + path.basename(filePath) + '</li>'
+                    );
+
                     fs.readFile(filePath, function (err, data) {
                         if (err) return console.log(err);
 
@@ -76,7 +80,6 @@ document
 // Save files
 function saveFile() {
     if (filePath != '') {
-        console.log($('.file-content').innerText());
         fs.writeFile(filePath, $('.file-content').innerText(), function (err) {
             if (err) return console.log(err);
         });
@@ -110,6 +113,8 @@ function saveFileAs() {
         .then(function (response) {
             if (!response.canceled) {
                 filePath = response.filePath.toString();
+
+                $('.files').append('<li>' + path.basename(filePath) + '</li>');
 
                 fs.writeFile(
                     filePath,
