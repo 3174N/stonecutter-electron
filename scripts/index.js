@@ -3,41 +3,22 @@ const $ = require('jquery');
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const { title } = require('process');
 
 const { dialog } = require('electron').remote;
 
 // Used to get text with in-line breaks
-(function ($) {
-    $.fn.innerText = function (msg) {
-        if (msg) {
-            if (document.body.innerText) {
-                for (var i in this) {
-                    this[i].innerText = msg;
-                }
-            } else {
-                for (var i in this) {
-                    this[i].innerHTML
-                        .replace(/&amp;lt;br&amp;gt;/gi, 'n')
-                        .replace(/(&amp;lt;([^&amp;gt;]+)&amp;gt;)/gi, '');
-                }
-            }
-            return this;
-        } else {
-            if (document.body.innerText) {
-                return this[0].innerText;
-            } else {
-                return this[0].innerHTML
-                    .replace(/&amp;lt;br&amp;gt;/gi, 'n')
-                    .replace(/(&amp;lt;([^&amp;gt;]+)&amp;gt;)/gi, '');
-            }
-        }
-    };
-})($);
+function parseBrakes(value) {
+    value = value.replace(/<div>/gi, '\n');
+    value = value.replace(/<(.*?)>/g, '');
+
+    return value;
+}
 
 var filePaths = {};
 var currentFile = '';
 
-// Open files
+// Open file
 document
     .querySelector('#openfileBtn')
     .addEventListener('click', function (event) {
@@ -82,6 +63,30 @@ document
             });
     });
 
+// Open folder
+document
+    .querySelector('#openfolderBtn')
+    .addEventListener('click', function (event) {
+        dialog
+            .showOpenDialog({
+                title: 'Select a Folder to Open',
+                properties: ['openDirectory'],
+            })
+            .then(function (response) {
+                if (!response.canceled) {
+                    fs.readdir(response.filePaths[0], function (err, files) {
+                        if (err) return console.log(err);
+
+                        for (let file of files) {
+                            console.log(file);
+                        }
+                    });
+                } else {
+                    console.log('no folder selected');
+                }
+            });
+    });
+
 function openFile(fileName) {
     // Open file on <li> click
 
@@ -100,7 +105,7 @@ function saveFile() {
     if (currentFile != '') {
         fs.writeFile(
             filePaths[currentFile],
-            $('.file-content').innerText(),
+            parseBrakes($('.file-content').html()),
             function (err) {
                 if (err) return console.log(err);
             }
@@ -145,7 +150,7 @@ function saveFileAs() {
 
                 fs.writeFile(
                     filePaths[currentFile],
-                    $('.file-content').innerText(),
+                    parseBrakes($('.file-content').html()),
                     function (err) {
                         if (err) console.log(err);
                     }
