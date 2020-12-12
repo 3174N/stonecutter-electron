@@ -15,5 +15,8 @@
     "bugs": {
         "url": "https://github.com/3174N/stonecutter-electron/issues"
     },
-    "homepage": "https://github.com/3174N/stonecutter-electron#readme"
+    "homepage": "https://github.com/3174N/stonecutter-electron#readme",
+    "dependencies": {
+        "jquery": "^3.5.1"
+    }
 }
