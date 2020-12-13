@@ -11,8 +11,8 @@
         "type": "git",
         "url": "git+https://github.com/3174N/stonecutter-electron.git"
     },
-    "author": "3174N and SFR-git",
-    "license": "ISC",
+    "author": "3174N and SFR",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/3174N/stonecutter-electron/issues"
     },
