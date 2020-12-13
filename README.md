@@ -17,10 +17,10 @@ A text editor for mcfunction
 
 ```bash
 # Clone the repository
-git clone https://github.com/3174N/stonecutter-electron
-cd stonecutter-electron
+$ git clone https://github.com/3174N/stonecutter-electron
+$ cd stonecutter-electron
 # Install dependencies
-npm install
+$ npm install
 # Run the app
-npm start
+$ npm start
 ```
