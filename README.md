@@ -1,3 +1,5 @@
+[![Dependency Status](https://david-dm.org/3174N/stonecutter-electron.svg)](https://david-dm.org/3174N/stonecutter-electron)
+
 # Stonecutter
 
 A text editor for mcfunction
