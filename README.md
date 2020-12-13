@@ -8,7 +8,7 @@ A text editor for mcfunction
 
 ### Requirements
 
--   [Node.js](nodejs.org)
+-   [Node.js](https://nodejs.org/)
 -   [Git](https://git-scm.com/)
 
 ### Run the App
