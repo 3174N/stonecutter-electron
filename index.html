@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="styles/style.css" />
-        <link rel="icon" href="styles/media/icon.ico" />
-        <title>Stonecutter</title>
-    </head>
-    <body>
-        <div class="container">
-            <div class="grid-container">
-                <div class="explorer">
-                    Explorer <br />
-                    <button id="openfileBtn">Open File</button>
-                    <button id="openfolderBtn">Open Folder</button>
-                    <div class="file-explorer">
-                        <ul class="files" id="files"></ul>
-                    </div>
-                </div>
-                <div class="file-view">
-                    File View
-                    <pre><div class="file-content" contenteditable="true"></div></pre>
-                    <button onclick="saveFile();">Save</button>
-                    <button onclick="saveFileAs();">Save As</button>
-                </div>
-            </div>
-        </div>
-        <script src="scripts/index.js"></script>
-        <!-- <script src="scripts/tray.js"></script> -->
-    </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles/style.css" />
+		<link rel="icon" href="styles/media/icon.ico" />
+		<title>Stonecutter</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="grid-container">
+				<div class="explorer">
+					Explorer <br />
+					<button id="openfileBtn">Open File</button>
+					<button id="openfolderBtn">Open Folder</button>
+					<div class="file-explorer">
+						<ul class="files" id="files"></ul>
+					</div>
+				</div>
+				<div class="file-view">
+					File View
+					<pre><div class="file-content" contenteditable="true"></div></pre>
+					<button onclick="saveFile();">Save</button>
+					<button onclick="saveFileAs();">Save As</button>
+				</div>
+			</div>
+		</div>
+		<script src="scripts/index.js"></script>
+		<!-- <script src="scripts/tray.js"></script> -->
+	</body>
 </html>
