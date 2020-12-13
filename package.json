@@ -18,6 +18,7 @@
     },
     "homepage": "https://github.com/3174N/stonecutter-electron#readme",
     "dependencies": {
+        "electron": "^11.1.0",
         "jquery": "^3.5.1"
     }
 }
