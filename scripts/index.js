@@ -30,7 +30,7 @@ document
                     },
                     {
                         name: 'JavaScript Object Notation',
-                        extensions: ['json'],
+                        extensions: ['json', 'mcmeta'],
                     },
                     {
                         name: 'Text',
