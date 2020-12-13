@@ -22,7 +22,7 @@ document
     .addEventListener('click', function (event) {
         dialog
             .showOpenDialog({
-                title: 'Select a File to Open',
+                title: 'Open File',
                 filters: [
                     {
                         name: 'Minecraft Function',
@@ -67,7 +67,7 @@ document
     .addEventListener('click', function (event) {
         dialog
             .showOpenDialog({
-                title: 'Select a Folder to Open',
+                title: 'Open Folder',
                 properties: ['openDirectory'],
             })
             .then(function (response) {
@@ -117,7 +117,7 @@ function saveFileAs() {
     // Save as
     dialog
         .showSaveDialog({
-            title: 'Select the File Path to save',
+            title: 'Save As',
             buttonLabel: 'Save',
             filters: [
                 {
