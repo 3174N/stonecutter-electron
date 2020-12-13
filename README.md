@@ -9,7 +9,7 @@ A text editor for mcfunction
 ### Requirements
 
 -   [Node.js](nodejs.org)
--   [Git]()
+-   [Git](https://git-scm.com/)
 
 ### Run the App
 
