@@ -16,7 +16,9 @@ function parseBrakes(value) {
 var filePaths = {};
 var currentFile = '';
 
+// TODO: Add open file to context menu & keyboard shortcuts
 // Open file
+// Ctrl + O
 document
 	.querySelector('#openfileBtn')
 	.addEventListener('click', function (event) {
@@ -75,6 +77,8 @@ document
 					fs.readdir(response.filePaths[0], function (err, files) {
 						if (err) return console.log(err);
 
+						// TODO: FIle tree view / Workspace
+
 						for (let file of files) {
 							console.log(file);
 						}
@@ -99,7 +103,9 @@ function openFile(fileName) {
 }
 
 // Save files
+// TODO: Add save & save as to context menu & keyboard shortcuts
 function saveFile() {
+	// Ctrl + S
 	if (currentFile != '') {
 		fs.writeFile(
 			filePaths[currentFile],
@@ -114,7 +120,8 @@ function saveFile() {
 }
 
 function saveFileAs() {
-	// Save as
+	// Save files as
+	// Ctrl + Shift + S
 	dialog
 		.showSaveDialog({
 			title: 'Select the File Path to save',
