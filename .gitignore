@@ -1,2 +1,5 @@
+# Dependencies
 node_modules/
+
+# VSCode user specific settings
 .vscode/
