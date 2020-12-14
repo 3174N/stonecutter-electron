@@ -53,8 +53,15 @@ function createWindow() {
 			],
 		},
 		{
-			label: 'Debug',
-			submenu: [{ label: 'Toggle Dev Tools', role: 'toggleDevTools' }],
+			label: 'View',
+			submenu: [
+				{ label: 'Actual Size', role: 'resetZoom' },
+				{ label: 'Zoom In', role: 'zoomIn', accelerator: 'CmdOrCtrl+=' },
+				{ label: 'Zoom In', role: 'zoomOut' },
+				{ type: 'separator' },
+        { label: 'Toggle Fullscreen', role: 'togglefullscreen' },
+        { label: 'Toggle Dev Tools', role: 'toggleDevTools' }
+      ],
 		},
 	]);
 	Menu.setApplicationMenu(menu);
