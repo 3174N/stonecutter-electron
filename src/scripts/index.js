@@ -109,6 +109,7 @@ function openFile(fileName) {
 
 	currentFile = fileName;
 	filePath = filePaths[currentFile];
+  updateTitle();
 
 	if (fs.lstatSync(filePaths[file]).isDirectory()) {
 		fs.readFile(filePaths[currentFile], function (err, data) {
@@ -123,6 +124,7 @@ function openFile(fileName) {
 
 // Save files
 // TODO: Add save & save as to context menu & keyboard shortcuts
+// TODO: Detect unsaved file and update saveStatus
 function saveFile() {
 	// Ctrl + S
 	if (currentFile != '') {
@@ -136,6 +138,7 @@ function saveFile() {
 	} else {
 		saveFileAs();
 	}
+  updateTitle();
 }
 
 function saveFileAs() {
@@ -190,4 +193,9 @@ function saveFileAs() {
 				console.log('no file selected');
 			}
 		});
+  updateTitle();
+}
+
+function updateTitle() {
+    document.title = `<saveStatus> ${currentFile} - <currentProject> - Stonecutter`;
 }
