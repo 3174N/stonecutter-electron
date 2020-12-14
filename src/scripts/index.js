@@ -6,7 +6,7 @@ const path = require('path');
 const { dialog } = require('electron').remote;
 
 // Used to get text with in-line breaks
-function parseBrakes(value) {
+function parseBreaks(value) {
 	value = value.replace(/<div>/gi, '\n');
 	value = value.replace(/<(.*?)>/g, '');
 
@@ -43,6 +43,7 @@ document
 			})
 			.then(function (response) {
 				if (!response.canceled) {
+					// TODO: Add file name & project name to title bar (like vscode)
 					currentFile = path.basename(response.filePaths[0]);
 					filePaths[currentFile] = response.filePaths[0];
 
@@ -127,7 +128,7 @@ function saveFile() {
 	if (currentFile != '') {
 		fs.writeFile(
 			filePaths[currentFile],
-			parseBrakes($('.file-content').html()),
+			parseBreaks($('.file-content').html()),
 			function (err) {
 				if (err) return console.log(err);
 			}
@@ -180,7 +181,7 @@ function saveFileAs() {
 
 				fs.writeFile(
 					filePaths[currentFile],
-					parseBrakes($('.file-content').html()),
+					parseBreaks($('.file-content').html()),
 					function (err) {
 						if (err) console.log(err);
 					}
