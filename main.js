@@ -52,6 +52,10 @@ function createWindow() {
 				{ label: 'Paste', role: 'paste' },
 			],
 		},
+		{
+			label: 'Debug',
+			submenu: [{ label: 'Toggle Dev Tools', role: 'toggleDevTools' }],
+		},
 	]);
 	Menu.setApplicationMenu(menu);
 	win = new BrowserWindow({
