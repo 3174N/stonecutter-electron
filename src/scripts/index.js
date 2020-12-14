@@ -13,6 +13,10 @@ function parseBreaks(value) {
 	return value;
 }
 
+function updateTitle() {
+	document.title = `<saveStatus> ${currentFile} - <currentProject> - Stonecutter`;
+}
+
 var filePaths = {};
 var currentFile = '';
 
@@ -46,6 +50,8 @@ document
 					// TODO: Add file name & project name to title bar (like vscode)
 					currentFile = path.basename(response.filePaths[0]);
 					filePaths[currentFile] = response.filePaths[0];
+
+					updateTitle();
 
 					$('.files').append(
 						'<li onclick="openFile($(this).text());">' +
@@ -109,7 +115,7 @@ function openFile(fileName) {
 
 	currentFile = fileName;
 	filePath = filePaths[currentFile];
-  updateTitle();
+	updateTitle();
 
 	if (fs.lstatSync(filePaths[file]).isDirectory()) {
 		fs.readFile(filePaths[currentFile], function (err, data) {
@@ -138,7 +144,7 @@ function saveFile() {
 	} else {
 		saveFileAs();
 	}
-  updateTitle();
+	updateTitle();
 }
 
 function saveFileAs() {
@@ -176,6 +182,8 @@ function saveFileAs() {
 				currentFile = path.basename(response.filePath.toString());
 				filePaths[currentFile] = response.filePath.toString();
 
+				updateTitle();
+
 				$('.files').append(
 					'<li onclick="openFile($(this).text());">' +
 						currentFile +
@@ -193,9 +201,9 @@ function saveFileAs() {
 				console.log('no file selected');
 			}
 		});
-  updateTitle();
+	updateTitle();
 }
 
-function updateTitle() {
-    document.title = `<saveStatus> ${currentFile} - <currentProject> - Stonecutter`;
-}
+// function foo() {
+// 	console.log('foo');
+// }
