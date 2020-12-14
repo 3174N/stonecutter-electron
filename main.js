@@ -31,13 +31,13 @@ function createWindow() {
 				{
 					label: 'Close Instance',
 					role: 'close',
-					accelerator: 'CmdOrCtrl+Q',
+					accelerator: 'CmdOrCtrl+Shift+W',
 				},
 				{ type: 'separator' },
 				{
 					label: 'Exit',
 					role: 'quit',
-					accelerator: 'CmdOrCtrl+Shift+Q',
+					accelerator: 'CmdOrCtrl+Q',
 				},
 			],
 		},
