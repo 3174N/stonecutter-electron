@@ -1,4 +1,4 @@
-[![Dependencies](https://img.shields.io/david/3174N/stonecutter-electron)](https://david-dm.org/3174N/stonecutter-electron) [![License](https://img.shields.io/github/license/3174N/stonecutter-electron)](LICENSE) [![Release](https://img.shields.io/github/v/release/3174N/stonecutter-electron?color=informational&include_prereleases)](https://github.com/3174N/stonecutter-electron/releases)
+[![Dependencies](https://badgen.net/david/dep/3174N/stonecutter-electron)](https://david-dm.org/3174N/stonecutter-electron) [![License](https://badgen.net/github/license/3174N/stonecutter-electron)](LICENSE) [![Release](https://badgen.net/github/release/3174N/stonecutter-electron)](https://github.com/3174N/stonecutter-electron/releases)
 
 # Stonecutter
 
