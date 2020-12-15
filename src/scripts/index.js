@@ -2,8 +2,8 @@
 const $ = require('jquery');
 const fs = require('fs');
 const path = require('path');
-const electron = require('electron');
-const { dialog } = electron.remote || electron;
+const { dialog } = require('electron').remote;
+const ipc = require('electron').ipcRenderer;
 
 // Used to get text with in-line breaks
 function parseBreaks(value) {
@@ -204,11 +204,6 @@ function saveFileAs() {
 	updateTitle();
 }
 
-function foo() {
-	console.log('foo');
-	$('.sda');
-}
-
-module.exports = {
-	foo,
-};
+ipc.on('save', function (event) {
+	saveFile();
+});

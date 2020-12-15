@@ -1,7 +1,9 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const url = require('url');
 const path = require('path');
-const { foo } = require('./src/scripts/index.js');
+// ! Does not work, document is undefined
+//// const { foo } = require('./src/scripts/index.js');
+const ipc = require('electron').ipcMain;
 
 let win;
 
@@ -31,9 +33,7 @@ function createWindow() {
 				{ type: 'separator' },
 				{
 					label: 'Open File',
-					click() {
-						foo();
-					},
+					click() {},
 					accelerator: 'CmdOrCtrl+O',
 				},
 				{ label: 'Open Folder', accelerator: 'CmdOrCtrl+Shift+O' },
@@ -43,6 +43,7 @@ function createWindow() {
 					label: 'Save',
 					click() {
 						// TODO: Save from index.js
+						win.webContents.send('save');
 					},
 					accelerator: 'CmdOrCtrl+S',
 				},
