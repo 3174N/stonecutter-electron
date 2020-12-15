@@ -1,25 +1,25 @@
-const { remote } = require('electron');
+const { remote } = require("electron");
 const { Tray, Menu } = remote;
 
-let trayIcon = new Tray(path.join(__dirname, './styles/media/icon.ico'));
+let trayIcon = new Tray(path.join(__dirname, "./styles/media/icon.ico"));
 
 const trayMenuTemplate = [
     {
-        label: 'Empty Application',
+        label: "Empty Application",
         enabled: false,
     },
 
     {
-        label: 'Settings',
+        label: "Settings",
         click: function () {
-            console.log('Clicked on settings');
+            console.log("Clicked on settings");
         },
     },
 
     {
-        label: 'Help',
+        label: "Help",
         click: function () {
-            console.log('Clicked on Help');
+            console.log("Clicked on Help");
         },
     },
 ];
