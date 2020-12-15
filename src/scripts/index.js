@@ -26,7 +26,7 @@ var currentFile = '';
 document
 	.querySelector('#openfileBtn')
 	.addEventListener('click', function (event) {
-		openFile();
+		openFileFromList();
 	});
 
 document
@@ -117,7 +117,7 @@ function openFolder() {
 		});
 }
 
-function openFile(fileName) {
+function openFileFromList(fileName) {
 	// Open file on <li> click
 
 	currentFile = fileName;
@@ -211,6 +211,18 @@ function saveFileAs() {
 	updateTitle();
 }
 
+ipc.on('open-file', function (event) {
+	openFile();
+});
+
+ipc.on('open-folder', function (event) {
+	openFolder();
+});
+
 ipc.on('save', function (event) {
 	saveFile();
+});
+
+ipc.on('save-as', function (event) {
+	saveFileAs();
 });
