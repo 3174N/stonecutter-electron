@@ -1,27 +1,10 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, shell } = require('electron');
 const url = require('url');
 const path = require('path');
-const { foo } = require('./src/scripts/index.js');
 
 let win;
 
 function createWindow() {
-	win = new BrowserWindow({
-		width: 800,
-		height: 600,
-		icon: __dirname + 'src/styles/media/icon.ico',
-		webPreferences: {
-			nodeIntegration: true,
-			enableRemoteModule: true,
-		},
-	});
-	win.loadURL(
-		url.format({
-			pathname: path.join(__dirname, 'src/index.html'),
-			protocol: 'file:',
-			slashes: true,
-		})
-	);
 	var menu = Menu.buildFromTemplate([
 		{
 			label: 'File',
@@ -29,13 +12,7 @@ function createWindow() {
 				{ label: 'New File', accelerator: 'CmdOrCtrl+N' },
 				{ label: 'New Instance', accelerator: 'CmdOrCtrl+Shift+N' },
 				{ type: 'separator' },
-				{
-					label: 'Open File',
-					click() {
-						foo();
-					},
-					accelerator: 'CmdOrCtrl+O',
-				},
+				{ label: 'Open File', accelerator: 'CmdOrCtrl+O' },
 				{ label: 'Open Folder', accelerator: 'CmdOrCtrl+Shift+O' },
 				// ? { label: 'Open Recent' },
 				{ type: 'separator' },
@@ -92,6 +69,22 @@ function createWindow() {
 		},
 	]);
 	Menu.setApplicationMenu(menu);
+	win = new BrowserWindow({
+		width: 800,
+		height: 600,
+		icon: __dirname + 'src/styles/media/icon.ico',
+		webPreferences: {
+			nodeIntegration: true,
+			enableRemoteModule: true,
+		},
+	});
+	win.loadURL(
+		url.format({
+			pathname: path.join(__dirname, 'src/index.html'),
+			protocol: 'file:',
+			slashes: true,
+		})
+	);
 }
 
 app.on('ready', createWindow);
