@@ -33,10 +33,18 @@ function createWindow() {
 				{ type: 'separator' },
 				{
 					label: 'Open File',
-					click() {},
+					click() {
+						win.webContents.send('open-file');
+					},
 					accelerator: 'CmdOrCtrl+O',
 				},
-				{ label: 'Open Folder', accelerator: 'CmdOrCtrl+Shift+O' },
+				{
+					label: 'Open Folder',
+					click() {
+						win.webContents.send('open-folder');
+					},
+					accelerator: 'CmdOrCtrl+Shift+O',
+				},
 				// ? { label: 'Open Recent' },
 				{ type: 'separator' },
 				{
@@ -47,7 +55,13 @@ function createWindow() {
 					},
 					accelerator: 'CmdOrCtrl+S',
 				},
-				{ label: 'Save As', accelerator: 'CmdOrCtrl+Shift+S' },
+				{
+					label: 'Save As',
+					click() {
+						win.webContents.send('save-as');
+					},
+					accelerator: 'CmdOrCtrl+Shift+S',
+				},
 				{ type: 'separator' },
 				{ label: 'Preferences', accelerator: 'CmdOrCtrl+,' }, // TODO: Add preferences (new window?)
 				{ type: 'separator' },
