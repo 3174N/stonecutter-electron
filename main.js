@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, shell } = require('electron');
 const url = require('url');
 const path = require('path');
 // ! Does not work, document is undefined
@@ -8,22 +8,6 @@ const ipc = require('electron').ipcMain;
 let win;
 
 function createWindow() {
-	win = new BrowserWindow({
-		width: 800,
-		height: 600,
-		icon: __dirname + 'src/styles/media/icon.ico',
-		webPreferences: {
-			nodeIntegration: true,
-			enableRemoteModule: true,
-		},
-	});
-	win.loadURL(
-		url.format({
-			pathname: path.join(__dirname, 'src/index.html'),
-			protocol: 'file:',
-			slashes: true,
-		})
-	);
 	var menu = Menu.buildFromTemplate([
 		{
 			label: 'File',
@@ -99,7 +83,7 @@ function createWindow() {
 					role: 'zoomIn',
 					accelerator: 'CmdOrCtrl+=',
 				},
-				{ label: 'Zoom In', role: 'zoomOut' },
+				{ label: 'Zoom Out', role: 'zoomOut' },
 				{ type: 'separator' },
 				{ label: 'Toggle Fullscreen', role: 'togglefullscreen' },
 				{ label: 'Toggle Dev Tools', role: 'toggleDevTools' },
@@ -107,6 +91,22 @@ function createWindow() {
 		},
 	]);
 	Menu.setApplicationMenu(menu);
+	win = new BrowserWindow({
+		width: 800,
+		height: 600,
+		icon: __dirname + 'src/styles/media/icon.ico',
+		webPreferences: {
+			nodeIntegration: true,
+			enableRemoteModule: true,
+		},
+	});
+	win.loadURL(
+		url.format({
+			pathname: path.join(__dirname, 'src/index.html'),
+			protocol: 'file:',
+			slashes: true,
+		})
+	);
 }
 
 app.on('ready', createWindow);
