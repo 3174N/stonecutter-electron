@@ -26,89 +26,96 @@ var currentFile = '';
 document
 	.querySelector('#openfileBtn')
 	.addEventListener('click', function (event) {
-		dialog
-			.showOpenDialog({
-				title: 'Open File',
-				filters: [
-					{
-						name: 'Minecraft Function',
-						extensions: ['mcfunction'],
-					},
-					{
-						name: 'JavaScript Object Notation',
-						extensions: ['json', 'mcmeta'],
-					},
-					{
-						name: 'Text',
-						extensions: ['txt', 'md', 'markdown'],
-					},
-				],
-				properties: ['openFile'],
-			})
-			.then(function (response) {
-				if (!response.canceled) {
-					// TODO: Add file name & project name to title bar (like vscode)
-					currentFile = path.basename(response.filePaths[0]);
-					filePaths[currentFile] = response.filePaths[0];
-
-					updateTitle();
-
-					$('.files').append(
-						'<li onclick="openFile($(this).text());">' +
-							currentFile +
-							'</li>'
-					);
-
-					fs.readFile(filePaths[currentFile], function (err, data) {
-						if (err) return console.log(err);
-
-						$('.file-content').text(data.toString());
-					});
-				} else {
-					console.log('no file selected');
-				}
-			});
+		openFile();
 	});
+
+document
+	.querySelector('#openfileBtn')
+	.addEventListener('click', function (event) {
+		openFolder();
+	});
+
+function openFile() {
+	dialog
+		.showOpenDialog({
+			title: 'Open File',
+			filters: [
+				{
+					name: 'Minecraft Function',
+					extensions: ['mcfunction'],
+				},
+				{
+					name: 'JavaScript Object Notation',
+					extensions: ['json', 'mcmeta'],
+				},
+				{
+					name: 'Text',
+					extensions: ['txt', 'md', 'markdown'],
+				},
+			],
+			properties: ['openFile'],
+		})
+		.then(function (response) {
+			if (!response.canceled) {
+				// TODO: Add file name & project name to title bar (like vscode)
+				currentFile = path.basename(response.filePaths[0]);
+				filePaths[currentFile] = response.filePaths[0];
+
+				updateTitle();
+
+				$('.files').append(
+					'<li onclick="openFile($(this).text());">' +
+						currentFile +
+						'</li>'
+				);
+
+				fs.readFile(filePaths[currentFile], function (err, data) {
+					if (err) return console.log(err);
+
+					$('.file-content').text(data.toString());
+				});
+			} else {
+				console.log('no file selected');
+			}
+		});
+}
 
 // Open folder
-document
-	.querySelector('#openfolderBtn')
-	.addEventListener('click', function (event) {
-		dialog
-			.showOpenDialog({
-				title: 'Open Folder',
-				properties: ['openDirectory'],
-			})
-			.then(function (response) {
-				if (!response.canceled) {
-					fs.readdir(response.filePaths[0], function (err, files) {
-						if (err) return console.log(err);
+function openFolder() {
+	dialog
+		.showOpenDialog({
+			title: 'Open Folder',
+			properties: ['openDirectory'],
+		})
+		.then(function (response) {
+			if (!response.canceled) {
+				fs.readdir(response.filePaths[0], function (err, files) {
+					if (err) return console.log(err);
 
-						for (let file of files) {
-							filePaths[file] =
-								response.filePaths[0] + '/' + file;
+					for (let file of files) {
+						filePaths[file] = response.filePaths[0] + '/' + file;
 
-							if (fs.lstatSync(filePaths[file]).isDirectory()) {
-								// Path leads to a directory
-								// TODO: Build file tree
-								console.log(file + ' : Folder');
-							} else {
-								// Path leads to a file
-								console.log(file);
-							}
-
-							$('.files').append(
-								'<li onClick="openFile($(this).text());">' +
-									file +
-									'</li>'
-							);
+						if (fs.lstatSync(filePaths[file]).isDirectory()) {
+							// Path leads to a directory
+							// TODO: Build file tree
+							console.log(file + ' : Folder');
+						} else {
+							// Path leads to a file
+							console.log(file);
 						}
-					});
-				} else {
-					console.log('no folder selected');
-				}
-			});
-	});
+
+						$('.files').append(
+							'<li onClick="openFile($(this).text());">' +
+								file +
+								'</li>'
+						);
+					}
+				});
+			} else {
+				console.log('no folder selected');
+			}
+		});
+}
 
 function openFile(fileName) {
 	// Open file on <li> click
