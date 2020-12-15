@@ -1,6 +1,9 @@
 const { app, BrowserWindow, Menu, shell } = require('electron');
 const url = require('url');
 const path = require('path');
+// ! Does not work, document is undefined
+//// const { foo } = require('./src/scripts/index.js');
+const ipc = require('electron').ipcMain;
 
 let win;
 
@@ -12,18 +15,37 @@ function createWindow() {
 				{ label: 'New File', accelerator: 'CmdOrCtrl+N' },
 				{ label: 'New Instance', accelerator: 'CmdOrCtrl+Shift+N' },
 				{ type: 'separator' },
-				{ label: 'Open File', accelerator: 'CmdOrCtrl+O' },
-				{ label: 'Open Folder', accelerator: 'CmdOrCtrl+Shift+O' },
+				{
+					label: 'Open File',
+					click() {
+						win.webContents.send('open-file');
+					},
+					accelerator: 'CmdOrCtrl+O',
+				},
+				{
+					label: 'Open Folder',
+					click() {
+						win.webContents.send('open-folder');
+					},
+					accelerator: 'CmdOrCtrl+Shift+O',
+				},
 				// ? { label: 'Open Recent' },
 				{ type: 'separator' },
 				{
 					label: 'Save',
 					click() {
 						// TODO: Save from index.js
+						win.webContents.send('save');
 					},
 					accelerator: 'CmdOrCtrl+S',
 				},
-				{ label: 'Save As', accelerator: 'CmdOrCtrl+Shift+S' },
+				{
+					label: 'Save As',
+					click() {
+						win.webContents.send('save-as');
+					},
+					accelerator: 'CmdOrCtrl+Shift+S',
+				},
 				{ type: 'separator' },
 				{ label: 'Preferences', accelerator: 'CmdOrCtrl+,' }, // TODO: Add preferences (new window?)
 				{ type: 'separator' },
