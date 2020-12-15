@@ -84,7 +84,7 @@ function createWindow() {
 					role: 'zoomIn',
 					accelerator: 'CmdOrCtrl+=',
 				},
-				{ label: 'Zoom In', role: 'zoomOut' },
+				{ label: 'Zoom Out', role: 'zoomOut' },
 				{ type: 'separator' },
 				{ label: 'Toggle Fullscreen', role: 'togglefullscreen' },
 				{ label: 'Toggle Dev Tools', role: 'toggleDevTools' },
