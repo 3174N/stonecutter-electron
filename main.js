@@ -1,7 +1,7 @@
-const { app, BrowserWindow, Menu, shell } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const url = require('url');
 const path = require('path');
-// const { openFile } = require('./testfile.js');
+const { foo } = require('./src/scripts/index.js');
 
 let win;
 
@@ -32,7 +32,7 @@ function createWindow() {
 				{
 					label: 'Open File',
 					click() {
-						// openFile();
+						foo();
 					},
 					accelerator: 'CmdOrCtrl+O',
 				},
@@ -76,12 +76,18 @@ function createWindow() {
 			],
 		},
 		{
-			label: 'Debug',
+			label: 'View',
 			submenu: [
+				{ label: 'Actual Size', role: 'resetZoom' },
 				{
-					label: 'Toggle Dev Tools',
-					role: 'toggleDevTools',
+					label: 'Zoom In',
+					role: 'zoomIn',
+					accelerator: 'CmdOrCtrl+=',
 				},
+				{ label: 'Zoom In', role: 'zoomOut' },
+				{ type: 'separator' },
+				{ label: 'Toggle Fullscreen', role: 'togglefullscreen' },
+				{ label: 'Toggle Dev Tools', role: 'toggleDevTools' },
 			],
 		},
 	]);
