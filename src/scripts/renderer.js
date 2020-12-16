@@ -6,9 +6,22 @@ const { dialog } = require('electron').remote;
 const ipc = require('electron').ipcRenderer;
 
 // Used to get text with in-line breaks
-function parseBreaks(value) {
+function parseHTML(value) {
+    var translate_re = /&(nbsp|amp|quot|lt|gt);/g,
+        translate = {
+            nbsp: String.fromCharCode(160),
+            amp: '&',
+            quot: '"',
+            lt: '<',
+            gt: '>',
+        },
+        translator = function ($0, $1) {
+            return translate[$1];
+        };
     value = value.replace(/<div>/gi, '\n');
     value = value.replace(/<(.*?)>/g, '');
+
+    value = value.replace(translate_re, translator);
 
     return value;
 }
@@ -140,9 +153,12 @@ function openFileFromList(fileName) {
 function saveFile() {
     // Ctrl + S
     if (currentFile != '') {
+        console.log(parseHTML($('.file-content').html()));
+        console.log($('.file-content').text());
+
         fs.writeFile(
             filePaths[currentFile],
-            parseBreaks($('.file-content').html()),
+            parseHTML($('.file-content').html()),
             function (err) {
                 if (err) return console.log(err);
             }
@@ -198,7 +214,7 @@ function saveFileAs() {
 
                 fs.writeFile(
                     filePaths[currentFile],
-                    parseBreaks($('.file-content').html()),
+                    parseHTML($('.file-content').html()),
                     function (err) {
                         if (err) console.log(err);
                     }
