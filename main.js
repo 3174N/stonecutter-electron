@@ -93,7 +93,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: __dirname + 'src/styles/media/icon.ico',
+        icon: path.join(__dirname, 'src/styles/media/icon.ico'),
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
