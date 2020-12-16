@@ -34,7 +34,6 @@ function createWindow() {
                 {
                     label: 'Save',
                     click() {
-                        // TODO: Save from index.js
                         win.webContents.send('save');
                     },
                     accelerator: 'CmdOrCtrl+S',
