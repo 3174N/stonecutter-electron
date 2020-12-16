@@ -1,27 +1,27 @@
 {
-	"name": "stonecutter-electron",
-	"version": "0.1.0",
-	"description": "A text editor for mcfunction",
-	"main": "main.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "electron main.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/3174N/stonecutter-electron.git"
-	},
-	"author": "3174N and SFR",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/3174N/stonecutter-electron/issues"
-	},
-	"homepage": "https://github.com/3174N/stonecutter-electron#readme",
-	"dependencies": {
-		"electron": "^11.1.0",
-		"electron-mocha": "^10.0.0",
-		"jquery": "^3.5.1",
-		"xvfb": "^0.4.0",
-		"xvfb-maybe": "^0.2.1"
-	}
+    "name": "stonecutter-electron",
+    "version": "0.1.0",
+    "description": "A text editor for mcfunction",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "electron main.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/3174N/stonecutter-electron.git"
+    },
+    "author": "3174N and SFR",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/3174N/stonecutter-electron/issues"
+    },
+    "homepage": "https://github.com/3174N/stonecutter-electron#readme",
+    "dependencies": {
+        "electron": "11.1.0",
+        "electron-mocha": "^10.0.0",
+        "jquery": "^3.5.1",
+        "xvfb": "^0.4.0",
+        "xvfb-maybe": "^0.2.1"
+    }
 }
