@@ -16,14 +16,14 @@ function createWindow() {
                 { label: 'New Instance', accelerator: 'CmdOrCtrl+Shift+N' },
                 { type: 'separator' },
                 {
-                    label: 'Open File',
+                    label: 'Open File...',
                     click() {
                         win.webContents.send('open-file');
                     },
                     accelerator: 'CmdOrCtrl+O',
                 },
                 {
-                    label: 'Open Folder',
+                    label: 'Open Folder...',
                     click() {
                         win.webContents.send('open-folder');
                     },
@@ -34,19 +34,20 @@ function createWindow() {
                 {
                     label: 'Save',
                     click() {
+                        // TODO: Save from index.js
                         win.webContents.send('save');
                     },
                     accelerator: 'CmdOrCtrl+S',
                 },
                 {
-                    label: 'Save As',
+                    label: 'Save As...',
                     click() {
                         win.webContents.send('save-as');
                     },
                     accelerator: 'CmdOrCtrl+Shift+S',
                 },
                 { type: 'separator' },
-                { label: 'Preferences', accelerator: 'CmdOrCtrl+,' }, // TODO: Add preferences (new window?)
+                { label: 'Preferences...', accelerator: 'CmdOrCtrl+,' }, // TODO: Add preferences (new window?) (if not new window then remove ellipsis)
                 { type: 'separator' },
                 { label: 'Close Tab', accelerator: 'CmdOrCtrl+W' },
                 {
@@ -104,7 +105,7 @@ function createWindow() {
             pathname: path.join(__dirname, 'src/index.html'),
             protocol: 'file:',
             slashes: true,
-        })
+        }),
     );
 }
 
