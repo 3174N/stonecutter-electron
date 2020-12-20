@@ -1,0 +1,3 @@
+[submodule "src/styles/fonts/craft-mono"]
+	path = src/styles/fonts/craft-mono
+	url = https://github.com/SFR-git/craft-mono
