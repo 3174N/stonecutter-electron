@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, shell } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const url = require('url');
 const path = require('path');
 // ! Does not work, document is undefined
@@ -105,7 +105,7 @@ function createWindow() {
             pathname: path.join(__dirname, 'src/index.html'),
             protocol: 'file:',
             slashes: true,
-        }),
+        })
     );
 }
 
