@@ -1,44 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
-	font-family: 'Roboto';
+    font-family: 'Roboto';
 }
 
 :not(input):not(textarea),
 :not(input):not(textarea)::after,
 :not(input):not(textarea)::before {
-	-webkit-user-select: none;
-	user-select: none;
-	cursor: default;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
 }
 input,
 button,
 textarea,
 :focus {
-	outline: none;
+    outline: none;
 }
 
 .grid-container {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
-	gap: 0px 0px;
-	grid-template-areas:
-		'explorer file-view file-view file-view'
-		'explorer file-view file-view file-view'
-		'explorer file-view file-view file-view';
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        'explorer file-view file-view file-view'
+        'explorer file-view file-view file-view'
+        'explorer file-view file-view file-view';
 }
 
 .explorer {
-	grid-area: explorer;
+    grid-area: explorer;
 }
 
 .file-view {
-	grid-area: file-view;
+    grid-area: file-view;
 }
 
 .file-content {
-	cursor: text;
+    cursor: text;
 }
 
 /* .file-content {
@@ -47,15 +47,15 @@ textarea,
 } */
 
 ul.files {
-	list-style: none;
-	padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
 
 ul.files li:hover {
-	background-color: rgb(195, 195, 195);
-	cursor: pointer;
+    background-color: rgb(195, 195, 195);
+    cursor: pointer;
 }
 
 ul.files li:active {
-	background-color: rgb(180, 180, 180);
+    background-color: rgb(180, 180, 180);
 }
