@@ -1,3 +1,4 @@
+$ = require('jquery');
 const remote = require('electron').remote;
 const { BrowserWindow } = remote;
 const url = require('url');
@@ -29,6 +30,23 @@ function openPopup() {
 function closePopup() {
     remote.getCurrentWindow().close();
 }
+
+$('#create-project-form').on('submit', function (e) {
+    // Stops form from refreshing
+    e.preventDefault();
+
+    // Get all inputs
+    var inputs = $('#create-project-form :input');
+
+    var values = {};
+    inputs.each(function () {
+        values[this.name] = $(this).val();
+    });
+
+    // TODO: Write info in project.cutter
+
+    remote.getCurrentWindow().close();
+});
 
 document.querySelector('#closeBtn').addEventListener('click', function (event) {
     closePopup();
