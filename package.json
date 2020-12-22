@@ -4,7 +4,7 @@
     "description": "A text editor for mcfunction",
     "main": "main.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "mocha",
         "start": "electron main.js"
     },
     "repository": {
@@ -24,5 +24,9 @@
         "js-yaml": "^3.14.1",
         "xvfb": "^0.4.0",
         "xvfb-maybe": "^0.2.1"
+    },
+    "devDependencies": {
+        "mocha": "^8.2.1",
+        "spectron": "^13.0.0"
     }
 }
