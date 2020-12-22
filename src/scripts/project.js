@@ -47,12 +47,6 @@ $('#create-project-form').on('submit', function (e) {
     });
     console.log('🚀 ~ file: project.js ~ line 47 ~ values', values);
 
-    var test = {
-        test: '1',
-        path: '2',
-        what: '3',
-    };
-
     fs.writeFileSync(
         path.join(values['directory'], `${values['name']}.cutter`),
         yaml.safeDump(values)
