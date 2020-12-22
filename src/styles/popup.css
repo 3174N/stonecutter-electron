@@ -8,7 +8,6 @@
     top: 0px;
     left: 0px;
     font-size: 16px;
-    pointer-event: none;
     transition: all 0.5s ease-in-out;
 }
 .input-container input {
@@ -33,7 +32,7 @@
 }
 
 footer {
-    position: absolute;
+    /* position: absolute; */
     bottom: 10px;
     right: 10px;
 }

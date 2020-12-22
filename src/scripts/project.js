@@ -1,4 +1,7 @@
-$ = require('jquery');
+var $ = require('jquery');
+var fs = require('fs');
+var path = require('path');
+const yaml = require('js-yaml');
 const remote = require('electron').remote;
 const { BrowserWindow } = remote;
 const url = require('url');
@@ -23,7 +26,7 @@ function openPopup() {
         })
     );
     // * Comment next line for dev-tools access * //
-    win.removeMenu();
+    // win.removeMenu();
     win.setResizable(false);
 }
 
@@ -42,8 +45,18 @@ $('#create-project-form').on('submit', function (e) {
     inputs.each(function () {
         values[this.name] = $(this).val();
     });
+    console.log('🚀 ~ file: project.js ~ line 47 ~ values', values);
 
-    // TODO: Write info in project.cutter
+    var test = {
+        test: '1',
+        path: '2',
+        what: '3',
+    };
+
+    fs.writeFileSync(
+        path.join(values['directory'], `${values['name']}.cutter`),
+        yaml.safeDump(values)
+    );
 
     remote.getCurrentWindow().close();
 });
