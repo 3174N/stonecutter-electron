@@ -1,7 +1,7 @@
 // Import modules
 var $ = require('jquery');
-const fs = require('fs');
-const path = require('path');
+var fs = require('fs');
+var path = require('path');
 const { dialog } = require('electron').remote;
 const ipc = require('electron').ipcRenderer;
 
