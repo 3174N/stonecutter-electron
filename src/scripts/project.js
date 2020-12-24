@@ -58,7 +58,7 @@ $('#create-project-form').on('submit', function (e) {
 
 	// Creates .cutter file
 	fs.writeFileSync(
-		path.join(projPath, `${values['name']}.cutter`),
+		path.join(projPath, `project.cutter`),
 		yaml.safeDump(values)
 	);
 
