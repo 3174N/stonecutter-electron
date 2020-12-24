@@ -68,7 +68,7 @@ $('#create-project-form').on('submit', function (e) {
 		`{
             "pack": {
                 "pack_format": 6,
-                "description": ${values['description']}
+                "description": "${values['description']}"
             }
         }`
 	);
