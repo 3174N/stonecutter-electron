@@ -4,6 +4,7 @@ const path = require('path');
 // ! Does not work, document is undefined
 //// const { foo } = require('./src/scripts/index.js');
 const ipc = require('electron').ipcMain;
+const { PerformanceObserver, performance } = require('perf_hooks');
 
 let win;
 
@@ -104,8 +105,12 @@ function createWindow() {
             pathname: path.join(__dirname, 'src/index.html'),
             protocol: 'file:',
             slashes: true,
-        })
+        }),
     );
 }
 
+console.log('Launching Stonecutter...');
+var t0 = performance.now();
 app.on('ready', createWindow);
+var t1 = performance.now();
+console.log('Stonecutter succesfully launched (' + (t1 - t0) + 'ms)');

@@ -79,7 +79,7 @@ function openFile() {
                 $('.files').append(
                     '<li onClick="openFileFromList($(this).text());">' +
                         currentFile +
-                        '</li>'
+                        '</li>',
                 );
 
                 fs.readFile(filePaths[currentFile], function (err, data) {
@@ -87,8 +87,9 @@ function openFile() {
 
                     $('.file-content').text(data.toString());
                 });
+                console.log('File opened.');
             } else {
-                console.log('no file selected');
+                console.log('No file selected.');
             }
         });
 }
@@ -120,12 +121,13 @@ function openFolder() {
                         $('.files').append(
                             '<li onClick="openFileFromList($(this).text());">' +
                                 file +
-                                '</li>'
+                                '</li>',
                         );
                     }
                 });
+                console.log('Folder opened.');
             } else {
-                console.log('no folder selected');
+                console.log('No folder selected.');
             }
         });
 }
@@ -161,8 +163,9 @@ function saveFile() {
             parseHTML($('.file-content').html()),
             function (err) {
                 if (err) return console.log(err);
-            }
+            },
         );
+        console.log('File saved.');
     } else {
         saveFileAs();
     }
@@ -209,7 +212,7 @@ function saveFileAs() {
                 $('.files').append(
                     '<li onClick="openFileFromList($(this).text());">' +
                         currentFile +
-                        '</li>'
+                        '</li>',
                 );
 
                 fs.writeFile(
@@ -217,10 +220,11 @@ function saveFileAs() {
                     parseHTML($('.file-content').html()),
                     function (err) {
                         if (err) console.log(err);
-                    }
+                    },
                 );
+                console.log('File saved.');
             } else {
-                console.log('no file selected');
+                console.log('No file selected.');
             }
         });
     updateTitle();

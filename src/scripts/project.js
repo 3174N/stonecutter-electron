@@ -23,7 +23,7 @@ function openPopup() {
             pathname: path.join(__dirname, '/pages/popup.html'),
             protocol: 'file:',
             slashes: true,
-        })
+        }),
     );
     // * Comment next line for dev-tools access * //
     // win.removeMenu();
@@ -45,21 +45,23 @@ $('#create-project-form').on('submit', function (e) {
     inputs.each(function () {
         values[this.name] = $(this).val();
     });
-    console.log('🚀 ~ file: project.js ~ line 47 ~ values', values);
 
     // * Generate folder structure * //
 
     var projPath = path.join(values['directory'], `${values['name']}`);
 
     // Creates project folder
-    if (!fs.existsSync(projPath)) {
+    if (fs.existsSync(projPath)) {
+        console.log('Project already exists.');
+        alert('Project already exists at specified location.'); // TODO: fancy errors
+    } else {
         fs.mkdirSync(projPath);
     }
 
     // Creates .cutter file
     fs.writeFileSync(
         path.join(projPath, `project.cutter`),
-        yaml.safeDump(values)
+        yaml.safeDump(values),
     );
 
     // Creates pack.mcmeta
@@ -70,7 +72,7 @@ $('#create-project-form').on('submit', function (e) {
                 "pack_format": 6,
                 "description": "${values['description']}"
             }
-        }`
+        }`,
     );
 
     // Create data folder
