@@ -9,52 +9,108 @@ const url = require('url');
 let win;
 
 function openPopup() {
-    win = new BrowserWindow({
-        width: 500,
-        height: 350,
-        icon: path.join(__dirname, 'styles/media/icon.ico'),
-        webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true,
-        },
-    });
-    win.loadURL(
-        url.format({
-            pathname: path.join(__dirname, '/pages/popup.html'),
-            protocol: 'file:',
-            slashes: true,
-        })
-    );
-    // * Comment next line for dev-tools access * //
-    // win.removeMenu();
-    win.setResizable(false);
+	win = new BrowserWindow({
+		width: 500,
+		height: 350,
+		icon: path.join(__dirname, 'styles/media/icon.ico'),
+		webPreferences: {
+			nodeIntegration: true,
+			enableRemoteModule: true,
+		},
+	});
+	win.loadURL(
+		url.format({
+			pathname: path.join(__dirname, '/pages/popup.html'),
+			protocol: 'file:',
+			slashes: true,
+		})
+	);
+	// * Comment next line for dev-tools access * //
+	// win.removeMenu();
+	win.setResizable(false);
 }
 
 function closePopup() {
-    remote.getCurrentWindow().close();
+	remote.getCurrentWindow().close();
 }
 
 $('#create-project-form').on('submit', function (e) {
-    // Stops form from refreshing
-    e.preventDefault();
+	// Stops form from refreshing
+	e.preventDefault();
 
-    // Get all inputs
-    var inputs = $('#create-project-form :input');
+	// Get all inputs
+	var inputs = $('#create-project-form :input');
 
-    var values = {};
-    inputs.each(function () {
-        values[this.name] = $(this).val();
-    });
-    console.log('🚀 ~ file: project.js ~ line 47 ~ values', values);
+	var values = {};
+	inputs.each(function () {
+		values[this.name] = $(this).val();
+	});
+	console.log('🚀 ~ file: project.js ~ line 47 ~ values', values);
 
-    fs.writeFileSync(
-        path.join(values['directory'], `${values['name']}.cutter`),
-        yaml.safeDump(values)
-    );
+	// * Generate folder structure * //
 
-    remote.getCurrentWindow().close();
+	var projPath = path.join(values['directory'], `${values['name']}`);
+
+	// Creates project folder
+	if (!fs.existsSync(projPath)) {
+		fs.mkdirSync(projPath);
+	}
+
+	// Creates .cutter file
+	fs.writeFileSync(
+		path.join(projPath, `${values['name']}.cutter`),
+		yaml.safeDump(values)
+	);
+
+	// Creates pack.mcmeta
+	fs.writeFileSync(
+		path.join(projPath, 'pack.mcmeta'),
+		`{
+            "pack": {
+                "pack_format": 6,
+                "description": ${values['description']}
+            }
+        }`
+	);
+
+	// Create data folder
+	fs.mkdirSync(path.join(projPath, 'data'));
+	projPath = path.join(projPath, `data/${values['name']}`);
+
+	// Create namespace folder
+	fs.mkdirSync(projPath);
+
+	// Create subfolders
+	fs.mkdirSync(path.join(projPath, 'advancements'));
+	fs.mkdirSync(path.join(projPath, 'functions'));
+	fs.mkdirSync(path.join(projPath, 'loot_tables'));
+	fs.mkdirSync(path.join(projPath, 'predicates'));
+	fs.mkdirSync(path.join(projPath, 'recipes'));
+	fs.mkdirSync(path.join(projPath, 'structures'));
+
+	fs.mkdirSync(path.join(projPath, 'tags'));
+	fs.mkdirSync(path.join(projPath, 'tags/blocks'));
+	fs.mkdirSync(path.join(projPath, 'tags/entity_types'));
+	fs.mkdirSync(path.join(projPath, 'tags/fluids'));
+	fs.mkdirSync(path.join(projPath, 'tags/functions'));
+	fs.mkdirSync(path.join(projPath, 'tags/items'));
+
+	fs.mkdirSync(path.join(projPath, 'dimension_type'));
+	fs.mkdirSync(path.join(projPath, 'dimension'));
+
+	fs.mkdirSync(path.join(projPath, 'worldgen'));
+	fs.mkdirSync(path.join(projPath, 'worldgen/biome'));
+	fs.mkdirSync(path.join(projPath, 'worldgen/configured_carver'));
+	fs.mkdirSync(path.join(projPath, 'worldgen/configured_feature'));
+	fs.mkdirSync(path.join(projPath, 'worldgen/configured_structure_feature'));
+	fs.mkdirSync(path.join(projPath, 'worldgen/configured_surface_builder'));
+	fs.mkdirSync(path.join(projPath, 'worldgen/noise_settings'));
+	fs.mkdirSync(path.join(projPath, 'worldgen/processor_list'));
+	fs.mkdirSync(path.join(projPath, 'worldgen/template_pool'));
+
+	remote.getCurrentWindow().close();
 });
 
 document.querySelector('#closeBtn').addEventListener('click', function (event) {
-    closePopup();
+	closePopup();
 });
