@@ -24,7 +24,7 @@ function createWindow() {
                           }, // TODO: Add preferences (new window?)
                           { role: 'services' },
                           { type: 'separator' },
-                          { role: 'hide' },
+                          { label: 'Hide Stonecutter', role: 'hide' },
                           { role: 'hideothers' },
                           { role: 'unhide' },
                           { type: 'separator' },
