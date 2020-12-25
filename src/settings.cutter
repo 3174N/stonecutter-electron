@@ -1,0 +1,24 @@
+# STONECUTTER USER SETTINGS
+# -------------------------
+#
+# These settings can either be changed directly from this file,
+# or via the Settings tab in Stonecutter.
+# Unless you know what you're doing, we advise you to use the app;
+# you run the risk of irreversably damaging your projects.
+
+# Font
+font:
+    family: "Craft Mono" # Default: Craft Mono
+    style: Regular # Default: Regular
+    size: 11.0 # Default: 11.0
+
+# Colorscheme
+# This can be changed by adding a custom theme to ./colorschemes/
+colorscheme: "default" # Default: default
+
+# Enable vi mode to allow for vi/vim-style navigation
+vi-mode: false # Default: false
+
+# TODO: Keybinds
+
+# TODO: a whole lot more (maybe look at vsc/atom)
