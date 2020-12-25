@@ -5,7 +5,9 @@
     "main": "main.js",
     "scripts": {
         "test": "mocha",
-        "start": "electron main.js"
+        "start": "electron main.js",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder"
     },
     "repository": {
         "type": "git",
@@ -18,7 +20,6 @@
     },
     "homepage": "https://github.com/3174N/stonecutter-electron#readme",
     "dependencies": {
-        "electron": "11.1.1",
         "electron-mocha": "^10.0.0",
         "jquery": "^3.5.1",
         "js-yaml": "^3.14.1",
@@ -26,6 +27,8 @@
         "xvfb-maybe": "^0.2.1"
     },
     "devDependencies": {
+        "electron": "11.1.1",
+        "electron-builder": "^22.9.1",
         "mocha": "^8.2.1",
         "spectron": "^13.0.0"
     }
