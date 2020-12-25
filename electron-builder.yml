@@ -1,12 +1,16 @@
 directories:
     output: dist
-    buildResources: build
+    buildResources: 'src/styles/media'
 electronVersion: 11.1.1
 appId: 'com.electron.stonecutter'
 productName: 'Stonecutter'
 copyright: 'Copyright © 2020 SFR & 3174N'
 
 dmg:
-    icon: './src/styles/media/icon.png'
     title: 'Install Stonecutter'
+    window:
+        x: 350
+        y: 690
+
+
 
