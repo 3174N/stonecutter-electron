@@ -6,63 +6,141 @@ const path = require('path');
 const ipc = require('electron').ipcMain;
 const { PerformanceObserver, performance } = require('perf_hooks');
 
+const isMac = process.platform === 'darwin';
 let win;
 
 function createWindow() {
     var menu = Menu.buildFromTemplate([
-        {
-            label: 'File',
-            submenu: [
-                { label: 'New File', accelerator: 'CmdOrCtrl+N' },
-                { label: 'New Instance', accelerator: 'CmdOrCtrl+Shift+N' },
-                { type: 'separator' },
-                {
-                    label: 'Open File...',
-                    click() {
-                        win.webContents.send('open-file');
-                    },
-                    accelerator: 'CmdOrCtrl+O',
-                },
-                {
-                    label: 'Open Folder...',
-                    click() {
-                        win.webContents.send('open-folder');
-                    },
-                    accelerator: 'CmdOrCtrl+Shift+O',
-                },
-                // ? { label: 'Open Recent' },
-                { type: 'separator' },
-                {
-                    label: 'Save',
-                    click() {
-                        win.webContents.send('save');
-                    },
-                    accelerator: 'CmdOrCtrl+S',
-                },
-                {
-                    label: 'Save As...',
-                    click() {
-                        win.webContents.send('save-as');
-                    },
-                    accelerator: 'CmdOrCtrl+Shift+S',
-                },
-                { type: 'separator' },
-                { label: 'Preferences...', accelerator: 'CmdOrCtrl+,' }, // TODO: Add preferences (new window?) (if not new window then remove ellipsis)
-                { type: 'separator' },
-                { label: 'Close Tab', accelerator: 'CmdOrCtrl+W' },
-                {
-                    label: 'Close Instance',
-                    role: 'close',
-                    accelerator: 'CmdOrCtrl+Shift+W',
-                },
-                { type: 'separator' },
-                {
-                    label: 'Exit',
-                    role: 'quit',
-                    accelerator: 'CmdOrCtrl+Q',
-                },
-            ],
-        },
+        ...(isMac
+            ? [
+                  {
+                      label: app.name,
+                      submenu: [
+                          { label: 'About Stonecutter', role: 'about' },
+                          { type: 'separator' },
+                          {
+                              label: 'Preferences...',
+                              accelerator: 'CmdOrCtrl+,',
+                          }, // TODO: Add preferences (new window?)
+                          { role: 'services' },
+                          { type: 'separator' },
+                          { role: 'hide' },
+                          { role: 'hideothers' },
+                          { role: 'unhide' },
+                          { type: 'separator' },
+                          { label: 'Quit Stonecutter', role: 'quit' },
+                      ],
+                  },
+              ]
+            : []),
+        ...(isMac
+            ? [
+                  {
+                      label: 'File',
+                      submenu: [
+                          { label: 'New', accelerator: 'CmdOrCtrl+N' },
+                          {
+                              label: 'New Window',
+                              accelerator: 'CmdOrCtrl+Shift+N',
+                          },
+                          { type: 'separator' },
+                          {
+                              label: 'Open...',
+                              click() {
+                                  win.webContents.send('open-file');
+                              },
+                              accelerator: 'CmdOrCtrl+O',
+                          },
+                          {
+                              label: 'Open Folder...',
+                              click() {
+                                  win.webContents.send('open-folder');
+                              },
+                              accelerator: 'CmdOrCtrl+Shift+O',
+                          },
+                          // ? { label: 'Open Recent' },
+                          { type: 'separator' },
+                          { label: 'Close Tab', accelerator: 'CmdOrCtrl+W' },
+                          {
+                              label: 'Close Window',
+                              role: 'close',
+                              accelerator: 'CmdOrCtrl+Shift+W',
+                          },
+                          { type: 'separator' },
+                          {
+                              label: 'Save',
+                              click() {
+                                  win.webContents.send('save');
+                              },
+                              accelerator: 'CmdOrCtrl+S',
+                          },
+                          {
+                              label: 'Save As...',
+                              click() {
+                                  win.webContents.send('save-as');
+                              },
+                              accelerator: 'CmdOrCtrl+Shift+S',
+                          },
+                      ],
+                  },
+              ]
+            : [
+                  {
+                      label: 'File',
+                      submenu: [
+                          { label: 'New File', accelerator: 'CmdOrCtrl+N' },
+                          {
+                              label: 'New Instance',
+                              accelerator: 'CmdOrCtrl+Shift+N',
+                          },
+                          { type: 'separator' },
+                          {
+                              label: 'Open File...',
+                              click() {
+                                  win.webContents.send('open-file');
+                              },
+                              accelerator: 'CmdOrCtrl+O',
+                          },
+                          {
+                              label: 'Open Folder...',
+                              click() {
+                                  win.webContents.send('open-folder');
+                              },
+                              accelerator: 'CmdOrCtrl+Shift+O',
+                          },
+                          // ? { label: 'Open Recent' },
+                          { type: 'separator' },
+                          {
+                              label: 'Save',
+                              click() {
+                                  win.webContents.send('save');
+                              },
+                              accelerator: 'CmdOrCtrl+S',
+                          },
+                          {
+                              label: 'Save As...',
+                              click() {
+                                  win.webContents.send('save-as');
+                              },
+                              accelerator: 'CmdOrCtrl+Shift+S',
+                          },
+                          { type: 'separator' },
+                          {
+                              label: 'Preferences...',
+                              accelerator: 'CmdOrCtrl+,',
+                          }, // TODO: Add preferences (new window?) (if not new window then remove ellipsis)
+                          { type: 'separator' },
+                          { label: 'Close Tab', accelerator: 'CmdOrCtrl+W' },
+                          {
+                              label: 'Close Instance',
+                              role: 'close',
+                              accelerator: 'CmdOrCtrl+Shift+W',
+                          },
+                          { type: 'separator' },
+                          { role: 'quit' },
+                      ],
+                  },
+              ]),
         {
             label: 'Edit',
             submenu: [
