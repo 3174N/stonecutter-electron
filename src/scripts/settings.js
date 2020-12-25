@@ -23,10 +23,12 @@ function initSettings() {
         if (!fs.existsSync(settingsFolder)) {
             fs.mkdirSync(settingsFolder);
         }
-        fs.writeFile(
+        fs.copyFile(
+            './src/settings.cutter',
             path.join(settingsFolder, 'settings.cutter'),
-            '', // TODO: Pull file content from src
-            (err) => {},
+            (err) => {
+                return console.log(err);
+            },
         );
     }
 }
