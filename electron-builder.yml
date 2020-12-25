@@ -1,0 +1,7 @@
+directories:
+    output: dist
+    buildResources: build
+electronVersion: 11.1.1
+appId: 'com.electron.stonecutter'
+productName: 'Stonecutter'
+copyright: 'Copyright © 2020 SFR & 3174N'

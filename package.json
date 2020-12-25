@@ -5,7 +5,9 @@
     "main": "main.js",
     "scripts": {
         "test": "mocha",
-        "start": "electron main.js"
+        "start": "electron main.js",
+        "pack": "electron-builder --dir",
+        "dist": "electron-builder"
     },
     "repository": {
         "type": "git",
