@@ -12,6 +12,7 @@ function openPopup() {
     win = new BrowserWindow({
         width: 500,
         height: 350,
+        title: 'Stonecutter',
         icon: path.join(__dirname, 'styles/media/icon.ico'),
         webPreferences: {
             nodeIntegration: true,

@@ -94,6 +94,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 800,
         height: 600,
+        title: 'Stonecutter',
         icon: path.join(__dirname, 'src/styles/media/icon.ico'),
         webPreferences: {
             nodeIntegration: true,
