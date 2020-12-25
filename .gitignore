@@ -3,3 +3,6 @@ node_modules/
 
 # VSCode user specific settings
 .vscode/
+
+# Electron builds
+dist/
