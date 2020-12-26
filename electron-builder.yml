@@ -8,9 +8,7 @@ copyright: 'Copyright © 2020 SFR & 3174N'
 
 dmg:
     title: 'Install Stonecutter'
+    background: 'src/styles/media/dmg-background.png'
     window:
-        x: 350
-        y: 690
-
-
-
+        width: 540
+        height: 380
