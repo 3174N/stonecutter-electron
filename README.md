@@ -32,5 +32,5 @@ $ npm run dist
 # Open your app
 $ open dist/Stonecutter-0.1.0.dmg # on macOS
 $ dist/Stonecutter-0.1.0.AppImage # on Linux
-$ dist/Stonecutter\ Setup\ 0.1.0.exe # on Windows
+$ "dist\Stonecutter Setup 0.1.0.exe" # on Windows
 ```
