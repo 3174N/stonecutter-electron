@@ -5,6 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="styles/style.css" />
         <link rel="icon" href="styles/media/icon.ico" />
+        <script>
+            // Import modules
+            const $ = require('jquery');
+            const fs = require('fs');
+            const path = require('path');
+            const ipc = require('electron').ipcRenderer;
+            const yaml = require('js-yaml');
+            const remote = require('electron').remote;
+            const { BrowserWindow, dialog } = remote;
+            const url = require('url');
+        </script>
         <title>Stonecutter</title>
     </head>
     <body>

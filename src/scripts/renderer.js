@@ -1,10 +1,3 @@
-// Import modules
-var $ = require('jquery');
-var fs = require('fs');
-var path = require('path');
-const { dialog } = require('electron').remote;
-const ipc = require('electron').ipcRenderer;
-
 // Used to get text with in-line breaks
 function parseHTML(value) {
     var translate_re = /&(nbsp|amp|quot|lt|gt);/g,
