@@ -5,6 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="../styles/style.css" />
         <link rel="stylesheet" href="../styles/popup.css" />
+        <script>
+            // Import modules
+            const $ = require('jquery');
+            const fs = require('fs');
+            const path = require('path');
+            const ipc = require('electron').ipcRenderer;
+            const yaml = require('js-yaml');
+            const remote = require('electron').remote;
+            const { BrowserWindow, dialog } = remote;
+            const url = require('url');
+        </script>
         <title>Create a new Stonecutter Project</title>
     </head>
     <body>
@@ -50,12 +61,13 @@
                     <input
                         type="text"
                         name="directory"
+                        id="dirField"
                         required=""
                         title="Choose where your project data will reside."
                     />
                     <label>Directory</label>
                     <!-- TODO: Choose directory -->
-                    <button type="button">Choose directory</button>
+                    <button type="button" id="dirBtn">Choose directory</button>
                 </div>
                 <footer>
                     <button id="createBtn">Create</button>

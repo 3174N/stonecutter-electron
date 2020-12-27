@@ -1,11 +1,3 @@
-var $ = require('jquery');
-var fs = require('fs');
-var path = require('path');
-const yaml = require('js-yaml');
-const remote = require('electron').remote;
-const { BrowserWindow } = remote;
-const url = require('url');
-
 let win;
 
 function openPopup() {
@@ -113,6 +105,21 @@ $('#create-project-form').on('submit', function (e) {
     remote.getCurrentWindow().close();
 });
 
-document.querySelector('#closeBtn').addEventListener('click', function (event) {
+document.querySelector('#dirBtn').addEventListener('click', (event) => {
+    dialog
+        .showOpenDialog({
+            title: 'Choose directory',
+            properties: ['openDirectory'],
+        })
+        .then((response) => {
+            if (!response.canceled) {
+                $('#dirField').val(response.filePaths[0]);
+            } else {
+                console.log('No folder selected.');
+            }
+        });
+});
+
+document.querySelector('#closeBtn').addEventListener('click', (event) => {
     closePopup();
 });
