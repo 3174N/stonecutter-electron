@@ -1,0 +1,42 @@
+/* Fonts */
+/* Open Sans */
+@font-face {
+    font-family: OpenSans;
+    src: url("fonts/OpenSans/OpenSans-Regular.ttf");
+}
+/* Craft Mono */
+@font-face {
+    font-family: craft-mono;
+    src: url("fonts/craft-mono/craft-mono.ttf");
+}
+
+body {
+    background-color: #fff;
+    color: #454545;
+    font-family: "OpenSans", sans-serif;
+    font-size: 16;
+    padding: 100px 20%;
+    text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "craft-mono", monospace;
+}
+
+a {
+    color: #0077aa;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    font-style: italic;
+}

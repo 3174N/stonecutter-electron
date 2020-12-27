@@ -1,1 +1,112 @@
-stonecutter
+<html>
+    <head>
+        <title>Stonecutter</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="icon"
+            href="https://raw.githubusercontent.com/SFR-git/sfr.moe/master/favicon.png?raw=true"
+        />
+    </head>
+    <body>
+        <h1 style="display: inline">Stonecutter</h1>
+        <p style="display: inline">
+            the best Minecraft Datapack IDE in existence
+        </p>
+        <br />
+        <br />
+        <h3>You deserve better</h3>
+        <p>
+            The current state of datapack development is not good. Most novice
+            to mid-level programmers use <i>Notepad++</i> which, while not bad,
+            is very rudimentary. We aim to fix that. Our goal is to create an
+            extensible, user-friendly and lightweight IDE that packs
+            <b>all of</b> and <b>only</b> what you need as a datapack creator.
+        </p>
+        <p>
+            <i>Stonecutter</i> is an all-in-one <code>.json</code> and
+            <code>.mcfunction</code> editor, including
+            <b>syntax highlighting</b>, <b>formatting</b>, <b>linting</b> and
+            <b>debugging</b> for both formats. It is also very customizable, as
+            you can tinker with <i>everything</i>, from colorschemes to settings
+            to even changes in source code.
+        </p>
+
+        <h3>A familiar face</h3>
+        <p>
+            The Minecraft font is great! Let's make it perfect.
+            <a href="https://github.com/SFR-git/craft-mono">Craft Mono</a> is a
+            monospaced reimagining of this nostalgia-inducing font. We created
+            it to change as little as possible about Minecraft's font, and keep
+            the font's identity intact for everything we did change. Craft Mono
+            is the default typeface for Stonecutter.
+        </p>
+
+        <h3>Give in to the temptation</h3>
+        <p>
+            Installing Stonecutter on your machine is easy as pie. If you're a
+            <i>Windows</i> or <i>macOS</i> user, simply download the latest
+            release package from our
+            <a href="https://github.com/3174N/stonecutter-electron/releases"
+                >releases page</a
+            >.
+        </p>
+        <p>
+            If you're a Linux user, a Flatpak is available over at
+            <a href="https://www.flathub.org/apps/details/moe.sfr.Stonecutter"
+                >Flathub</a
+            >. If you don't have Flatpak or don't know how to install apps from
+            it, please consult Flatpak's
+            <a href="https://flatpak.org/setup/">docs</a>.
+        </p>
+        <p>
+            Furthermore, if you'd like to build the program directly from git
+            head, here's what you need to do:
+        </p>
+        <code> # Clone the repository </code>
+        <code>
+            $ git clone https://github.com/3174N/stonecutter-electron && cd
+            stonecutter-electron</code
+        >
+        <code style="display: block"> # Install dependencies </code>
+        <code style="display: block"> $ npm install </code>
+        <code style="display: block"> # Build the app </code>
+        <code style="display: block"> $ npm run dist </code>
+        <code style="display: block"> # Open your app </code>
+        <code style="display: block">
+            $ open dist/Stonecutter-0.1.0.dmg # on macOS
+        </code>
+        <code style="display: block">
+            $ dist/Stonecutter-0.1.0.AppImage # on Linux
+        </code>
+        <code style="display: block">
+            $ "dist/Stonecutter Setup 0.1.0.exe" # on Windows</code
+        >
+        <p>
+            <i
+                >NOTE: macOS and Windows releases have auto-updates on by
+                default, while Flatpak and git head have it disabled. This can
+                always be changed in Settings, though we highly discourage
+                enabling it on Linux where it can severely break Flatpak.
+                <b
+                    >Enabling auto-updates will require the application to
+                    connect to the Internet</b
+                ></i
+            >.
+        </p>
+        <h3>License</h3>
+        <p>Copyright (c) 2020 3174N & SFR</p>
+        <p>
+            We strongly believe in and endorse the open source community, and as
+            such, <i>Stonecutter</i> is licensed under the
+            <a
+                href="https://github.com/3174N/stonecutter-electron/blob/master/LICENSE"
+                >MIT permissive license</a
+            >. The same goes for
+            <a href="https://github.com/SFR-git/craft-mono/blob/master/LICENSE"
+                ><i>Craft Mono</i></a
+            >. Simply put, we grant you the right to freely mod, fork, change,
+            give, sell and repackage this application, as long as you provide
+            proper credit. Go nuts.
+        </p>
+    </body>
+</html>
