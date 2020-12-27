@@ -18,7 +18,7 @@
     "bugs": {
         "url": "https://github.com/3174N/stonecutter-electron/issues"
     },
-    "homepage": "https://github.com/3174N/stonecutter-electron#readme",
+    "homepage": "https://stonecutter.sfr.moe/",
     "dependencies": {
         "electron-mocha": "^10.0.0",
         "jquery": "^3.5.1",
