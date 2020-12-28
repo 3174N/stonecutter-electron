@@ -56,7 +56,9 @@ $('#create-project-form').on('submit', function (e) {
     // Creates project.cutter file
     fs.writeFileSync(
         path.join(projPath, `project.cutter`),
-        yaml.safeDump(values),
+        `# Editing this file could break your Stonecutter project;
+# Do not touch unless you know what you're doing.
+${yaml.safeDump(values)}`,
     );
 
     // Creates pack.mcmeta
