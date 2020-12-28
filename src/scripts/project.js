@@ -40,7 +40,10 @@ $('#create-project-form').on('submit', function (e) {
 
     // * Generate folder structure * //
 
-    var projPath = path.join(values['directory'], `${values['name']}`);
+    var projPath = path.join(
+        values['directory'].replace(/["]+/g, ''),
+        `${values['name'].replace(/["]+/g, '')}`,
+    );
 
     // Creates project folder
     if (fs.existsSync(projPath)) {
@@ -62,7 +65,7 @@ $('#create-project-form').on('submit', function (e) {
         `{
             "pack": {
                 "pack_format": 6,
-                "description": "${values['description']}"
+                "description": ${values['description']}
             }
         }`,
     );
@@ -75,7 +78,10 @@ $('#create-project-form').on('submit', function (e) {
     fs.mkdirSync(path.join(projPath, 'data/minecraft/tags'));
     fs.mkdirSync(path.join(projPath, 'data/minecraft/tags/functions'));
 
-    projPath = path.join(projPath, `data/${values['name']}`);
+    projPath = path.join(
+        projPath,
+        `data/${values['name'].replace(/["]+/g, '')}`,
+    );
 
     // Create namespace folder
     fs.mkdirSync(projPath);
