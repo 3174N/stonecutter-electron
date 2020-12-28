@@ -142,6 +142,12 @@ function openFileFromList(fileName) {
     }
 }
 
+var buffer;
+
+$('.file-content').bind('DOMSubtreeModified', () => {
+    buffer = parseHTML($('.file-content').html());
+});
+
 // Save files
 // TODO: Add save & save as to context menu & keyboard shortcuts
 // TODO: Detect unsaved file and update saveStatus
@@ -151,13 +157,9 @@ function saveFile() {
         console.log(parseHTML($('.file-content').html()));
         console.log($('.file-content').text());
 
-        fs.writeFile(
-            filePaths[currentFile],
-            parseHTML($('.file-content').html()),
-            function (err) {
-                if (err) return console.log(err);
-            },
-        );
+        fs.writeFile(filePaths[currentFile], buffer, function (err) {
+            if (err) return console.log(err);
+        });
         console.log('File saved.');
     } else {
         saveFileAs();
@@ -208,13 +210,9 @@ function saveFileAs() {
                         '</li>',
                 );
 
-                fs.writeFile(
-                    filePaths[currentFile],
-                    parseHTML($('.file-content').html()),
-                    function (err) {
-                        if (err) console.log(err);
-                    },
-                );
+                fs.writeFile(filePaths[currentFile], buffer, function (err) {
+                    if (err) console.log(err);
+                });
                 console.log('File saved.');
             } else {
                 console.log('No file selected.');
