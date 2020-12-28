@@ -69,6 +69,12 @@ $('#create-project-form').on('submit', function (e) {
 
     // Create data folder
     fs.mkdirSync(path.join(projPath, 'data'));
+
+    // Create Minecraft folders
+    fs.mkdirSync(path.join(projPath, 'data/minecraft'));
+    fs.mkdirSync(path.join(projPath, 'data/minecraft/tags'));
+    fs.mkdirSync(path.join(projPath, 'data/minecraft/tags/functions'));
+
     projPath = path.join(projPath, `data/${values['name']}`);
 
     // Create namespace folder
