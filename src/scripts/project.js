@@ -58,7 +58,7 @@ $('#create-project-form').on('submit', function (e) {
         path.join(projPath, `project.cutter`),
         `# Editing this file could break your Stonecutter project;
 # Do not touch unless you know what you're doing.
-${yaml.safeDump(values)}`,
+${yaml.safeDump(values).replace(/[']+/g, '')}`,
     );
 
     // Creates pack.mcmeta
