@@ -35,7 +35,7 @@ $('#create-project-form').on('submit', function (e) {
 
     var values = {};
     inputs.each(function () {
-        values[this.name] = $(this).val();
+        values[this.name] = `"${$(this).val()}"`;
     });
 
     // * Generate folder structure * //
