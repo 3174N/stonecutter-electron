@@ -20,7 +20,9 @@ function parseHTML(value) {
 }
 
 function updateTitle() {
-    document.title = `<saveStatus> ${currentFile} - <currentProject> - Stonecutter`;
+    let savedChar = isChanged ? '●' : '';
+
+    document.title = `${savedChar} ${currentFile} - <currentProject> - Stonecutter`;
 }
 
 var filePaths = {};
@@ -67,6 +69,7 @@ function openFile() {
                 currentFile = path.basename(response.filePaths[0]);
                 filePaths[currentFile] = response.filePaths[0];
 
+                isChanged = false;
                 updateTitle();
 
                 $('.files').append(
@@ -143,9 +146,12 @@ function openFileFromList(fileName) {
 }
 
 var buffer;
+var isChanged = false;
 
 $('.file-content').bind('DOMSubtreeModified', () => {
     buffer = parseHTML($('.file-content').html());
+    isChanged = true;
+    updateTitle();
 });
 
 // Save files
@@ -164,6 +170,7 @@ function saveFile() {
     } else {
         saveFileAs();
     }
+    isChanged = false;
     updateTitle();
 }
 
