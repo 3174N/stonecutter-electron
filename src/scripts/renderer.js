@@ -226,18 +226,18 @@ function saveFileAs() {
     updateTitle();
 }
 
-ipc.on('open-file', function (event) {
+ipc.on('open-file', (event) => {
     openFile();
 });
 
-ipc.on('open-folder', function (event) {
+ipc.on('open-folder', (event) => {
     openFolder();
 });
 
-ipc.on('save', function (event) {
+ipc.on('save', (event) => {
     saveFile();
 });
 
-ipc.on('save-as', function (event) {
+ipc.on('save-as', (event) => {
     saveFileAs();
 });
