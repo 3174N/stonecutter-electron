@@ -155,8 +155,6 @@ $('.file-content').bind('DOMSubtreeModified', () => {
 });
 
 // Save files
-// TODO: Add save & save as to context menu & keyboard shortcuts
-// TODO: Detect unsaved file and update saveStatus
 function saveFile() {
     // Ctrl + S
     if (currentFile != '') {
