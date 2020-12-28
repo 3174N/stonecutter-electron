@@ -53,7 +53,7 @@ $('#create-project-form').on('submit', function (e) {
         fs.mkdirSync(projPath);
     }
 
-    // Creates .cutter file
+    // Creates project.cutter file
     fs.writeFileSync(
         path.join(projPath, `project.cutter`),
         yaml.safeDump(values),
@@ -69,6 +69,14 @@ $('#create-project-form').on('submit', function (e) {
             }
         }`,
     );
+
+    // folder.cutter text
+    var folderText = `# This file is present in all empty directories
+# to ensure that no folder gets lost in a 
+# source control environment such as git.
+
+# This file will be deleted when this folder is populated,
+# or when compiling the datapack into a .zip archive.`; // TODO: Add this file to empty directories
 
     // Create data folder
     fs.mkdirSync(path.join(projPath, 'data'));
