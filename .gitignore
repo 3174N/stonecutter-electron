@@ -1,2 +1,8 @@
-# Node packages
+# Depenedencies
 node_modules/
+
+# Ruby lock
+Gemfile.lock
+
+# Electron builds
+dist/
