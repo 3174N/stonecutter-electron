@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>404 - Stonecutter</title>
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="icon"
+            href="https://raw.githubusercontent.com/3174N/stonecutter-electron/master/src/styles/media/icon.png?raw=true"
+        />
+    </head>
+    <body>
+        <h1>This page does not exist</h1>
+        <p>
+            This website encountered a 404 error, which means the desired
+            webpage could not be found. It either never existed or moved
+            somewhere else.
+        </p>
+        <p>
+            Try looking for typos in the webpage address, or contact whoever
+            sent you the link.
+        </p>
+        <br />
+        <p>
+            You will be redirected to the
+            <a href="https://stonecutter.sfr.moe">homepage</a> in 5 seconds.
+        </p>
+    </body>
+
+    <script>
+        t1 = window.setTimeout(function () {
+            window.location.replace('https://stonecutter.sfr.moe');
+        }, 5000);
+    </script>
+</html>
