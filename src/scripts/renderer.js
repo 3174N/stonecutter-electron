@@ -113,16 +113,10 @@ function openFolder() {
                     if (err) return console.log(err);
 
                     for (let file of files) {
-                        filePaths[file] = response.filePaths[0] + '/' + file;
-
-                        if (fs.lstatSync(filePaths[file]).isDirectory()) {
-                            // Path leads to a directory
-                            // TODO: Build file tree
-                            console.log(file + ' : Folder');
-                        } else {
-                            // Path leads to a file
-                            console.log(file);
-                        }
+                        filePaths[file] = path.join(
+                            response.filePaths[0],
+                            file,
+                        );
 
                         displayFile(file);
                     }
@@ -148,9 +142,9 @@ function openFileFromList(fileName) {
     // Open file on <li> click
     currentFile = fileName;
     filePath = filePaths[currentFile];
-    updateTitle();
 
     if (!fs.lstatSync(filePaths[currentFile]).isDirectory()) {
+    updateTitle();
         fs.readFile(filePaths[currentFile], function (err, data) {
             if (err) return console.log(err);
 
@@ -166,23 +160,47 @@ function openFileFromList(fileName) {
  *
  * @param {String} [fileName] The file/folder to display
  */
-function displayFile(fileName) {
+function displayFile(fileName, ulClass = '.files') {
+    if (/^\..*/g.test(fileName)) {
+        console.log(`Ignoring dotfile: ${fileName}`);
+        return;
+    }
+
+    $(`${ulClass}`).append(
+        '<li onClick="openFileFromList($(this).text());" id="$(this).text()">' +
+            fileName +
+            '</li>',
+    );
     if (!fs.lstatSync(filePaths[fileName]).isDirectory()) {
-        $('.files').append(
-            '<li onClick="openFileFromList($(this).text());" class="file">' +
-                fileName +
-                '</li>',
-        );
+        // * File is not a directory * //
+
+        $(`#${fileName}`).addClass('file');
     } else {
         // * File is a directory * //
-        $('.files').append(
-            $('.files').append(
-                '<li onClick="openFileFromList($(this).text());" class="folder">' +
-                    '> ' +
-                    fileName +
-                    '</li>',
-            ),
-        );
+
+        $(`#${fileName}`).addClass('folder');
+
+        if (!$(`.${fileName}-folder`).length) {
+            $('.files').append(`<ul class=${fileName}-folder></ul>`);
+
+            fs.readdir(fileName, function (err, files) {
+                if (err) return console.log(err);
+
+                for (let file of files) {
+                    filePaths[file] = path.join(filePaths[fileName], file);
+                    console.log(
+                        '🚀 ~ file: renderer.js ~ line 162 ~ filePaths[file]',
+                        filePaths[file],
+                    );
+                    console.log(
+                        '🚀 ~ file: renderer.js ~ line 163 ~ fileName',
+                        fileName,
+                    );
+
+                    displayFile(file, `.${fileName}`);
+                }
+            });
+        }
     }
 }
 
