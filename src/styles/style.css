@@ -47,8 +47,8 @@ textarea,
 } */
 
 ul.files {
-    list-style: none;
     padding-left: 0;
+    list-style: none;
 }
 
 ul.files li:hover {
@@ -58,4 +58,8 @@ ul.files li:hover {
 
 ul.files li:active {
     background-color: rgb(180, 180, 180);
+}
+
+li.file {
+    padding-left: 12px;
 }
