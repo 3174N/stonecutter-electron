@@ -1,6 +1,3 @@
-var fs = require('fs');
-var path = require('path');
-
 function initSettings() {
     switch (process.platform) {
         case 'linux':
