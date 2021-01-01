@@ -1,3 +1,5 @@
+const { ipcMain } = require('electron');
+
 let win;
 
 function openPopup() {
@@ -138,6 +140,10 @@ function findProject(file) {
     console.log('No project file found.');
     return 'Untitled Project';
 }
+
+ipc.on('getProject', (event, file) => {
+    return findProject(file);
+});
 
 document.querySelector('#dirBtn').addEventListener('click', (event) => {
     dialog

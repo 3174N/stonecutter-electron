@@ -191,4 +191,4 @@ console.log('Launching Stonecutter...');
 var t0 = performance.now();
 app.on('ready', createWindow);
 var t1 = performance.now();
-console.log('Stonecutter succesfully launched (' + (t1 - t0) + 'ms)');
+console.log('Stonecutter successfully launched (' + (t1 - t0) + 'ms)');

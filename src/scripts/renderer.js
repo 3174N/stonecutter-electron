@@ -22,7 +22,9 @@ function parseHTML(value) {
 function updateTitle() {
     let savedChar = isChanged ? '●' : '';
 
-    document.title = `${savedChar} ${currentFile} - <currentProject> - Stonecutter`;
+    let project = ipc.send('getProject', currentFile);
+
+    document.title = `${savedChar} ${currentFile} - ${project} - Stonecutter`;
 }
 
 var filePaths = {};
