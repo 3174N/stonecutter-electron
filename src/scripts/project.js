@@ -72,14 +72,6 @@ ${yaml.safeDump(values).replace(/[']+/g, '')}`,
         }`,
     );
 
-    // folder.cutter text
-    var folderText = `# This file is present in all empty directories
-# to ensure that no folder gets lost in a 
-# source control environment such as git.
-
-# This file will be deleted when this folder is populated,
-# or when compiling the datapack into a .zip archive.`; // TODO: Add this file to empty directories
-
     // Create data folder
     fs.mkdirSync(path.join(projPath, 'data'));
 
@@ -126,6 +118,26 @@ ${yaml.safeDump(values).replace(/[']+/g, '')}`,
 
     remote.getCurrentWindow().close();
 });
+
+function findProject(file) {
+    let searchDir = file;
+    var t0 = performance.now();
+    while (
+        !(
+            searchDir == '/' ||
+            searchDir == 'C:\\' ||
+            performance.now() - t0 == 300
+        )
+    ) {
+        searchDir = path.resolve(searchDir, '..');
+        if (fs.existsSync(path.join(searchDir, 'project.cutter'))) {
+            console.log('Found project file at ' + searchDir);
+            return path.basename(searchDir);
+        }
+    }
+    console.log('No project file found.');
+    return 'Untitled Project';
+}
 
 document.querySelector('#dirBtn').addEventListener('click', (event) => {
     dialog
