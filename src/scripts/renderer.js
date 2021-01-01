@@ -72,11 +72,7 @@ function openFile() {
                 isChanged = false;
                 updateTitle();
 
-                $('.files').append(
-                    '<li onClick="openFileFromList($(this).text());">' +
-                        currentFile +
-                        '</li>',
-                );
+                displayFile(currentFile);
 
                 fs.readFile(filePaths[currentFile], function (err, data) {
                     if (err) return console.log(err);
@@ -114,11 +110,7 @@ function openFolder() {
                             console.log(file);
                         }
 
-                        $('.files').append(
-                            '<li onClick="openFileFromList($(this).text());">' +
-                                file +
-                                '</li>',
-                        );
+                        displayFile(file);
                     }
                 });
                 console.log('Folder opened.');
@@ -134,7 +126,7 @@ function openFileFromList(fileName) {
     filePath = filePaths[currentFile];
     updateTitle();
 
-    if (fs.lstatSync(filePaths[currentFile]).isDirectory()) {
+    if (!fs.lstatSync(filePaths[currentFile]).isDirectory()) {
         fs.readFile(filePaths[currentFile], function (err, data) {
             if (err) return console.log(err);
 
@@ -142,6 +134,26 @@ function openFileFromList(fileName) {
         });
     } else {
         // TODO: Show / Hide file tree
+    }
+}
+
+function displayFile(fileName) {
+    if (!fs.lstatSync(filePaths[fileName]).isDirectory()) {
+        $('.files').append(
+            '<li onClick="openFileFromList($(this).text());" class="file">' +
+                fileName +
+                '</li>',
+        );
+    } else {
+        // * File is a directory * //
+        $('.files').append(
+            $('.files').append(
+                '<li onClick="openFileFromList($(this).text());" class="folder">' +
+                    '> ' +
+                    fileName +
+                    '</li>',
+            ),
+        );
     }
 }
 
@@ -209,11 +221,7 @@ function saveFileAs() {
 
                 updateTitle();
 
-                $('.files').append(
-                    '<li onClick="openFileFromList($(this).text());">' +
-                        currentFile +
-                        '</li>',
-                );
+                displayFile(file);
 
                 fs.writeFile(filePaths[currentFile], buffer, function (err) {
                     if (err) console.log(err);
