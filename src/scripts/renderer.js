@@ -1,3 +1,5 @@
+const ipc = require('electron').ipcRenderer;
+
 // Used to get text with in-line breaks
 function parseHTML(value) {
     var translate_re = /&(nbsp|amp|quot|lt|gt);/g,
@@ -22,7 +24,8 @@ function parseHTML(value) {
 function updateTitle() {
     let savedChar = isChanged ? '●' : '';
 
-    let project = ipc.send('getProject', currentFile);
+    // ! Currently does not work ! //
+    let project = ipc.send('get-project', filePaths[currentFile]);
 
     document.title = `${savedChar} ${currentFile} - ${project} - Stonecutter`;
 }
@@ -115,6 +118,11 @@ function openFolder() {
                         displayFile(file);
                     }
                 });
+
+                // ? What to display in the file?
+                // ? Display at all when opening folder?
+                // updateTitle();
+
                 console.log('Folder opened.');
             } else {
                 console.log('No folder selected.');
