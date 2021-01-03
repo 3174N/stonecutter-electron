@@ -68,7 +68,6 @@ function openFile() {
         })
         .then(function (response) {
             if (!response.canceled) {
-                // TODO: Add file name & project name to title bar (like vscode)
                 currentFile = path.basename(response.filePaths[0]);
                 filePaths[currentFile] = response.filePaths[0];
 
