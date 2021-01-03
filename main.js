@@ -204,7 +204,7 @@ function createWindow() {
 }
 
 console.log('Launching Stonecutter...');
-var t0 = performance.now(); // Gets time
+var t0 = performance.now();
 app.on('ready', createWindow); // Calls the function above
-var t1 = performance.now(); // Gets time
+var t1 = performance.now();
 console.log('Stonecutter successfully launched (' + (t1 - t0) + 'ms)'); // Prints difference between times, i.e. time to launch
