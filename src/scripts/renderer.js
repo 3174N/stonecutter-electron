@@ -24,8 +24,7 @@ function parseHTML(value) {
 function updateTitle() {
     let savedChar = isChanged ? '●' : '';
 
-    // ! Currently does not work ! //
-    let project = ipc.send('fetch-project', filePaths[currentFile]);
+    let project = findProject(filePaths[currentFile]);
 
     document.title = `${savedChar} ${currentFile} - ${project} - Stonecutter`;
 }
@@ -33,7 +32,6 @@ function updateTitle() {
 var filePaths = {};
 var currentFile = '';
 
-// TODO: Add open file to context menu & keyboard shortcuts
 // Open file
 // Ctrl + O
 document

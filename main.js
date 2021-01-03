@@ -194,5 +194,5 @@ var t1 = performance.now();
 console.log('Stonecutter successfully launched (' + (t1 - t0) + 'ms)');
 
 ipcMain.on('fetch-project', (event, file) => {
-    win.webContents.send('get-project');
+    win.webContents.send('get-project', file);
 });
