@@ -139,11 +139,6 @@ function findProject(file) {
     return 'Untitled Project';
 }
 
-ipc.on('get-project', (event, file) => {
-    global.projectName = 'Test';
-    // global.projectName = findProject(file);
-});
-
 document.querySelector('#dirBtn').addEventListener('click', (event) => {
     dialog
         .showOpenDialog({
