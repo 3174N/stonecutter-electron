@@ -139,7 +139,7 @@ function findProject(file) {
     return 'Untitled Project';
 }
 
-ipc.on('get-project2', (event, file) => {
+ipc.on('get-project', (event, file) => {
     return findProject(file);
 });
 

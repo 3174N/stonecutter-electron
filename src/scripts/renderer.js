@@ -25,7 +25,7 @@ function updateTitle() {
     let savedChar = isChanged ? '●' : '';
 
     // ! Currently does not work ! //
-    let project = ipc.send('get-project', filePaths[currentFile]);
+    let project = ipc.send('fetch-project', filePaths[currentFile]);
 
     document.title = `${savedChar} ${currentFile} - ${project} - Stonecutter`;
 }
