@@ -1,5 +1,3 @@
-const { ipcMain } = require('electron');
-
 let win;
 
 function openPopup() {
@@ -127,7 +125,7 @@ function findProject(file) {
     while (
         !(
             searchDir == '/' ||
-            searchDir == 'C:\\' ||
+            searchDir == path.parse(__dirname).root ||
             performance.now() - t0 == 300
         )
     ) {
@@ -141,7 +139,7 @@ function findProject(file) {
     return 'Untitled Project';
 }
 
-ipc.on('getProject', (event, file) => {
+ipc.on('get-project2', (event, file) => {
     return findProject(file);
 });
 

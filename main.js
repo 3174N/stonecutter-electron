@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain } = require('electron');
 const url = require('url');
 const path = require('path');
 // ! Does not work, document is undefined
@@ -192,3 +192,7 @@ var t0 = performance.now();
 app.on('ready', createWindow);
 var t1 = performance.now();
 console.log('Stonecutter successfully launched (' + (t1 - t0) + 'ms)');
+
+ipcMain.on('get-project', (event, file) => {
+    win.webContents.send('get-project2');
+});
