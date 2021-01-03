@@ -6,10 +6,18 @@ const path = require('path');
 const ipc = require('electron').ipcMain;
 const { PerformanceObserver, performance } = require('perf_hooks');
 
-const isMac = process.platform === 'darwin';
+const isMac = process.platform === 'darwin'; // Checks if running on macOS
+
 let win;
 
 function createWindow() {
+    /* 
+        This part of the function handles the menu items
+        in the menubar at the top of the window.
+        macOS' guidelines are different from Windows',
+        so the menu will change depending on OS.
+        (Linux behaves like Windows) 
+    */
     var menu = Menu.buildFromTemplate([
         ...(isMac
             ? [
@@ -169,15 +177,23 @@ function createWindow() {
         },
     ]);
     Menu.setApplicationMenu(menu);
+
+    /* 
+        This section contains window info,
+        such as size, icon and permissions
+        to interact with the code.
+    */
     win = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: path.join(__dirname, 'src/styles/media/icon.ico'),
+        icon: path.join(__dirname, 'src/styles/media/icon.ico'), // Icon path relative to root
         webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true,
+            nodeIntegration: true, // Enables use of node modules
+            enableRemoteModule: true, // Enables showing system dialogs
         },
     });
+
+    // Loads index.html
     win.loadURL(
         url.format({
             pathname: path.join(__dirname, 'src/index.html'),
@@ -188,7 +204,7 @@ function createWindow() {
 }
 
 console.log('Launching Stonecutter...');
-var t0 = performance.now();
-app.on('ready', createWindow);
-var t1 = performance.now();
-console.log('Stonecutter successfully launched (' + (t1 - t0) + 'ms)');
+var t0 = performance.now(); // Gets time
+app.on('ready', createWindow); // Calls the function above
+var t1 = performance.now(); // Gets time
+console.log('Stonecutter successfully launched (' + (t1 - t0) + 'ms)'); // Prints difference between times, i.e. time to launch
