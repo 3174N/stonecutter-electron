@@ -1,15 +1,28 @@
+/*
+    This file doesn't have require statements,
+    as those are handled by main.js
+    unless only one specific file uses them.
+*/
+
 let win;
 
 function openPopup() {
+    /* 
+        This section contains window info,
+        such as size, icon and permissions
+        to interact with the code.
+    */
     win = new BrowserWindow({
         width: 500,
         height: 350,
-        icon: path.join(__dirname, 'styles/media/icon.ico'),
+        icon: path.join(__dirname, 'styles/media/icon.ico'), // Icon path relative to file
         webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true,
+            nodeIntegration: true, // Enables use of node modules
+            enableRemoteModule: true, // Enables showing system dialogs
         },
     });
+
+    // Loads popup.html
     win.loadURL(
         url.format({
             pathname: path.join(__dirname, '/pages/popup.html'),
@@ -17,7 +30,8 @@ function openPopup() {
             slashes: true,
         }),
     );
-    // * Comment next line for dev-tools access * //
+
+    // Comment next line for dev-tools access
     // win.removeMenu();
     win.setResizable(false);
 }
@@ -38,14 +52,18 @@ $('#create-project-form').on('submit', function (e) {
         values[this.name] = `"${$(this).val()}"`; // FIXME: Project name should have a regex of /^[a-z\d-_\.]+$/g
     });
 
-    // * Generate folder structure * //
+    /*
+        This part of the function creates a folder structure,
+        and fills it with files that Minecraft and Stonecutter
+        need in order to recognize it as a project.
+    */
 
     var projPath = path.join(
         values['directory'].replace(/["]+/g, ''),
         `${values['name'].replace(/["]+/g, '')}`,
     );
 
-    // Creates project folder
+    // Creates project folder if doesn't already exist
     if (fs.existsSync(projPath)) {
         console.log('Project already exists.');
         alert('Project already exists at specified location.'); // TODO: fancy errors
@@ -119,26 +137,36 @@ ${yaml.safeDump(values).replace(/[']+/g, '')}`,
     remote.getCurrentWindow().close();
 });
 
+/*
+    This function looks for project.cutter,
+    going up the directory tree until
+    it finds the file, reaches the top 
+    or times out.
+*/
 function findProject(file) {
     let searchDir = file;
     var t0 = performance.now();
     while (
         !(
-            searchDir == '/' ||
-            searchDir == path.parse(__dirname).root ||
-            performance.now() - t0 == 300
+            (
+                searchDir == '/' || // Halt if reached top (macOS/Linux)
+                searchDir == path.parse(__dirname).root || // Halt if reached top (Windows)
+                performance.now() - t0 == 300
+            ) // Halt if timer reached 300ms
         )
     ) {
-        searchDir = path.resolve(searchDir, '..');
+        searchDir = path.resolve(searchDir, '..'); // Go one directory up
         if (fs.existsSync(path.join(searchDir, 'project.cutter'))) {
             console.log('Found project file at ' + searchDir);
             return path.basename(searchDir);
         }
     }
+    // If loop halted
     console.log('No project file found.');
     return 'Untitled Project';
 }
 
+// Open a directory and list its contents
 document.querySelector('#dirBtn').addEventListener('click', (event) => {
     dialog
         .showOpenDialog({
