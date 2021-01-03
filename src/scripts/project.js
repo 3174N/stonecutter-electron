@@ -140,7 +140,8 @@ function findProject(file) {
 }
 
 ipc.on('get-project', (event, file) => {
-    return findProject(file);
+    global.projectName = 'Test';
+    // global.projectName = findProject(file);
 });
 
 document.querySelector('#dirBtn').addEventListener('click', (event) => {
