@@ -1,6 +1,9 @@
-const ipc = require('electron').ipcRenderer;
-
-// Used to get text with in-line breaks
+/**
+ * Used to parse HTML to plain text.
+ * (i.e. convert HTML entities to ASCII characters.)
+ *
+ * @param {String} [value] Value to be parsed.
+ */
 function parseHTML(value) {
     var translate_re = /&(nbsp|amp|quot|lt|gt);/g,
         translate = {
@@ -21,6 +24,9 @@ function parseHTML(value) {
     return value;
 }
 
+/**
+ * Used to update window title.
+ */
 function updateTitle() {
     let savedChar = isChanged ? '●' : '';
 
@@ -29,23 +35,27 @@ function updateTitle() {
     document.title = `${savedChar} ${currentFile} - ${project} - Stonecutter`;
 }
 
+// These variables are used to keep track of opened files
 var filePaths = {};
 var currentFile = '';
 
 // Open file
-// Ctrl + O
 document
     .querySelector('#openfileBtn')
     .addEventListener('click', function (event) {
         openFile();
     });
 
+// Open folder
 document
     .querySelector('#openfolderBtn')
     .addEventListener('click', function (event) {
         openFolder();
     });
 
+/**
+ * Used to open a file.
+ */
 function openFile() {
     dialog
         .showOpenDialog({
@@ -88,7 +98,9 @@ function openFile() {
         });
 }
 
-// Open folder
+/**
+ * Used to open a folder.
+ */
 function openFolder() {
     dialog
         .showOpenDialog({
@@ -127,6 +139,11 @@ function openFolder() {
         });
 }
 
+/**
+ * Used to open a file from the explorer list to the file view.
+ *
+ * @param {String} [fileName] The file to open.
+ */
 function openFileFromList(fileName) {
     // Open file on <li> click
     currentFile = fileName;
@@ -144,6 +161,11 @@ function openFileFromList(fileName) {
     }
 }
 
+/**
+ * Used to create an explorer list item for a file/folder
+ *
+ * @param {String} [fileName] The file/folder to display
+ */
 function displayFile(fileName) {
     if (!fs.lstatSync(filePaths[fileName]).isDirectory()) {
         $('.files').append(
@@ -167,32 +189,36 @@ function displayFile(fileName) {
 var buffer;
 var isChanged = false;
 
+// Detect changes to current file
 $('.file-content').bind('DOMSubtreeModified', () => {
-    buffer = parseHTML($('.file-content').html());
+    buffer = parseHTML($('.file-content').html()); // Save changes to buffer
     isChanged = true;
     updateTitle();
 });
 
-// Save files
+/**
+ * Used to save current file.
+ */
 function saveFile() {
-    // Ctrl + S
+    // Check if file exists
     if (currentFile != '') {
-        console.log(parseHTML($('.file-content').html()));
-        console.log($('.file-content').text());
-
+        // Save buffer content to current file
         fs.writeFile(filePaths[currentFile], buffer, function (err) {
             if (err) return console.log(err);
         });
         console.log('File saved.');
     } else {
+        // File does not exist
         saveFileAs();
     }
     isChanged = false;
     updateTitle();
 }
 
+/**
+ * Used to save-as current file.
+ */
 function saveFileAs() {
-    // Save as
     dialog
         .showSaveDialog({
             title: 'Save As',
@@ -241,6 +267,9 @@ function saveFileAs() {
     updateTitle();
 }
 
+// Menu Actions
+
+// The renderer gets ipc calls from main, and executes the corresponding function.
 ipc.on('open-file', (event) => {
     openFile();
 });
