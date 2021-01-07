@@ -153,6 +153,7 @@ function openFileFromList(fileName) {
         isChanged = false;
         updateTitle();
     } else {
+        // Check if filetree is showing or not
         if ($(`.${fileName}-folder`).css('display') == 'none')
             $(`.${fileName}-folder`).css('display', 'inline-block');
         else if ($(`.${fileName}-folder`).css('display') == 'inline-block')
@@ -186,11 +187,13 @@ function displayFile(fileName, ulClass = '.files') {
         $(`#${fileName}`).addClass('folder');
 
         if (!$(`.${fileName}-folder`).length) {
+            // Generate filetree
             $('.files').append(`<ul class=${fileName}-folder></ul>`);
 
             fs.readdir(filePaths[fileName], function (err, files) {
                 if (err) return console.log(err);
 
+                // Put files in filetree
                 for (let file of files) {
                     filePaths[file] = path.join(filePaths[fileName], file);
 
@@ -198,6 +201,7 @@ function displayFile(fileName, ulClass = '.files') {
                 }
             });
 
+            // Hide filetree
             $(`.${fileName}-folder`).css('display', 'none');
         }
     }

@@ -64,6 +64,6 @@ ul.files li:active {
     background-color: rgb(180, 180, 180);
 }
 
-li.file li.folder {
-    padding-left: 12px;
+li.file {
+    padding-left: +12px;
 }
