@@ -84,6 +84,7 @@ function openFile() {
                 isChanged = false;
                 updateTitle();
 
+                //showTree(path.resolve('currentFile', '..'));
                 displayFile(currentFile);
 
                 fs.readFile(filePaths[currentFile], function (err, data) {
@@ -99,7 +100,7 @@ function openFile() {
 }
 
 /**
- * Used to open a folder.
+ * Used for the 'Choose Folder' GUI.
  */
 function openFolder() {
     dialog
@@ -109,28 +110,30 @@ function openFolder() {
         })
         .then(function (response) {
             if (!response.canceled) {
-                fs.readdir(response.filePaths[0], function (err, files) {
-                    if (err) return console.log(err);
-
-                    for (let file of files) {
-                        filePaths[file] = path.join(
-                            response.filePaths[0],
-                            file,
-                        );
-
-                        displayFile(file);
-                    }
-                });
-
-                // ? What to display in the file?
-                // ? Display at all when opening folder?
-                // updateTitle();
-
+                showTree(response.filePaths[0]);
                 console.log('Folder opened.');
             } else {
                 console.log('No folder selected.');
             }
         });
+}
+
+/**
+ * Used to set the correct file tree.
+ */
+function showTree(chosenFolder) {
+    fs.readdir(chosenFolder, function (err, files) {
+        if (err) return console.log(err);
+
+        for (let file of files) {
+            filePaths[file] = path.join(chosenFolder, file);
+
+            displayFile(file);
+        }
+    });
+    // ? What to display in the file?
+    // ? Display at all when opening folder?
+    // updateTitle();
 }
 
 /**
@@ -144,7 +147,7 @@ function openFileFromList(fileName) {
     filePath = filePaths[currentFile];
 
     if (!fs.lstatSync(filePaths[currentFile]).isDirectory()) {
-    updateTitle();
+        updateTitle();
         fs.readFile(filePaths[currentFile], function (err, data) {
             if (err) return console.log(err);
 
