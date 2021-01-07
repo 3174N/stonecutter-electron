@@ -47,8 +47,12 @@ textarea,
 } */
 
 ul.files {
-    padding-left: 0;
+    padding-left: 10px;
     list-style: none;
+}
+ul.files ul {
+    list-style: none;
+    padding-left: +10px;
 }
 
 ul.files li:hover {
@@ -60,6 +64,6 @@ ul.files li:active {
     background-color: rgb(180, 180, 180);
 }
 
-li.file {
+li.file li.folder {
     padding-left: 12px;
 }

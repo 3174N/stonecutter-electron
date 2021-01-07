@@ -150,8 +150,13 @@ function openFileFromList(fileName) {
 
             $('.file-content').text(data.toString());
         });
+        isChanged = false;
+        updateTitle();
     } else {
-        // TODO: Show / Hide file tree
+        if ($(`.${fileName}-folder`).css('display') == 'none')
+            $(`.${fileName}-folder`).css('display', 'inline-block');
+        else if ($(`.${fileName}-folder`).css('display') == 'inline-block')
+            $(`.${fileName}-folder`).css('display', 'none');
     }
 }
 
@@ -183,23 +188,17 @@ function displayFile(fileName, ulClass = '.files') {
         if (!$(`.${fileName}-folder`).length) {
             $('.files').append(`<ul class=${fileName}-folder></ul>`);
 
-            fs.readdir(fileName, function (err, files) {
+            fs.readdir(filePaths[fileName], function (err, files) {
                 if (err) return console.log(err);
 
                 for (let file of files) {
                     filePaths[file] = path.join(filePaths[fileName], file);
-                    console.log(
-                        '🚀 ~ file: renderer.js ~ line 162 ~ filePaths[file]',
-                        filePaths[file],
-                    );
-                    console.log(
-                        '🚀 ~ file: renderer.js ~ line 163 ~ fileName',
-                        fileName,
-                    );
 
-                    displayFile(file, `.${fileName}`);
+                    displayFile(file, `.${fileName}-folder`);
                 }
             });
+
+            $(`.${fileName}-folder`).css('display', 'none');
         }
     }
 }
