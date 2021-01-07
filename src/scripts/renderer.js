@@ -30,9 +30,9 @@ function parseHTML(value) {
 function updateTitle() {
     let savedChar = isChanged ? '●' : '';
 
-    let project = findProject(filePaths[currentFile]);
+    let projectName = path.basename(findProject(filePaths[currentFile]));
 
-    document.title = `${savedChar} ${currentFile} - ${project} - Stonecutter`;
+    document.title = `${savedChar} ${currentFile} - ${projectName} - Stonecutter`;
 }
 
 // These variables are used to keep track of opened files
@@ -84,7 +84,12 @@ function openFile() {
                 isChanged = false;
                 updateTitle();
 
-                //showTree(path.resolve('currentFile', '..'));
+                let project = findProject(filePaths[currentFile]);
+                if (project === 'Untitled Project') {
+                    showTree(path.resolve(filePaths[currentFile], '..'));
+                } else {
+                    showTree(project); // TODO: Cascade folders from project root to file
+                }
                 displayFile(currentFile);
 
                 fs.readFile(filePaths[currentFile], function (err, data) {
