@@ -6,6 +6,9 @@
 
 let win;
 
+/**
+ * Opens a pop-up window for project creation.
+ */
 function openPopup() {
     /* 
         This section contains window info,
@@ -137,12 +140,17 @@ ${yaml.safeDump(values).replace(/[']+/g, '')}`,
     remote.getCurrentWindow().close();
 });
 
-/*
-    This function looks for project.cutter,
-    going up the directory tree until
-    it finds the file, reaches the top 
-    or times out.
-*/
+/**
+ * Searches for project.cutter,
+ * going up the directory tree until
+ * it finds the file, reaches the top
+ * or times out.
+ *
+ * @param {String} [file] The file from which searching starts.
+ *
+ * @returns The directory with project.cutter in it.
+ * @returns If there is no directory as such, returns 'Untitled Project'.
+ */
 function findProject(file) {
     let searchDir = file;
     var t0 = performance.now();
@@ -182,6 +190,7 @@ document.querySelector('#dirBtn').addEventListener('click', (event) => {
         });
 });
 
+// ! Temporary ! //
 document.querySelector('#closeBtn').addEventListener('click', (event) => {
     closePopup();
 });
