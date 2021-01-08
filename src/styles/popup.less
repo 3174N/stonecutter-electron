@@ -1,0 +1,39 @@
+.input-container {
+    margin-bottom: 25px;
+    margin-top: 25px;
+    position: relative;
+    label {
+        font-size: 16px;
+        left: 0px;
+        position: absolute;
+        top: 0px;
+        transition: all 0.5s ease-in-out;
+    }
+    input {
+        background: transparent;
+        border-bottom: 1px solid #555555;
+        border: 0;
+        font-size: 16px;
+        padding: 8px 0 5px 0;
+        width: 100%;
+        &:focus {
+            // ? background-color: rgb(195, 195, 195);
+            border-bottom: 1px solid #e74c3c;
+            border: none;
+            outline: none;
+        }
+        &:focus ~ label {
+            font-size: 12px;
+            top: -12px;
+        }
+        &:valid ~ label {
+            font-size: 12px;
+            top: -12px;
+        }
+    }
+}
+footer {
+    // position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
