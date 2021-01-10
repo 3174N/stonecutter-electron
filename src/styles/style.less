@@ -4,36 +4,21 @@
 }
 
 &:not(input) {
-    not(textarea) {
+    not(textarea),
+    not(textarea) before,
+    not(textarea) after {
         -webkit-user-select: none;
         cursor: default;
         user-select: none;
-
-        after {
-            -webkit-user-select: none;
-            cursor: default;
-            user-select: none;
-        }
-        before {
-            -webkit-user-select: none;
-            cursor: default;
-            user-select: none;
-        }
     }
 }
-&:focus {
-    outline: none;
-}
-
-input {
-    outline: none;
-}
-button {
-    outline: none;
-}
+&:focus,
+input,
+button,
 textarea {
     outline: none;
 }
+
 .grid-container {
     display: grid;
     gap: 0px 0px;
