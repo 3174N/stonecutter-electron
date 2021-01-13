@@ -173,6 +173,7 @@ function openFileFromList(fileName) {
  * Used to create an explorer list item for a file/folder
  *
  * @param {String} [fileName] The file/folder to display
+ * @param {String} [ulClass] Class to which write file (default = '.files').
  */
 function displayFile(fileName, ulClass = '.files') {
     if (/^\..*/g.test(fileName)) {
