@@ -5,9 +5,7 @@
     "main": "main.js",
     "scripts": {
         "test": "mocha",
-        "start": "electron-forge start",
-        "pack": "electron-builder --dir",
-        "dist": "electron-builder",
+        "start": "electron .",
         "package": "electron-forge package",
         "make": "electron-forge make"
     },
@@ -22,7 +20,6 @@
     },
     "homepage": "https://stonecutter.org/",
     "dependencies": {
-        "debug": "^4.3.1",
         "electron-mocha": "^10.0.0",
         "electron-squirrel-startup": "^1.0.0",
         "jquery": "^3.5.1",
@@ -52,18 +49,31 @@
                     }
                 },
                 {
-                    "name": "@electron-forge/maker-zip",
-                    "platforms": [
-                        "darwin"
-                    ]
-                },
-                {
                     "name": "@electron-forge/maker-flatpak",
-                    "config": {}
+                    "config": {
+                        "options": {
+                            "base": "org.electronjs.Electron2.BaseApp",
+                            "categories": ["Development", "Game"],
+                            "description": "An extensible IDE for Minecraft datapacks",
+                            "genericName": "Text Editor",
+                            "icon": "./src/styles/media/icon.png",
+                            "id": "org.stonecutter.Stonecutter",
+                            "mimeType": [
+                                "text/plain",
+                                "text/markdown",
+                                "application/json"
+                            ],
+                            "productName": "Stonecutter"
+                        }
+                    }
                 },
                 {
                     "name": "@electron-forge/maker-dmg",
-                    "config": {}
+                    "config": {
+                        "name": "Install Stonecutter",
+                        "background": "./src/styles/media/dmg-background.png",
+                        "icon": "./src/styles/media/icon.png"
+                    }
                 }
             ]
         }
