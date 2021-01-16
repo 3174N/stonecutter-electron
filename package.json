@@ -35,7 +35,6 @@
         "@electron-forge/maker-flatpak": "^6.0.0-beta.54",
         "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
         "@electron-forge/maker-zip": "^6.0.0-beta.54",
-        "ds-store": "^0.1.6",
         "electron": "11.1.1",
         "fs-temp": "^1.2.1",
         "fs-xattr": "^0.3.1",
@@ -44,6 +43,9 @@
         "mocha": "^8.2.1",
         "parse-color": "^1.0.0",
         "spectron": "^13.0.0"
+    },
+    "optionalDependencies": {
+        "ds-store": "^0.1.6"
     },
     "config": {
         "forge": {
