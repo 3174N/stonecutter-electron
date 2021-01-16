@@ -48,7 +48,8 @@
     "config": {
         "forge": {
             "packagerConfig": {
-                "icon": "./src/styles/media/icon"
+                "icon": "./src/styles/media/icon",
+                "appBundleId": "org.stonecutter.Stonecutter"
             },
             "makers": [
                 {
