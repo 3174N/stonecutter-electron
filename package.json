@@ -1,5 +1,6 @@
 {
     "name": "stonecutter-electron",
+    "productName": "Stonecutter",
     "version": "0.1.0",
     "description": "A text editor for mcfunction",
     "main": "main.js",
@@ -20,6 +21,7 @@
     },
     "homepage": "https://stonecutter.org/",
     "dependencies": {
+        "debug": "^4.3.1",
         "electron-mocha": "^10.0.0",
         "electron-squirrel-startup": "^1.0.0",
         "jquery": "^3.5.1",
@@ -29,18 +31,25 @@
     },
     "devDependencies": {
         "@electron-forge/cli": "^6.0.0-beta.54",
-        "@electron-forge/maker-flatpak": "^6.0.0-beta.54",
         "@electron-forge/maker-dmg": "^6.0.0-beta.54",
+        "@electron-forge/maker-flatpak": "^6.0.0-beta.54",
         "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
         "@electron-forge/maker-zip": "^6.0.0-beta.54",
+        "ds-store": "^0.1.6",
         "electron": "11.1.1",
+        "fs-temp": "^1.2.1",
+        "fs-xattr": "^0.3.1",
+        "is-my-json-valid": "^2.20.5",
         "less": "^4.1.0",
         "mocha": "^8.2.1",
+        "parse-color": "^1.0.0",
         "spectron": "^13.0.0"
     },
     "config": {
         "forge": {
-            "packagerConfig": {},
+            "packagerConfig": {
+                "icon": "./src/styles/media/icon"
+            },
             "makers": [
                 {
                     "name": "@electron-forge/maker-squirrel",
@@ -53,7 +62,10 @@
                     "config": {
                         "options": {
                             "base": "org.electronjs.Electron2.BaseApp",
-                            "categories": ["Development", "Game"],
+                            "categories": [
+                                "Development",
+                                "Game"
+                            ],
                             "description": "An extensible IDE for Minecraft datapacks",
                             "genericName": "Text Editor",
                             "icon": "./src/styles/media/icon.png",
@@ -70,9 +82,18 @@
                 {
                     "name": "@electron-forge/maker-dmg",
                     "config": {
-                        "name": "Install Stonecutter",
+                        "name": "Stonecutter v0.1.0",
                         "background": "./src/styles/media/dmg-background.png",
-                        "icon": "./src/styles/media/icon.png"
+                        "icon": "./src/styles/media/icon.icns",
+                        "overwrite": true,
+                        "additionalDMGOptions": {
+                            "window": {
+                                "size": {
+                                    "height": 380,
+                                    "width": 540
+                                }
+                            }
+                        }
                     }
                 }
             ]
