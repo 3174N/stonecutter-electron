@@ -49,6 +49,7 @@
         "forge": {
             "packagerConfig": {
                 "icon": "./src/styles/media/icon",
+                "appCopyright": "Copyright © 2020 SFR & 3174N",
                 "appBundleId": "org.stonecutter.Stonecutter"
             },
             "makers": [
