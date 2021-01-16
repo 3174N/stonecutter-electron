@@ -2,7 +2,7 @@
     "name": "stonecutter-electron",
     "productName": "Stonecutter",
     "version": "0.1.0",
-    "description": "A text editor for mcfunction",
+    "description": "An extensible IDE for Minecraft datapacks",
     "main": "main.js",
     "scripts": {
         "test": "mocha",
@@ -51,14 +51,17 @@
         "forge": {
             "packagerConfig": {
                 "icon": "./src/styles/media/icon",
-                "appCopyright": "Copyright © 2020 SFR & 3174N",
+                "appCopyright": "Copyright © 2021 SFR & 3174N",
                 "appBundleId": "org.stonecutter.Stonecutter"
             },
             "makers": [
                 {
                     "name": "@electron-forge/maker-squirrel",
                     "config": {
-                        "name": "stonecutter_electron"
+                        "name": "org.stonecutter.Stonecutter",
+                        "copyright": "Copyright © 2021 SFR & 3174N",
+                        "iconUrl": "./src/styles/media/icon.ico",
+                        "setupIcon": "./src/styles/media/icon.ico"
                     }
                 },
                 {
@@ -66,10 +69,7 @@
                     "config": {
                         "options": {
                             "base": "org.electronjs.Electron2.BaseApp",
-                            "categories": [
-                                "Development",
-                                "Game"
-                            ],
+                            "categories": ["Development", "Game"],
                             "description": "An extensible IDE for Minecraft datapacks",
                             "genericName": "Text Editor",
                             "icon": "./src/styles/media/icon.png",
