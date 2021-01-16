@@ -6,3 +6,6 @@ node_modules/
 
 # Electron builds
 out/
+
+# macOS folder data
+**/.DS_Store
