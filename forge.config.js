@@ -1,4 +1,5 @@
 const path = require('path');
+const url = require('url');
 
 module.exports = {
     packagerConfig: {
@@ -11,8 +12,10 @@ module.exports = {
             name: '@electron-forge/maker-squirrel',
             config: {
                 name: 'org.stonecutter.Stonecutter',
+                title: 'Stonecutter',
                 copyright: 'Copyright © 2021 SFR & 3174N',
-                iconUrl: './src/styles/media/icon.ico',
+                iconUrl:
+                    'file://' + path.resolve('./src/styles/media/icon.ico'),
                 setupIcon: './src/styles/media/icon.ico',
             },
         },
