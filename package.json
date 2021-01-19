@@ -1,6 +1,5 @@
 {
     "name": "stonecutter-electron",
-    "productName": "Stonecutter",
     "version": "0.1.0",
     "description": "An extensible IDE for Minecraft datapacks",
     "main": "main.js",
@@ -69,7 +68,10 @@
                     "config": {
                         "options": {
                             "base": "org.electronjs.Electron2.BaseApp",
-                            "categories": ["Development", "Game"],
+                            "categories": [
+                                "Development",
+                                "Game"
+                            ],
                             "description": "An extensible IDE for Minecraft datapacks",
                             "genericName": "Text Editor",
                             "icon": "./src/styles/media/icon.png",
