@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
     packagerConfig: {
         icon: './src/styles/media/icon',
@@ -43,11 +45,23 @@ module.exports = {
                 additionalDMGOptions: {
                     window: {
                         size: {
-                            height: 380,
+                            height: 355,
                             width: 540,
                         },
                     },
                 },
+                contents: [
+                    {
+                        x: 130,
+                        y: 220,
+                        type: 'file',
+                        path: path.join(
+                            __dirname,
+                            'out/stonecutter-electron-darwin-x64/stonecutter-electron.app',
+                        ),
+                    },
+                    { x: 410, y: 220, type: 'link', path: '/Applications' },
+                ],
             },
         },
     ],
