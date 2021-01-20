@@ -3,8 +3,7 @@
     <h1 align="center">Stonecutter</h1>
 </p>
 <p align="center"> 
-    <a href="https://david-dm.org/3174N/stonecutter-electron"><img src="https://badgen.net/david/dep/3174N/stonecutter-electron" /></a>
-    <a href="https://david-dm.org/3174N/stonecutter-electron?type=dev"><img src="https://badgen.net/david/dev/3174N/stonecutter-electron" /></a>
+    <a href="https://travis-ci.com/3174N/stonecutter-electron"><img src="https://badgen.net/travis/3174N/stonecutter-electron?label=build" /></a>
     <a href="LICENSE"><img src="https://badgen.net/github/license/3174N/stonecutter-electron" /></a>
     <a href="https://github.com/3174N/stonecutter-electron/releases"><img src="https://badgen.net/github/release/3174N/stonecutter-electron" /></a>
 </p>
@@ -34,3 +33,9 @@ $ open dist/Stonecutter-0.1.0.dmg # on macOS
 $ dist/Stonecutter-0.1.0.AppImage # on Linux
 $ "dist/Stonecutter Setup 0.1.0.exe" # on Windows
 ```
+
+### Dependency Status
+[![Dependencies](https://badgen.net/david/dep/3174N/stonecutter-electron)](https://david-dm.org/3174N/stonecutter-electron)
+:---
+[![devDependencies](https://badgen.net/david/dev/3174N/stonecutter-electron)](https://david-dm.org/3174N/stonecutter-electron?type=dev)
+[![optionalDependencies](https://badgen.net/david/optional/3174N/stonecutter-electron)](https://david-dm.org/3174N/stonecutter-electron?type=optional)
