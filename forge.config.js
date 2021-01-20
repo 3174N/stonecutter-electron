@@ -3,6 +3,14 @@ const url = require('url');
 
 module.exports = {
     packagerConfig: {
+        name:
+            process.platform == 'linux'
+                ? 'stonecutter-electron'
+                : 'Stonecutter',
+        executableName:
+            process.platform == 'linux'
+                ? 'stonecutter-electron'
+                : 'Stonecutter',
         icon: './src/styles/media/icon',
         appCopyright: 'Copyright © 2021 SFR & 3174N',
         appBundleId: 'org.stonecutter.Stonecutter',
@@ -60,10 +68,16 @@ module.exports = {
                         type: 'file',
                         path: path.join(
                             __dirname,
-                            'out/stonecutter-electron-darwin-x64/stonecutter-electron.app',
+                            'out/Stonecutter-darwin-x64/Stonecutter.app',
                         ),
                     },
-                    { x: 410, y: 220, type: 'link', path: '/Applications' },
+                    {
+                        x: 410,
+                        y: 220,
+                        type: 'link',
+                        path: '/Applications',
+                        name: ' ',
+                    },
                 ],
             },
         },
