@@ -5,4 +5,7 @@ node_modules/
 .vscode/
 
 # Electron builds
-dist/
+out/
+
+# macOS folder data
+**/.DS_Store

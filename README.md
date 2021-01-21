@@ -22,44 +22,60 @@
 </table>
 
 ### What?
-Stonecutter is an all-in-one `.json` and `.mcfunction` editor. Its goal is to include **syntax highlighting**, **formatting**, **linting** and **debugging** for both formats. It will also be very customizable, as you could tinker with *everything*, from colorschemes to settings to even changes in source code.
+
+Stonecutter is an all-in-one `.json` and `.mcfunction` editor. Its goal is to include **syntax highlighting**, **formatting**, **linting** and **debugging** for both formats. It will also be very customizable, as you could tinker with _everything_, from colorschemes to settings to even changes in source code.
+
 ### Why?
-The current state of datapack development is not good. Most novice to mid-level programmers use *Notepad++* which, while not bad, is very rudimentary. We aim to fix that. Our goal is to create an extensible, user-friendly and lightweight IDE that packs **all of** and **only** what you need as a datapack creator.
+
+The current state of datapack development is not good. Most novice to mid-level programmers use _Notepad++_ which, while not bad, is very rudimentary. We aim to fix that. Our goal is to create an extensible, user-friendly and lightweight IDE that packs **all of** and **only** what you need as a datapack creator.
 
 ## Installation
+
 [![GitHub Release](https://badgen.net/github/release/3174N/stonecutter-electron)](https://github.com/3174N/stonecutter-electron/releases) [![Flathub](https://img.shields.io/flathub/v/org.stonecutter.Stonecutter)](https://www.flathub.org/apps/details/org.stonecutter.Stonecutter)
 
-Installing Stonecutter on your machine is easy as pie. If you're a *Windows* or *macOS* user, simply download the latest release package from our [releases page](https://github.com/3174N/stonecutter-electron/releases).
+Installing Stonecutter on your machine is easy as pie. If you're a _Windows_ or _macOS_ user, simply download the latest release package from our [releases page](https://github.com/3174N/stonecutter-electron/releases).
 
-If you're a *Linux* user, a Flatpak is available over at [Flathub](https://www.flathub.org/apps/details/org.stonecutter.Stonecutter)<sup>*Not yet implemented*</sup>. If you don't have Flatpak or don't know how to install apps from it, please consult [Flatpak's docs](https://flatpak.org/setup). 
+If you're a _Linux_ user, a Flatpak is available over at [Flathub](https://www.flathub.org/apps/details/org.stonecutter.Stonecutter)<sup>_Not yet implemented_</sup>. If you don't have Flatpak or don't know how to install apps from it, please consult [Flatpak's docs](https://flatpak.org/setup).
 
-*Note: Stonecutter is still in very, **very** early development. Usage is likely to be lackluster and buggy at times.*
+_Note: Stonecutter is still in very, **very** early development. Usage is likely to be lackluster and buggy at times._
 
-### Requirements
+### Building from Source
 
--   [Node.js](https://nodejs.org/)
--   [Git](https://git-scm.com/)
+Prerequisites:
 
-### Run the App
+-   [`git`](https://git-scm.com)
+-   [`node`](https://nodejs.org)
+-   [`npm`](https://npmjs.com)
+-   _For Linux:_
+    -   `elfutils`
+    -   [`flatpak`](https://flatpak.org)
+    -   `flatpak-builder`
 
-```bash
+```sh
 # Clone the repository
 $ git clone https://github.com/3174N/stonecutter-electron
 $ cd stonecutter-electron
 # Install dependencies
 $ npm install
 # Build the app
-$ npm run dist
+$ npm run make
 # Open your app
-$ open dist/Stonecutter-0.1.0.dmg # on macOS
-$ dist/Stonecutter-0.1.0.AppImage # on Linux
-$ "dist/Stonecutter Setup 0.1.0.exe" # on Windows
+## macOS:
+$ open out/make/Stonecutter\ v0.1.0.dmg
+## Windows:
+$ "out\make\squirrel.windows\x64\Stonecutter-0.1.0 Setup.exe"
+## Linux:
+$ out/stonecutter-electron-linux-x64/stonecutter-electron
+$ cd out/make/flatpak/x86_64
+$ flatpak install org.stonecutter.Stonecutter_stable_x86_64.flatpak
 ```
 
 ## Getting Help
-Got stuck? Need help? The official documentation for Stonecutter is hosted [here](https://stonecutter.org/docs)<sup>*Not yet implemented*</sup>. If you've encountered a bug, please check [the issues page](https://github.com/3174N/stonecutter-electron/issues?q=is%3Aissue+label%3Abug) to see if we know of it, and if not, [file a bug report](https://github.com/3174N/stonecutter-electron/issues/new/choose)! 
+
+Got stuck? Need help? The official documentation for Stonecutter is hosted [here](https://stonecutter.org/docs)<sup>_Not yet implemented_</sup>. If you've encountered a bug, please check [the issues page](https://github.com/3174N/stonecutter-electron/issues?q=is%3Aissue+label%3Abug) to see if we know of it, and if not, [file a bug report](https://github.com/3174N/stonecutter-electron/issues/new/choose)!
 
 ## License
+
 Copyright (c) 2021 3174N & SFR
 
-We strongly believe in and endorse the open source community, and as such, *Stonecutter* is licensed under the MIT permissive license, and [*Craft Mono*](https://github.com/SFR-git/craft-mono) under the SIL Open Font license. Simply put, we grant you the right to freely mod, fork, change, give, sell and repackage this application, as long as you provide proper credit. Go nuts. 
+We strongly believe in and endorse the open source community, and as such, _Stonecutter_ is licensed under the MIT permissive license, and [_Craft Mono_](https://github.com/SFR-git/craft-mono) under the SIL Open Font license. Simply put, we grant you the right to freely mod, fork, change, give, sell and repackage this application, as long as you provide proper credit. Go nuts.

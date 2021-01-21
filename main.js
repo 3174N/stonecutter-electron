@@ -8,6 +8,14 @@ const { PerformanceObserver, performance } = require('perf_hooks');
 
 const isMac = process.platform === 'darwin'; // Checks if running on macOS
 
+/*
+    Disable the app opening and closing rapidly
+    when installing to Windows.
+*/
+if (require('electron-squirrel-startup')) {
+    app.quit();
+}
+
 let win;
 
 function createWindow() {
