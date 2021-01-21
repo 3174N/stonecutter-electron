@@ -47,9 +47,9 @@ Prerequisites:
 -   [`node`](https://nodejs.org)
 -   [`npm`](https://npmjs.com)
 -   _For Linux:_
--   -   `elfutils`
--   -   [`flatpak`](https://flatpak.org)
--   -   `flatpak-builder`
+    -   `elfutils`
+    -   [`flatpak`](https://flatpak.org)
+    -   `flatpak-builder`
 
 ```sh
 # Clone the repository
