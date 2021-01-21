@@ -34,7 +34,7 @@ $ npm install
 $ npm run make
 # Open your app
 ## macOS:
-$ open out/Stonecutter\ v0.1.0.dmg
+$ open out/make/Stonecutter\ v0.1.0.dmg
 ## Windows:
 $ "out\make\squirrel.windows\x64\Stonecutter-0.1.0 Setup.exe"
 ## Linux:
