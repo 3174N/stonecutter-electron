@@ -12,25 +12,33 @@
 
 [Roadmap](https://github.com/3174N/stonecutter-electron/projects/1)
 
-## Quick Start
+## Build From Source
 
-### Requirements
+Prerequisites:
 
--   [Node.js](https://nodejs.org/)
--   [Git](https://git-scm.com/)
+-   [`git`](https://git-scm.com)
+-   [`node`](https://nodejs.org)
+-   [`npm`](https://npmjs.com)
+-   _For Linux:_
+-   -   `elfutils`
+-   -   [`flatpak`](https://flatpak.org)
+-   -   `flatpak-builder`
 
-### Run the App
-
-```bash
+```sh
 # Clone the repository
 $ git clone https://github.com/3174N/stonecutter-electron
 $ cd stonecutter-electron
 # Install dependencies
 $ npm install
 # Build the app
-$ npm run dist
+$ npm run make
 # Open your app
-$ open dist/Stonecutter-0.1.0.dmg # on macOS
-$ dist/Stonecutter-0.1.0.AppImage # on Linux
-$ "dist/Stonecutter Setup 0.1.0.exe" # on Windows
+## macOS:
+$ open out/Stonecutter\ v0.1.0.dmg
+## Windows:
+$ "out/Stonecutter Setup 0.1.0.exe"
+## Linux:
+$ out/stonecutter-electron-linux-x64/stonecutter-electron
+$ cd out/make/flatpak/x86_64
+$ flatpak install org.stonecutter.Stonecutter_stable_x86_64.flatpak
 ```
