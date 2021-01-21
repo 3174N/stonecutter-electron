@@ -36,7 +36,7 @@ $ npm run make
 ## macOS:
 $ open out/Stonecutter\ v0.1.0.dmg
 ## Windows:
-$ "out/Stonecutter Setup 0.1.0.exe"
+$ "out\make\squirrel.windows\x64\Stonecutter-0.1.0 Setup.exe"
 ## Linux:
 $ out/stonecutter-electron-linux-x64/stonecutter-electron
 $ cd out/make/flatpak/x86_64
