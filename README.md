@@ -23,17 +23,17 @@
 
 ### What?
 
-Stonecutter is an all-in-one `.json` and `.mcfunction` editor. Its goal is to include **syntax highlighting**, **formatting**, **linting** and **debugging** for both formats. It will also be very customizable, as you could tinker with _everything_, from colorschemes to settings to even changes in source code.
+Stonecutter is an all-in-one `.json` and `.mcfunction` editor. Our goal is for it to include **syntax highlighting**, **formatting**, **linting** and **debugging** for both formats. It is also built with tinkering in mind, so that you could build the environment that suits you best.
 
 ### Why?
 
-The current state of datapack development is not good. Most novice to mid-level programmers use _Notepad++_ which, while not bad, is very rudimentary. We aim to fix that. Our goal is to create an extensible, user-friendly and lightweight IDE that packs **all of** and **only** what you need as a datapack creator.
+The current state of datapack development is not good. Most novice to mid-level programmers use _Notepad++_ which, while not bad, is very rudimentary. We aim to fix that by creating an extensible, yet user-friendly and lightweight IDE which include tools you need as a datapack creator.
 
 ## Installation
 
 [![GitHub Release](https://badgen.net/github/release/3174N/stonecutter-electron)](https://github.com/3174N/stonecutter-electron/releases) [![Flathub](https://img.shields.io/flathub/v/org.stonecutter.Stonecutter)](https://www.flathub.org/apps/details/org.stonecutter.Stonecutter)
 
-Installing Stonecutter on your machine is easy as pie. If you're a _Windows_ or _macOS_ user, simply download the latest release package from our [releases page](https://github.com/3174N/stonecutter-electron/releases).
+If you're a _Windows_ or _macOS_ user, simply download the latest release package from our [releases page](https://github.com/3174N/stonecutter-electron/releases).
 
 If you're a _Linux_ user, a Flatpak is available over at [Flathub](https://www.flathub.org/apps/details/org.stonecutter.Stonecutter)<sup>_Not yet implemented_</sup>. If you don't have Flatpak or don't know how to install apps from it, please consult [Flatpak's docs](https://flatpak.org/setup).
 
