@@ -82,4 +82,18 @@ module.exports = {
             },
         },
     ],
+    publishers: [
+        {
+            name: '@electron-forge/publisher-github',
+            config: {
+                repository: {
+                    owner: 'me',
+                    name: 'awesome-thing',
+                },
+                prerelease: false,
+                draft: true,
+                authToken: GITHUB_TOKEN,
+            },
+        },
+    ],
 };
