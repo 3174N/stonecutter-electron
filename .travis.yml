@@ -15,14 +15,15 @@ addons:
     apt:
         sources:
             - sourceline: 'ppa:alexlarsson/flatpak'
-        
         packages:
             - xvfb
             - flatpak
             - flatpak-builder
             - elfutils
+            
 
 install:
+    - if [ $TRAVIS_OS_NAME = linux ]; then sudo flatpak install -y org.freedesktop.Platform/x86_64/19.08 org.freedesktop.Sdk/x86_64/1.6 org.electronjs.Electron2.BaseApp/x86_64/stable;
     - npm ci
     - export DISPLAY=':99.0'
     - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
