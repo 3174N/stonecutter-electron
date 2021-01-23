@@ -92,7 +92,7 @@ module.exports = {
                 },
                 prerelease: false,
                 draft: true,
-                authToken: GITHUB_TOKEN,
+                authToken: process.env.GITHUB_TOKEN,
             },
         },
     ],
