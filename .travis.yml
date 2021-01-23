@@ -13,6 +13,9 @@ os:
     
 addons:
     apt:
+        sources:
+            - sourceline: 'ppa:alexlarsson/flatpak'
+        
         packages:
             - xvfb
             - flatpak
