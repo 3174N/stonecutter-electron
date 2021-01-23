@@ -4,7 +4,6 @@
     "description": "An extensible IDE for Minecraft datapacks",
     "main": "main.js",
     "scripts": {
-        "test": "mocha",
         "start": "electron .",
         "package": "electron-forge package",
         "make": "electron-forge make"
@@ -21,7 +20,6 @@
     "homepage": "https://stonecutter.org/",
     "dependencies": {
         "debug": "^4.3.1",
-        "electron-mocha": "^10.0.0",
         "electron-squirrel-startup": "^1.0.0",
         "jquery": "^3.5.1",
         "js-yaml": "^4.0.0",
@@ -37,9 +35,7 @@
         "fs-temp": "^1.2.1",
         "is-my-json-valid": "^2.20.5",
         "less": "^4.1.0",
-        "mocha": "^8.2.1",
-        "parse-color": "^1.0.0",
-        "spectron": "^13.0.0"
+        "parse-color": "^1.0.0"
     },
     "optionalDependencies": {
         "fs-xattr": "^0.3.1",
