@@ -15,6 +15,9 @@ addons:
     apt:
         packages:
             - xvfb
+            - flatpak
+            - flatpak-builder
+            - elfutils
 
 install:
     - npm ci
