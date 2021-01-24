@@ -49,7 +49,7 @@ module.exports = {
         {
             name: '@electron-forge/maker-dmg',
             config: {
-                name: 'Stonecutter v0.1.0',
+                name: 'Stonecutter v0.1.1',
                 background: './src/styles/media/dmg-background.png',
                 icon: './src/styles/media/icon.icns',
                 overwrite: true,
