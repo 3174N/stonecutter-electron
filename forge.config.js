@@ -87,8 +87,8 @@ module.exports = {
             name: '@electron-forge/publisher-github',
             config: {
                 repository: {
-                    owner: 'me',
-                    name: 'awesome-thing',
+                    owner: '3174N',
+                    name: 'stonecutter-electron',
                 },
                 prerelease: false,
                 draft: true,
