@@ -1,5 +1,4 @@
 const path = require('path');
-const url = require('url');
 
 module.exports = {
     packagerConfig: {
@@ -49,7 +48,7 @@ module.exports = {
         {
             name: '@electron-forge/maker-dmg',
             config: {
-                name: 'Stonecutter v0.1.1',
+                name: 'Stonecutter',
                 background: './src/styles/media/dmg-background.png',
                 icon: './src/styles/media/icon.icns',
                 overwrite: true,
