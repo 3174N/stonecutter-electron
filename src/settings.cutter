@@ -11,7 +11,7 @@ font:
     family: "Craft Mono" # Default: Craft Mono
     style: "Regular" # Default: Regular
     size: 11.0 # Default: 11.0
-    ligatures: disabled
+    ligatures: false
 
 # Colorscheme
 # This can be changed by adding a custom theme to ./colorschemes/
