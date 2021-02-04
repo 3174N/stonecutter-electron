@@ -197,7 +197,7 @@ function displayFile(fileName, ulClass = '.files') {
 
         if (!$(`.${fileName}-folder`).length) {
             // Generate filetree
-            $('.files').append(`<ul class=${fileName}-folder></ul>`);
+            $(`${ulClass}`).append(`<ul class=${fileName}-folder></ul>`);
 
             fs.readdir(filePaths[fileName], function (err, files) {
                 if (err) return console.log(err);
