@@ -36,7 +36,7 @@
         "electron": "11.2.2",
         "fs-temp": "^1.2.1",
         "is-my-json-valid": "^2.20.5",
-        "less": "^4.1.0",
+        "less": "^4.1.1",
         "mocha": "^8.2.1",
         "parse-color": "^1.0.0",
         "spectron": "^13.0.0"
