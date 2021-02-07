@@ -35,7 +35,7 @@ function openPopup() {
     );
 
     // Comment next line for dev-tools access
-    // win.removeMenu();
+    win.removeMenu();
     win.setResizable(false);
 }
 

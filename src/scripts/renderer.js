@@ -285,3 +285,7 @@ ipc.on('save', (event) => {
 ipc.on('save-as', (event) => {
     saveFileAs();
 });
+
+ipc.on('open-popup', (event) => {
+    openPopup();
+});
