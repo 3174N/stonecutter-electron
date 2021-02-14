@@ -15,12 +15,11 @@ jobs:
     - uses: actions/setup-node@v1
     - run: npm ci
     - run: npm run make
-    - uses: djnicholson/release-action@v2.11
+    - uses: meeDamian/github-release@2.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        release-name: Draft
-        tag-name: draft
-        asset-name: 'Stonecutter-v0.0.0.flatpak'
+        tag: draft
+        draft: true
         file: 'out/make/flatpak/x86_64/org.stonecutter.Stonecutter_stable_x86_64.flatpak'
   macos:
     name: macOS
@@ -30,13 +29,12 @@ jobs:
     - uses: actions/setup-node@v1
     - run: npm ci
     - run: npm run make
-    - uses: djnicholson/release-action@v2.11
+    - uses: meeDamian/github-release@2.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        release-name: Draft
-        tag-name: draft
-        asset-name: 'Stonecutter-v0.0.0.dmg'
-        file: 'out/make/Stonecutter*.dmg'
+        tag: draft
+        draft: true
+        file: 'out/make/'
   windows:
     name: Windows
     runs-on: windows-latest
@@ -45,10 +43,9 @@ jobs:
     - uses: actions/setup-node@v1
     - run: npm ci
     - run: npm run make
-    - uses: djnicholson/release-action@v2.11
+    - uses: meeDamian/github-release@2.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        release-name: Draft
-        tag-name: draft
-        asset-name: 'Stonecutter-v0.0.0.exe'
-        file: 'out\make\squirrel.windows\x64\Stonecutter-*.exe'
+        tag: draft
+        draft: true
+        file: 'out/make/squirrel.windows'
