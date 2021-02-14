@@ -40,7 +40,7 @@ jobs:
         release-name: Draft
         tag-name: draft
         asset-name: 'Stonecutter-v0.0.0.dmg'
-        file: 'out/make/Stonecutter v0.0.0.dmg'
+        file: 'out/make/Stonecutter*.dmg'
   windows:
     name: Windows
     runs-on: windows-latest
@@ -57,4 +57,4 @@ jobs:
         release-name: Draft
         tag-name: draft
         asset-name: 'Stonecutter-v0.0.0.exe'
-        file: 'out\make\squirrel.windows\x64\Stonecutter-0.1.0 Setup.exe'
+        file: 'out\make\squirrel.windows\x64\Stonecutter-*.exe'
