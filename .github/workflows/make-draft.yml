@@ -1,0 +1,20 @@
+name: Make and Draft
+
+on: push
+
+jobs:
+  make-draft:
+    name: Make and Draft
+    runs-on: ubuntu-latest # Currently only works on Ubuntu, consider this a proof of concept
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - run: npm ci
+    - run: npm run make
+    - uses: djnicholson/release-action@v2.11
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        release-name: '${GITHUB_REF##*/}'
+        tag-name: 'draft-${GITHUB_REF##*/}'
+        asset-name: 'Stonecutter.flatpak'
+        file: 'out/dist/out/make/flatpak/x86_64/org.stonecutter.Stonecutter_stable_x86_64.flatpak'
