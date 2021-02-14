@@ -56,5 +56,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: draft
-        draft: true
-        file: 'out/'
+          draft: true
+          file: 'out/'
