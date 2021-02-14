@@ -28,6 +28,21 @@ install:
     
 env:
     - DEBUG="*"
+    - BRANCH=${git branch --show-current}
     
 script:
-    - npm run publish
+    - npm run make
+
+before_deploy:
+    - git config --local user.name "SFR"
+    - git config --local user.email "git@sfr.moe"
+    - git tag $BRANCH
+deploy:
+    provider: releases
+    api_key: 
+        secure: GITHUB_TOKEN
+    file_glob: true
+    file: out/**/*
+    skip_cleanup: true
+    draft: true
+    overwrite: true

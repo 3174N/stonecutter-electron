@@ -81,18 +81,4 @@ module.exports = {
             },
         },
     ],
-    publishers: [
-        {
-            name: '@electron-forge/publisher-github',
-            config: {
-                repository: {
-                    owner: '3174N',
-                    name: 'stonecutter-electron',
-                },
-                prerelease: false,
-                draft: true,
-                authToken: process.env.GITHUB_TOKEN,
-            },
-        },
-    ],
 };
