@@ -10,13 +10,17 @@ jobs:
       DEBUG: '*'
     steps:
     - uses: actions/checkout@v2
+    - run: 'sudo apt-add-repository ppa:alexlarsson/flatpak && sudo apt-get update'
+    - run: 'sudo apt-get install flatpak flatpak-builder elfutils'
+    - run: 'flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo'
+    - run: 'flatpak --user install -y org.freedesktop.Platform/x86_64/19.08 org.freedesktop.Sdk/x86_64/19.08 org.electronjs.Electron2.BaseApp/x86_64/stable'
     - uses: actions/setup-node@v1
     - run: npm ci
     - run: npm run make
     - uses: djnicholson/release-action@v2.11
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        release-name: '${GITHUB_REF##*/}'
-        tag-name: 'draft-${GITHUB_REF##*/}'
+        release-name: Draft
+        tag-name: draft
         asset-name: 'Stonecutter.flatpak'
-        file: 'out/dist/out/make/flatpak/x86_64/org.stonecutter.Stonecutter_stable_x86_64.flatpak'
+        file: 'out/make/flatpak/x86_64/org.stonecutter.Stonecutter_stable_x86_64.flatpak'
