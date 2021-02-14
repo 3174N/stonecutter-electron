@@ -6,6 +6,8 @@ jobs:
   make-draft:
     name: Make and Draft
     runs-on: ubuntu-latest # Currently only works on Ubuntu, consider this a proof of concept
+    env:
+      DEBUG: '*'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
