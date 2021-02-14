@@ -6,8 +6,6 @@ jobs:
   linux:
     name: Linux
     runs-on: ubuntu-latest
-    env:
-      DEBUG: '*'
     steps:
     - uses: actions/checkout@v2
     - run: 'sudo apt-add-repository ppa:alexlarsson/flatpak && sudo apt-get update'
@@ -27,8 +25,6 @@ jobs:
   macos:
     name: macOS
     runs-on: macos-latest
-    env:
-      DEBUG: '*'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -44,8 +40,6 @@ jobs:
   windows:
     name: Windows
     runs-on: windows-latest
-    env:
-      DEBUG: '*'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
