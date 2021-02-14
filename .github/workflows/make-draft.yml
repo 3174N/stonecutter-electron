@@ -15,12 +15,11 @@ jobs:
     - uses: actions/setup-node@v1
     - run: npm ci
     - run: npm run make
-    - uses: meeDamian/github-release@2.0
+    - uses: actions/upload-artifact@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: draft
-        draft: true
-        file: 'out/make/flatpak/x86_64/org.stonecutter.Stonecutter_stable_x86_64.flatpak'
+        name: Flatpak
+        path: 'out/make/flatpak/x86_64/org.stonecutter.Stonecutter_stable_x86_64.flatpak'
+    
   macos:
     name: macOS
     runs-on: macos-latest
@@ -29,12 +28,10 @@ jobs:
     - uses: actions/setup-node@v1
     - run: npm ci
     - run: npm run make
-    - uses: meeDamian/github-release@2.0
+    - uses: actions/upload-artifact@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: draft
-        draft: true
-        file: 'out/make/'
+        name: DMG
+        path: 'out/make/*'
   windows:
     name: Windows
     runs-on: windows-latest
@@ -43,9 +40,21 @@ jobs:
     - uses: actions/setup-node@v1
     - run: npm ci
     - run: npm run make
-    - uses: meeDamian/github-release@2.0
+    - uses: actions/upload-artifact@v2
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: draft
+        name: Flatpak
+        path: 'out/make/squirrel.windows/*.exe'
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          path: out/
+      - uses: meeDamian/github-release@2.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: draft
         draft: true
-        file: 'out/make/squirrel.windows'
+        file: 'out/'
