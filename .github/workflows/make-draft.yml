@@ -3,9 +3,9 @@ name: Make and Draft
 on: push
 
 jobs:
-  make-draft:
-    name: Make and Draft
-    runs-on: ubuntu-latest # Currently only works on Ubuntu, consider this a proof of concept
+  linux:
+    name: Linux
+    runs-on: ubuntu-latest
     env:
       DEBUG: '*'
     steps:
@@ -22,5 +22,39 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         release-name: Draft
         tag-name: draft
-        asset-name: 'Stonecutter.flatpak'
+        asset-name: 'Stonecutter-v0.0.0.flatpak'
         file: 'out/make/flatpak/x86_64/org.stonecutter.Stonecutter_stable_x86_64.flatpak'
+  macos:
+    name: macOS
+    runs-on: macos-latest
+    env:
+      DEBUG: '*'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - run: npm ci
+    - run: npm run make
+    - uses: djnicholson/release-action@v2.11
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        release-name: Draft
+        tag-name: draft
+        asset-name: 'Stonecutter-v0.0.0.dmg'
+        file: 'out/make/Stonecutter v0.0.0.dmg'
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    env:
+      DEBUG: '*'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - run: npm ci
+    - run: npm run make
+    - uses: djnicholson/release-action@v2.11
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        release-name: Draft
+        tag-name: draft
+        asset-name: 'Stonecutter-v0.0.0.exe'
+        file: 'out\make\squirrel.windows\x64\Stonecutter-0.1.0 Setup.exe'
