@@ -43,7 +43,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: Flatpak
-        path: 'out\make\squirrel.windows\*.exe'
+        path: 'out/make/squirrel.windows/x64/*.exe'
   publish:
     name: Publish
     runs-on: ubuntu-latest
@@ -58,5 +58,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: draft
           draft: true
-          files: 'out/'
+          files: 'out/*'
           allow_override: true
