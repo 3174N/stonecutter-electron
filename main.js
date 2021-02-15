@@ -56,6 +56,13 @@ function createWindow() {
                       submenu: [
                           { label: 'New', accelerator: 'CmdOrCtrl+N' },
                           {
+                              label: 'New Project...',
+                              click() {
+                                  win.webContents.send('open-popup');
+                              },
+                              accelerator: 'CmdOrCtrl+P',
+                          },
+                          {
                               label: 'New Window',
                               accelerator: 'CmdOrCtrl+Shift+N',
                           },
@@ -105,6 +112,13 @@ function createWindow() {
                       label: 'File',
                       submenu: [
                           { label: 'New File', accelerator: 'CmdOrCtrl+N' },
+                          {
+                              label: 'New Project...',
+                              click() {
+                                  win.webContents.send('open-popup');
+                              },
+                              accelerator: 'CmdOrCtrl+P',
+                          },
                           {
                               label: 'New Instance',
                               accelerator: 'CmdOrCtrl+Shift+N',

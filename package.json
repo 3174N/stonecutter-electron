@@ -1,6 +1,6 @@
 {
     "name": "stonecutter-electron",
-    "version": "0.2.0",
+    "version": "0.1.1",
     "description": "An extensible IDE for Minecraft datapacks",
     "main": "main.js",
     "scripts": {
@@ -31,11 +31,11 @@
         "@electron-forge/maker-flatpak": "^6.0.0-beta.54",
         "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
         "async": "^3.2.0",
-        "electron": "11.1.1",
+        "electron": "11.2.3",
         "fs-temp": "^1.2.1",
         "is-my-json-valid": "^2.20.5",
-        "less": "^4.1.0",
-        "parse-color": "^1.0.0"
+        "less": "^4.1.1",
+        "parse-color": "^1.0.0",
     },
     "optionalDependencies": {
         "fs-xattr": "^0.3.1",

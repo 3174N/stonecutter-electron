@@ -10,7 +10,7 @@
             const $ = require('jquery');
             const fs = require('fs');
             const path = require('path');
-            // const ipc = require('electron').ipcRenderer;
+            const ipc = require('electron').ipcRenderer;
             const yaml = require('js-yaml');
             const remote = require('electron').remote;
             const { BrowserWindow, dialog } = remote;
@@ -27,9 +27,6 @@
                     <button id="openfileBtn">Open File</button>
                     <button id="openfolderBtn">Open Folder</button><br />
 
-                    <!-- ! Temporary -->
-                    <!-- ? Will use menu? -->
-                    <button onclick="openPopup();">Create new Project</button>
                     <div class="file-explorer">
                         <ul class="files" id="files"></ul>
                     </div>

@@ -30,9 +30,9 @@ function parseHTML(value) {
 function updateTitle() {
     let savedChar = isChanged ? '●' : '';
 
-    let project = findProject(filePaths[currentFile]);
+    let projectName = path.basename(findProject(filePaths[currentFile]));
 
-    document.title = `${savedChar} ${currentFile} - ${project} - Stonecutter`;
+    document.title = `${savedChar} ${currentFile} - ${projectName} - Stonecutter`;
 }
 
 // These variables are used to keep track of opened files
@@ -84,6 +84,12 @@ function openFile() {
                 isChanged = false;
                 updateTitle();
 
+                let project = findProject(filePaths[currentFile]);
+                if (project === 'Untitled Project') {
+                    showTree(path.resolve(filePaths[currentFile], '..'));
+                } else {
+                    showTree(project); // TODO: Cascade folders from project root to file
+                }
                 displayFile(currentFile);
 
                 fs.readFile(filePaths[currentFile], function (err, data) {
@@ -99,7 +105,7 @@ function openFile() {
 }
 
 /**
- * Used to open a folder.
+ * Used for the 'Choose Folder' GUI.
  */
 function openFolder() {
     dialog
@@ -109,29 +115,7 @@ function openFolder() {
         })
         .then(function (response) {
             if (!response.canceled) {
-                fs.readdir(response.filePaths[0], function (err, files) {
-                    if (err) return console.log(err);
-
-                    for (let file of files) {
-                        filePaths[file] = response.filePaths[0] + '/' + file;
-
-                        if (fs.lstatSync(filePaths[file]).isDirectory()) {
-                            // Path leads to a directory
-                            // TODO: Build file tree
-                            console.log(file + ' : Folder');
-                        } else {
-                            // Path leads to a file
-                            console.log(file);
-                        }
-
-                        displayFile(file);
-                    }
-                });
-
-                // ? What to display in the file?
-                // ? Display at all when opening folder?
-                // updateTitle();
-
+                showTree(response.filePaths[0]);
                 console.log('Folder opened.');
             } else {
                 console.log('No folder selected.');
@@ -140,24 +124,64 @@ function openFolder() {
 }
 
 /**
+ * Used to set the correct file tree.
+ */
+function showTree(chosenFolder) {
+    fs.readdir(chosenFolder, function (err, files) {
+        if (err) return console.log(err);
+
+        for (let file of files) {
+            filePaths[file] = path.join(chosenFolder, file);
+
+            displayFile(file);
+        }
+    });
+    // ? What to display in the file?
+    // ? Display at all when opening folder?
+    // updateTitle();
+}
+
+/**
  * Used to open a file from the explorer list to the file view.
  *
  * @param {String} [fileName] The file to open.
  */
 function openFileFromList(fileName) {
+    fileName = fileName.replace(' ', ''); // Removes '' from string
+
     // Open file on <li> click
     currentFile = fileName;
     filePath = filePaths[currentFile];
-    updateTitle();
 
     if (!fs.lstatSync(filePaths[currentFile]).isDirectory()) {
+        // * File is not a directory * //
+        updateTitle();
         fs.readFile(filePaths[currentFile], function (err, data) {
             if (err) return console.log(err);
 
             $('.file-content').text(data.toString());
         });
+        isChanged = false;
+        updateTitle();
     } else {
-        // TODO: Show / Hide file tree
+        // * File is a directory * //
+
+        // Check if filetree is showing or not
+        if ($(`.${fileName}-folder`).css('display') == 'none') {
+            // Replace image
+            $(`.${fileName}-dir-img`).attr(
+                'src',
+                './styles/media/dir_open.png',
+            );
+            $(`.${fileName}-folder`).css('display', 'inline-block'); // Show sub-files
+        } else if ($(`.${fileName}-folder`).css('display') == 'inline-block') {
+            // Replace image
+            $(`.${fileName}-dir-img`).attr(
+                'src',
+                './styles/media/dir_closed.png',
+            );
+            $(`.${fileName}-folder`).css('display', 'none'); // Hide sub-files
+        }
     }
 }
 
@@ -165,24 +189,50 @@ function openFileFromList(fileName) {
  * Used to create an explorer list item for a file/folder
  *
  * @param {String} [fileName] The file/folder to display
+ * @param {String} [ulClass] Class to which write file (default = '.files').
  */
-function displayFile(fileName) {
+function displayFile(fileName, ulClass = '.files') {
+    if (/^\..*/g.test(fileName)) {
+        console.log(`Ignoring dotfile: ${fileName}`);
+        return;
+    }
+
     if (!fs.lstatSync(filePaths[fileName]).isDirectory()) {
-        $('.files').append(
-            '<li onClick="openFileFromList($(this).text());" class="file">' +
+        // * File is not a directory * //
+
+        $(`${ulClass}`).append(
+            `<li onClick="openFileFromList($(this).text());" id="${fileName}" class="file">` +
                 fileName +
                 '</li>',
         );
     } else {
         // * File is a directory * //
-        $('.files').append(
-            $('.files').append(
-                '<li onClick="openFileFromList($(this).text());" class="folder">' +
-                    '> ' +
-                    fileName +
-                    '</li>',
-            ),
+
+        $(`${ulClass}`).append(
+            `<li onClick="openFileFromList($(this).text());" id="${fileName}" class="folder">` +
+                `<img src="./styles/media/dir_closed.png" class="dir-img ${fileName}-dir-img"> ` +
+                fileName +
+                '</li>',
         );
+
+        if (!$(`.${fileName}-folder`).length) {
+            // Generate filetree
+            $(`${ulClass}`).append(`<ul class=${fileName}-folder></ul>`);
+
+            fs.readdir(filePaths[fileName], function (err, files) {
+                if (err) return console.log(err);
+
+                // Put files in filetree
+                for (let file of files) {
+                    filePaths[file] = path.join(filePaths[fileName], file);
+
+                    displayFile(file, `.${fileName}-folder`);
+                }
+            });
+
+            // Hide filetree
+            $(`.${fileName}-folder`).css('display', 'none');
+        }
     }
 }
 
@@ -284,4 +334,8 @@ ipc.on('save', (event) => {
 
 ipc.on('save-as', (event) => {
     saveFileAs();
+});
+
+ipc.on('open-popup', (event) => {
+    openPopup();
 });

@@ -11,6 +11,7 @@ font:
     family: "Craft Mono" # Default: Craft Mono
     style: "Regular" # Default: Regular
     size: 11.0 # Default: 11.0
+    ligatures: false
 
 # Colorscheme
 # This can be changed by adding a custom theme to ./colorschemes/
@@ -20,13 +21,11 @@ colorscheme: "default" # Default: default
 # Enable vi mode to allow for vi/vim-style navigation
 vi-mode: false # Default: false
 
-
 # How indentation will be processed (tabs/spaces)
 tab-type: "spaces" # Default: spaces
 
 # Length of tab for the spaces tab type
 tab-length: 4 # Default: 4
-
 
 # TODO: Keybinds
 
