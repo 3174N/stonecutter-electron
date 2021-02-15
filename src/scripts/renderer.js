@@ -168,17 +168,19 @@ function openFileFromList(fileName) {
 
         // Check if filetree is showing or not
         if ($(`.${fileName}-folder`).css('display') == 'none') {
+            // Replace image
             $(`.${fileName}-dir-img`).attr(
                 'src',
                 './styles/media/dir_open.png',
             );
-            $(`.${fileName}-folder`).css('display', 'inline-block');
+            $(`.${fileName}-folder`).css('display', 'inline-block'); // Show sub-files
         } else if ($(`.${fileName}-folder`).css('display') == 'inline-block') {
+            // Replace image
             $(`.${fileName}-dir-img`).attr(
                 'src',
                 './styles/media/dir_closed.png',
             );
-            $(`.${fileName}-folder`).css('display', 'none');
+            $(`.${fileName}-folder`).css('display', 'none'); // Hide sub-files
         }
     }
 }
