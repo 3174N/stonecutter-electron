@@ -1,4 +1,4 @@
-name: Make and Draft
+name: Build
 
 on: push
 
@@ -17,7 +17,7 @@ jobs:
     - run: npm run make
     - uses: actions/upload-artifact@v2
       with:
-        name: Flatpak
+        name: 'Stonecutter-vX.Y.Z.flatpak'
         path: 'out/make/flatpak/x86_64/org.stonecutter.Stonecutter_stable_x86_64.flatpak'
     
   macos:
@@ -30,7 +30,7 @@ jobs:
     - run: npm run make
     - uses: actions/upload-artifact@v2
       with:
-        name: DMG
+        name: 'Stonecutter-vX.Y.Z.dmg'
         path: 'out/make/*'
   windows:
     name: Windows
@@ -42,12 +42,13 @@ jobs:
     - run: npm run make
     - uses: actions/upload-artifact@v2
       with:
-        name: Flatpak
+        name: 'Stonecutter-vX.Y.Z.exe'
         path: 'out/make/squirrel.windows/x64/*.exe'
   publish:
     name: Publish
     runs-on: ubuntu-latest
     needs: [linux, macos, windows]
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
@@ -59,4 +60,5 @@ jobs:
           tag: draft
           draft: true
           files: 'out/*'
+          gzip: false
           allow_override: true
