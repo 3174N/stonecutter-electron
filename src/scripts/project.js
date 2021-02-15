@@ -166,7 +166,7 @@ function findProject(file) {
         searchDir = path.resolve(searchDir, '..'); // Go one directory up
         if (fs.existsSync(path.join(searchDir, 'project.cutter'))) {
             console.log('Found project file at ' + searchDir);
-            return path.basename(searchDir);
+            return searchDir;
         }
     }
     // If loop halted

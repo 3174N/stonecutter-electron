@@ -43,6 +43,7 @@ textarea {
     font-family: 'Craft Mono';
     font-variant-ligatures: none;
 }
+
 ul.files {
     list-style: none;
     padding-left: 0;
@@ -55,7 +56,22 @@ ul.files {
             background-color: rgb(180, 180, 180);
         }
     }
+
+    ul {
+        list-style: none;
+        padding-left: 13px;
+    }
+
+    .folder{
+        padding-left: 0;
+    }
+
+    .file{
+        padding-left: 13px; // '' is 3 px wide
+    }
 }
-li.file {
-    padding-left: 12px;
+
+.dir-img {
+    height: 10px;
+    width: 10px;
 }
