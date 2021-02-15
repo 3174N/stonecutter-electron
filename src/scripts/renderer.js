@@ -147,11 +147,14 @@ function showTree(chosenFolder) {
  * @param {String} [fileName] The file to open.
  */
 function openFileFromList(fileName) {
+    fileName = fileName.replace(' ', ''); // Removes '' from string
+
     // Open file on <li> click
     currentFile = fileName;
     filePath = filePaths[currentFile];
 
     if (!fs.lstatSync(filePaths[currentFile]).isDirectory()) {
+        // * File is not a directory * //
         updateTitle();
         fs.readFile(filePaths[currentFile], function (err, data) {
             if (err) return console.log(err);
@@ -161,11 +164,22 @@ function openFileFromList(fileName) {
         isChanged = false;
         updateTitle();
     } else {
+        // * File is a directory * //
+
         // Check if filetree is showing or not
-        if ($(`.${fileName}-folder`).css('display') == 'none')
+        if ($(`.${fileName}-folder`).css('display') == 'none') {
+            $(`.${fileName}-dir-img`).attr(
+                'src',
+                './styles/media/dir_open.png',
+            );
             $(`.${fileName}-folder`).css('display', 'inline-block');
-        else if ($(`.${fileName}-folder`).css('display') == 'inline-block')
+        } else if ($(`.${fileName}-folder`).css('display') == 'inline-block') {
+            $(`.${fileName}-dir-img`).attr(
+                'src',
+                './styles/media/dir_closed.png',
+            );
             $(`.${fileName}-folder`).css('display', 'none');
+        }
     }
 }
 
@@ -181,19 +195,23 @@ function displayFile(fileName, ulClass = '.files') {
         return;
     }
 
-    $(`${ulClass}`).append(
-        '<li onClick="openFileFromList($(this).text());" id="$(this).text()">' +
-            fileName +
-            '</li>',
-    );
     if (!fs.lstatSync(filePaths[fileName]).isDirectory()) {
         // * File is not a directory * //
 
-        $(`#${fileName}`).addClass('file');
+        $(`${ulClass}`).append(
+            `<li onClick="openFileFromList($(this).text());" id="${fileName}" class="file">` +
+                fileName +
+                '</li>',
+        );
     } else {
         // * File is a directory * //
 
-        $(`#${fileName}`).addClass('folder');
+        $(`${ulClass}`).append(
+            `<li onClick="openFileFromList($(this).text());" id="${fileName}" class="folder">` +
+                `<img src="./styles/media/dir_closed.png" class="dir-img ${fileName}-dir-img"> ` +
+                fileName +
+                '</li>',
+        );
 
         if (!$(`.${fileName}-folder`).length) {
             // Generate filetree
