@@ -3,7 +3,7 @@
     <h1 align="center">Stonecutter</h1>
 </p>
 <p align="center"> 
-    <a href="https://travis-ci.com/3174N/stonecutter-electron"><img src="https://badgen.net/travis/3174N/stonecutter-electron?label=build" /></a>
+    <a href="https://github.com/3174N/stonecutter-electron/actions?query=workflow%3A%22Build%22"><img src="https://badgen.net/github/checks/3174N/stonecutter-electron/master?label=Master" /></a>
     <a href="LICENSE"><img src="https://badgen.net/github/license/3174N/stonecutter-electron" /></a>
     <a href="https://github.com/3174N/stonecutter-electron/releases"><img src="https://badgen.net/github/release/3174N/stonecutter-electron" /></a>
 </p>

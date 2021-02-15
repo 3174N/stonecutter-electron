@@ -4,10 +4,10 @@
     "description": "An extensible IDE for Minecraft datapacks",
     "main": "main.js",
     "scripts": {
-        "test": "mocha",
         "start": "electron .",
         "package": "electron-forge package",
-        "make": "electron-forge make"
+        "make": "electron-forge make",
+        "publish": "electron-forge publish"
     },
     "repository": {
         "type": "git",
@@ -21,29 +21,27 @@
     "homepage": "https://stonecutter.org/",
     "dependencies": {
         "debug": "^4.3.1",
-        "electron-mocha": "^10.0.0",
+        "ds-store": "^0.1.6",
         "electron-squirrel-startup": "^1.0.0",
+        "fs-xattr": "^0.3.1",
         "jquery": "^3.5.1",
-        "js-yaml": "^4.0.0",
-        "xvfb": "^0.4.0",
-        "xvfb-maybe": "^0.2.1"
+        "js-yaml": "^4.0.0"
     },
     "devDependencies": {
         "@electron-forge/cli": "^6.0.0-beta.54",
         "@electron-forge/maker-dmg": "^6.0.0-beta.54",
         "@electron-forge/maker-flatpak": "^6.0.0-beta.54",
         "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+        "async": "^3.2.0",
         "electron": "11.2.3",
         "fs-temp": "^1.2.1",
         "is-my-json-valid": "^2.20.5",
         "less": "^4.1.1",
-        "mocha": "^8.2.1",
-        "parse-color": "^1.0.0",
-        "spectron": "^13.0.0"
+        "parse-color": "^1.0.0"
     },
     "optionalDependencies": {
-        "fs-xattr": "^0.3.1",
-        "ds-store": "^0.1.6"
+        "ds-store": "^0.1.6",
+        "fs-xattr": "^0.3.1"
     },
     "config": {
         "forge": "./forge.config.js"
