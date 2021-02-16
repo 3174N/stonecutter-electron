@@ -30,7 +30,12 @@ function parseHTML(value) {
 function updateTitle() {
     let savedChar = isChanged ? '●' : '';
 
-    let projectName = path.basename(findProject(filePaths[currentFile]));
+    let projectName;
+    if (currentFile != '') {
+        projectName = path.basename(findProject(filePaths[currentFile]));
+    } else {
+        projectName = 'Untitled Project';
+    }
 
     document.title = `${savedChar} ${currentFile} - ${projectName} - Stonecutter`;
 }
@@ -236,6 +241,43 @@ function displayFile(fileName, ulClass = '.files') {
     }
 }
 
+/**
+ * Used to get number of lines in .file-content.
+ *
+ * @returns Number of lines.
+ */
+function countLines() {
+    var el = document.getElementById('file-content');
+
+    // Get total height of the content
+    var divHeight = el.offsetHeight;
+    console.log(
+        '🚀 ~ file: renderer.js ~ line 254 ~ countLines ~ divHeight',
+        divHeight,
+    );
+
+    // Get line height
+    var lineHeight = parseInt($('#file-content').css('line-height'));
+
+    // Get lines
+    var lines = divHeight / lineHeight;
+    return lines;
+}
+
+/**
+ * Used to update the gutter with the correct line numbers.
+ */
+function updateGutter() {
+    lines = countLines();
+
+    // Reset gutter
+    $('.gutter').text('');
+
+    for (var i = 1; i <= lines; i++) {
+        $('.gutter').append(`${i}\n`);
+    }
+}
+
 var buffer;
 var isChanged = false;
 
@@ -244,6 +286,8 @@ $('.file-content').bind('DOMSubtreeModified', () => {
     buffer = parseHTML($('.file-content').html()); // Save changes to buffer
     isChanged = true;
     updateTitle();
+
+    updateGutter();
 });
 
 /**
