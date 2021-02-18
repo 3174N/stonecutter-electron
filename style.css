@@ -19,6 +19,20 @@ body {
     text-align: left;
 }
 
+.top * {
+    margin: 0;
+}
+
+@media only screen and (max-width: 700px) {
+    body {
+        font-size: 24;
+        padding: 50px 5%;
+    }
+    .top div {
+        display: none;
+    }
+}
+
 h1,
 h2,
 h3,
@@ -47,4 +61,5 @@ pre code {
     border: 1px solid #999;
     display: block;
     padding: 20px;
+    overflow: auto;
 }
