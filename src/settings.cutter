@@ -6,12 +6,15 @@
 # Unless you know what you're doing, we advise you to use the app;
 # you run the risk of irreversibly damaging your projects.
 
-# Font
+# Font settings:
+# Writes directly to CSS --
+# All CSS configuration options apply.
 font:
-    family: "monospace" # Default: Craft Mono
-    style: "Regular" # Default: Regular
-    size: 11.0 # Default: 11.0
-    ligatures: false
+    family: "monospace" # Default: monospace 
+    style: regular # Default: regular
+    weight: normal # Default: normal
+    size: 14.0 # Default: 14.0
+    ligatures: none # Default: none
 
 # Colorscheme
 # This can be changed by adding a custom theme to ./colorschemes/

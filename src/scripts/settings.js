@@ -3,6 +3,20 @@
  * in the OS's respective configuration directory
  * if one does not already exist.
  */
+
+switch (process.platform) {
+    case 'linux':
+    case 'darwin':
+        var settingsFolder = path.join(process.env.HOME, '.config/stonecutter');
+        break;
+    case 'win32':
+        var settingsFolder = path.join(
+            process.env.HOME,
+            'AppData\\Roaming\\stonecutter'
+        );
+        break;
+}
+
 function initSettings() {
     switch (process.platform) {
         case 'linux':
@@ -42,14 +56,17 @@ initSettings();
  * into object 'settings'.
  */
 try {
-    const settings = yaml.load(fs.readFileSync('src/settings.cutter', 'utf8'));
+    const settings = yaml.load(
+        fs.readFileSync(path.join(settingsFolder, 'settings.cutter'), 'utf8')
+    );
     console.log('Loaded settings.');
     // Apply CSS
     $('.file-content').css({
         'font-family': settings.font.family,
-        /// "font-variant": settings.font.style,
+        'font-style': settings.font.style,
+        'font-weight': settings.font.weight,
         'font-size': settings.font.size,
-        /// 'font-variant-ligatures': settings.font.ligatures,
+        'font-variant-ligatures': settings.font.ligatures,
     });
     console.log('Applied settings.');
 } catch (err) {
