@@ -173,7 +173,10 @@ function openFileFromList(fileName) {
         if (!openTabs.includes(currentFile)) {
             // Add file tab
             $('.tabs').append(
-                `<button class="tab-btn" onClick="openFileFromTab($(this).text());">${currentFile}</button>`
+                `<div class="tab-div" id="${currentFile}-tab">
+                     <button class="tab-btn" onClick="openFileFromTab($(this).text());">${currentFile}</button>
+                     <button class="close-tab-btn" onClick="closeTab('${currentFile}');">x</button>
+                 </div>`
             );
             openTabs.push(currentFile);
         }
@@ -218,6 +221,29 @@ function openFileFromTab(fileName) {
 
     isChanged = false;
     updateTitle();
+}
+
+/**
+ * Used to close a tab.
+ *
+ * @param {String} [tabName] The tab to close.
+ */
+function closeTab(tabName) {
+    $(`#${tabName}-tab`).remove();
+
+    let index = openTabs.indexOf(tabName);
+    console.log(index);
+
+    if (index != 0) {
+        openFileFromTab(openTabs[index - 1]);
+    } else if (index != openTabs.length) {
+        openFileFromTab(openTabs[index + 1]);
+    } /* else {
+       closeCurrentFile() // TODO: Implement buffer closing
+    } */
+
+    openTabs.splice(index, 1);
+    console.log(openTabs);
 }
 
 /**
