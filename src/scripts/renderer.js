@@ -168,6 +168,11 @@ function openFileFromList(fileName) {
         });
         isChanged = false;
         updateTitle();
+
+        // Add file tab
+        $('.tabs').append(
+            `<button class="tab-btn" onClick="openFileFromList($(this).text());">${currentFile}</button>`
+        )
     } else {
         // * File is a directory * //
 
