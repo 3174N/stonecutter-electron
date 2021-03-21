@@ -67,7 +67,7 @@ module.exports = {
                         type: 'file',
                         path: path.join(
                             __dirname,
-                            'out/Stonecutter-darwin-x64/Stonecutter.app',
+                            'out/Stonecutter-darwin-x64/Stonecutter.app'
                         ),
                     },
                     {

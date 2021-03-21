@@ -4,13 +4,13 @@ function initSettings() {
         case 'darwin':
             var settingsFolder = path.join(
                 process.env.HOME,
-                '.config/stonecutter',
+                '.config/stonecutter'
             );
             break;
         case 'win32':
             var settingsFolder = path.join(
                 process.env.HOME,
-                'AppData\\Roaming\\stonecutter',
+                'AppData\\Roaming\\stonecutter'
             );
             break;
     }
@@ -25,7 +25,7 @@ function initSettings() {
             path.join(settingsFolder, 'settings.cutter'),
             (err) => {
                 return console.log(err);
-            },
+            }
         );
     }
 }

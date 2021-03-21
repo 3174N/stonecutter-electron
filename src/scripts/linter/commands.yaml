@@ -1,226 +1,261 @@
 {
-  commands:
-    [
-      {
-        "ban": { required: ["<targets>"], optional: ["<reason>"] },
-        versions:
-          [
-            "1.12",
-            "1.12.1",
-            "1.12.2",
-            "1.13",
-            "1.13.1",
-            "1.13.2",
-            "1.14",
-            "1.14.1",
-            "1.14.2",
-            "1.14.3",
-            "1.14.4",
-            "1.15",
-            "1.15.1",
-            "1.15.2",
-            "1.16",
-            "1.16.1",
-            "1.16.2",
-            "1.16.3",
-            "1.16.4",
-          ],
-      },
-      { "banlist": { required: [
-                "", # default
-                "players",
-                "ips",
-              ] }, versions: ["1.12", "1.12.1", "1.12.2", "1.13", "1.13.1", "1.13.2", "1.14", "1.14.1", "1.14.2", "1.14.3", "1.14.4", "1.15", "1.15.1", "1.15.2", "1.16", "1.16.1", "1.16.2", "1.16.3", "1.16.4"] },
-      {
-        "ban-ip": { required: ["<targets>"], optional: ["<reason>"] },
-        versions:
-          [
-            "1.12",
-            "1.12.1",
-            "1.12.2",
-            "1.13",
-            "1.13.1",
-            "1.13.2",
-            "1.14",
-            "1.14.1",
-            "1.14.2",
-            "1.14.3",
-            "1.14.4",
-            "1.15",
-            "1.15.1",
-            "1.15.2",
-            "1.16",
-            "1.16.1",
-            "1.16.2",
-            "1.16.3",
-            "1.16.4",
-          ],
-      },
-      {
-        "data":
-          {
-            "get":
-              {
-                required:
-                  {
-                    "block": "<targetPos>",
-                    "entity": "<target>",
-                    "storage": "<target>",
-                  },
-                optional: ["<path>", "<scale>"],
-              },
-            "merge":
-              {
-                required:
-                  {
-                    "block": "<targetPos>",
-                    "entity": "<target>",
-                    "storage": "<target>",
-                  },
-                optional: ["<nbt>"],
-              },
-            "modify":
-              [
-                {
-                  required:
+    commands:
+        [
+            {
+                'ban': { required: ['<targets>'], optional: ['<reason>'] },
+                versions:
+                    [
+                        '1.12',
+                        '1.12.1',
+                        '1.12.2',
+                        '1.13',
+                        '1.13.1',
+                        '1.13.2',
+                        '1.14',
+                        '1.14.1',
+                        '1.14.2',
+                        '1.14.3',
+                        '1.14.4',
+                        '1.15',
+                        '1.15.1',
+                        '1.15.2',
+                        '1.16',
+                        '1.16.1',
+                        '1.16.2',
+                        '1.16.3',
+                        '1.16.4',
+                    ],
+            },
+            { 'banlist': { required: [
+                                '', # default
+                                'players',
+                                'ips',
+                            ] }, versions: ['1.12', '1.12.1', '1.12.2', '1.13', '1.13.1', '1.13.2', '1.14', '1.14.1', '1.14.2', '1.14.3', '1.14.4', '1.15', '1.15.1', '1.15.2', '1.16', '1.16.1', '1.16.2', '1.16.3', '1.16.4'] },
+            {
+                'ban-ip': { required: ['<targets>'], optional: ['<reason>'] },
+                versions:
+                    [
+                        '1.12',
+                        '1.12.1',
+                        '1.12.2',
+                        '1.13',
+                        '1.13.1',
+                        '1.13.2',
+                        '1.14',
+                        '1.14.1',
+                        '1.14.2',
+                        '1.14.3',
+                        '1.14.4',
+                        '1.15',
+                        '1.15.1',
+                        '1.15.2',
+                        '1.16',
+                        '1.16.1',
+                        '1.16.2',
+                        '1.16.3',
+                        '1.16.4',
+                    ],
+            },
+            {
+                'data':
                     {
-                      "block": "<targetPos>",
-                      "entity": "<target>",
-                      "storage": "<target>",
-                    },
-                  optional: ["<targetPath>"],
-                },
-                {
-                  "append":
-                    {
-                      required:
-                        {
-                          "from":
+                        'get':
                             {
-                              required:
-                                {
-                                  "block": "<sourcePos>",
-                                  "entity": "<source>",
-                                  "storage": "<source>",
-                                },
-                              optional: ["<sourcePath>"],
-                            },
-                          "value": { required: ["<value>"] },
-                        },
-                    },
-                },
-                {
-                  "insert":
-                    {
-                      required:
-                        [
-                          "<index>",
-                          {
-                            "from":
-                              {
                                 required:
-                                  {
-                                    "block": "<sourcePos>",
-                                    "entity": "<source>",
-                                    "storage": "<source>",
-                                  },
-                                optional: ["<sourcePath>"],
-                              },
-                            "value": { required: ["<value>"] },
-                          },
-                        ],
-                    },
-                },
-                {
-                  "merge":
-                    {
-                      required:
-                        {
-                          "from":
-                            {
-                              required:
-                                {
-                                  "block": "<sourcePos>",
-                                  "entity": "<source>",
-                                  "storage": "<source>",
-                                },
-                              optional: ["<sourcePath>"],
+                                    {
+                                        'block': '<targetPos>',
+                                        'entity': '<target>',
+                                        'storage': '<target>',
+                                    },
+                                optional: ['<path>', '<scale>'],
                             },
-                          "value": { required: ["<value>"] },
-                        },
-                    },
-                },
-                {
-                  "prepend":
-                    {
-                      required:
-                        {
-                          "from":
+                        'merge':
                             {
-                              required:
-                                {
-                                  "block": "<sourcePos>",
-                                  "entity": "<source>",
-                                  "storage": "<source>",
-                                },
-                              optional: ["<sourcePath>"],
+                                required:
+                                    {
+                                        'block': '<targetPos>',
+                                        'entity': '<target>',
+                                        'storage': '<target>',
+                                    },
+                                optional: ['<nbt>'],
                             },
-                          "value": { required: ["<value>"] },
-                        },
-                    },
-                },
-                {
-                  "set":
-                    {
-                      required:
-                        {
-                          "from":
+                        'modify':
+                            [
+                                {
+                                    required:
+                                        {
+                                            'block': '<targetPos>',
+                                            'entity': '<target>',
+                                            'storage': '<target>',
+                                        },
+                                    optional: ['<targetPath>'],
+                                },
+                                {
+                                    'append':
+                                        {
+                                            required:
+                                                {
+                                                    'from':
+                                                        {
+                                                            required:
+                                                                {
+                                                                    'block': '<sourcePos>',
+                                                                    'entity': '<source>',
+                                                                    'storage': '<source>',
+                                                                },
+                                                            optional:
+                                                                [
+                                                                    '<sourcePath>',
+                                                                ],
+                                                        },
+                                                    'value':
+                                                        {
+                                                            required:
+                                                                ['<value>'],
+                                                        },
+                                                },
+                                        },
+                                },
+                                {
+                                    'insert':
+                                        {
+                                            required:
+                                                [
+                                                    '<index>',
+                                                    {
+                                                        'from':
+                                                            {
+                                                                required:
+                                                                    {
+                                                                        'block': '<sourcePos>',
+                                                                        'entity': '<source>',
+                                                                        'storage': '<source>',
+                                                                    },
+                                                                optional:
+                                                                    [
+                                                                        '<sourcePath>',
+                                                                    ],
+                                                            },
+                                                        'value':
+                                                            {
+                                                                required:
+                                                                    ['<value>'],
+                                                            },
+                                                    },
+                                                ],
+                                        },
+                                },
+                                {
+                                    'merge':
+                                        {
+                                            required:
+                                                {
+                                                    'from':
+                                                        {
+                                                            required:
+                                                                {
+                                                                    'block': '<sourcePos>',
+                                                                    'entity': '<source>',
+                                                                    'storage': '<source>',
+                                                                },
+                                                            optional:
+                                                                [
+                                                                    '<sourcePath>',
+                                                                ],
+                                                        },
+                                                    'value':
+                                                        {
+                                                            required:
+                                                                ['<value>'],
+                                                        },
+                                                },
+                                        },
+                                },
+                                {
+                                    'prepend':
+                                        {
+                                            required:
+                                                {
+                                                    'from':
+                                                        {
+                                                            required:
+                                                                {
+                                                                    'block': '<sourcePos>',
+                                                                    'entity': '<source>',
+                                                                    'storage': '<source>',
+                                                                },
+                                                            optional:
+                                                                [
+                                                                    '<sourcePath>',
+                                                                ],
+                                                        },
+                                                    'value':
+                                                        {
+                                                            required:
+                                                                ['<value>'],
+                                                        },
+                                                },
+                                        },
+                                },
+                                {
+                                    'set':
+                                        {
+                                            required:
+                                                {
+                                                    'from':
+                                                        {
+                                                            required:
+                                                                {
+                                                                    'block': '<sourcePos>',
+                                                                    'entity': '<source>',
+                                                                    'storage': '<source>',
+                                                                },
+                                                            optional:
+                                                                [
+                                                                    '<sourcePath>',
+                                                                ],
+                                                        },
+                                                    'value':
+                                                        {
+                                                            required:
+                                                                ['<value>'],
+                                                        },
+                                                },
+                                        },
+                                },
+                            ],
+                        'remove':
                             {
-                              required:
-                                {
-                                  "block": "<sourcePos>",
-                                  "entity": "<source>",
-                                  "storage": "<source>",
-                                },
-                              optional: ["<sourcePath>"],
+                                required:
+                                    [
+                                        {
+                                            'block': '<targetPos>',
+                                            'entity': '<target>',
+                                            'storage': '<target>',
+                                        },
+                                        '<path>',
+                                    ],
                             },
-                          "value": { required: ["<value>"] },
-                        },
                     },
-                },
-              ],
-            "remove":
-              {
-                required:
-                  [
-                    {
-                      "block": "<targetPos>",
-                      "entity": "<target>",
-                      "storage": "<target>",
-                    },
-                    "<path>",
-                  ],
-              },
-          },
-        versions:
-          [
-            "1.13",
-            "1.13.1",
-            "1.13.2",
-            "1.14",
-            "1.14.1",
-            "1.14.2",
-            "1.14.3",
-            "1.14.4",
-            "1.15",
-            "1.15.1",
-            "1.15.2",
-            "1.16",
-            "1.16.1",
-            "1.16.2",
-            "1.16.3",
-            "1.16.4",
-          ],
-      },
-    ],
+                versions:
+                    [
+                        '1.13',
+                        '1.13.1',
+                        '1.13.2',
+                        '1.14',
+                        '1.14.1',
+                        '1.14.2',
+                        '1.14.3',
+                        '1.14.4',
+                        '1.15',
+                        '1.15.1',
+                        '1.15.2',
+                        '1.16',
+                        '1.16.1',
+                        '1.16.2',
+                        '1.16.3',
+                        '1.16.4',
+                    ],
+            },
+        ],
 }

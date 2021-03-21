@@ -174,7 +174,7 @@
         addDataAttr(options, browser.currentScript(window));
         if (options.isFileProtocol === undefined) {
             options.isFileProtocol = /^(file|(chrome|safari)(-extension)?|resource|qrc|app):/.test(
-                window.location.protocol,
+                window.location.protocol
             );
         }
         // Load styles asynchronously (default: false)
@@ -197,7 +197,7 @@
                 ? 'development'
                 : 'production');
         var dumpLineNumbers = /!dumpLineNumbers:(comments|mediaquery|all)/.exec(
-            window.location.hash,
+            window.location.hash
         );
         if (dumpLineNumbers) {
             options.dumpLineNumbers = dumpLineNumbers[1];
@@ -271,8 +271,7 @@
                     this[propName] = environmentFunc.bind(externalEnvironment);
                 } else if (i < requiredFunctions.length) {
                     this.warn(
-                        'missing required function in environment - ' +
-                            propName,
+                        'missing required function in environment - ' + propName
                     );
                 }
             }
@@ -282,16 +281,16 @@
             currentDirectory,
             options,
             environment,
-            isSync,
+            isSync
         ) {
             if (!filename) {
                 logger.warn(
-                    'getFileManager called with no filename.. Please report this issue. continuing.',
+                    'getFileManager called with no filename.. Please report this issue. continuing.'
                 );
             }
             if (currentDirectory == null) {
                 logger.warn(
-                    'getFileManager called with null directory.. Please report this issue. continuing.',
+                    'getFileManager called with null directory.. Please report this issue. continuing.'
                 );
             }
             var fileManagers = this.fileManagers;
@@ -307,7 +306,7 @@
                         filename,
                         currentDirectory,
                         options,
-                        environment,
+                        environment
                     )
                 ) {
                     return fileManager;
@@ -963,7 +962,7 @@
         isVariable,
         index,
         currentFileInfo,
-        visibilityInfo,
+        visibilityInfo
     ) {
         this.combinator =
             combinator instanceof Combinator
@@ -998,7 +997,7 @@
                 this.isVariable,
                 this.getIndex(),
                 this.fileInfo(),
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
         },
         clone: function () {
@@ -1008,7 +1007,7 @@
                 this.isVariable,
                 this.getIndex(),
                 this.fileInfo(),
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
         },
         genCSS: function (context, output) {
@@ -1106,7 +1105,7 @@
         key,
         newVal,
         originalObject,
-        includeNonenumerable,
+        includeNonenumerable
     ) {
         var propType = {}.propertyIsEnumerable.call(originalObject, key)
             ? 'enumerable'
@@ -1380,7 +1379,7 @@
             var type = typeof options.stylize;
             if (type !== 'function') {
                 throw Error(
-                    'options.stylize should be a function, got a ' + type + '!',
+                    'options.stylize should be a function, got a ' + type + '!'
                 );
             }
             stylize = options.stylize;
@@ -1398,11 +1397,11 @@
                             stylize(
                                 stylize(
                                     extract[1].substr(this.column, 1),
-                                    'bold',
+                                    'bold'
                                 ) + extract[1].slice(this.column + 1),
-                                'red',
+                                'red'
                             ),
-                            'inverse',
+                            'inverse'
                         );
                 }
                 error.push(errorTxt);
@@ -1419,7 +1418,7 @@
         if (this.line) {
             message += stylize(
                 ' on line ' + this.line + ', column ' + (this.column + 1) + ':',
-                'grey',
+                'grey'
             );
         }
         message += '\n' + error;
@@ -1437,7 +1436,7 @@
         condition,
         index,
         currentFileInfo,
-        visibilityInfo,
+        visibilityInfo
     ) {
         this.extendList = extendList;
         this.condition = condition;
@@ -1470,7 +1469,7 @@
                 null,
                 this.getIndex(),
                 this.fileInfo(),
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
             newSelector.evaldCondition =
                 evaldCondition != null ? evaldCondition : this.evaldCondition;
@@ -1497,11 +1496,11 @@
                                     message: err.message,
                                 },
                                 this.parse.imports,
-                                this._fileInfo.filename,
+                                this._fileInfo.filename
                             );
                         }
                         els = result[0].elements;
-                    },
+                    }
                 );
             }
             return els;
@@ -1618,7 +1617,7 @@
                 return new Value(
                     this.value.map(function (v) {
                         return v.eval(context);
-                    }),
+                    })
                 );
             }
         },
@@ -1654,7 +1653,7 @@
         currentFileInfo,
         mapLines,
         rulesetLike,
-        visibilityInfo,
+        visibilityInfo
     ) {
         this.value = value;
         this._index = index;
@@ -1674,7 +1673,7 @@
                 this._fileInfo,
                 this.mapLines,
                 this.rulesetLike,
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
         },
         compare: function (other) {
@@ -1692,7 +1691,7 @@
                     this.value,
                     this._fileInfo,
                     this._index,
-                    this.mapLines,
+                    this.mapLines
                 );
             }
         },
@@ -1721,7 +1720,7 @@
         index,
         currentFileInfo,
         inline,
-        variable,
+        variable
     ) {
         this.name = name;
         this.value =
@@ -1746,7 +1745,7 @@
             output.add(
                 this.name + (context.compress ? ':' : ': '),
                 this.fileInfo(),
-                this.getIndex(),
+                this.getIndex()
             );
             try {
                 this.value.genCSS(context, output);
@@ -1761,7 +1760,7 @@
                         ? ''
                         : ';'),
                 this._fileInfo,
-                this._index,
+                this._index
             );
         },
         eval: function (context) {
@@ -1808,7 +1807,7 @@
                     this.getIndex(),
                     this.fileInfo(),
                     this.inline,
-                    variable,
+                    variable
                 );
             } catch (e) {
                 if (typeof e.index !== 'number') {
@@ -1830,7 +1829,7 @@
                 this.merge,
                 this.getIndex(),
                 this.fileInfo(),
-                this.inline,
+                this.inline
             );
         },
     });
@@ -1900,7 +1899,7 @@
                 output.add(
                     debugInfo(context, this),
                     this.fileInfo(),
-                    this.getIndex(),
+                    this.getIndex()
                 );
             }
             output.add(this.value);
@@ -1915,7 +1914,7 @@
     var copyFromOriginal = function copyFromOriginal(
         original,
         destination,
-        propertiesToCopy,
+        propertiesToCopy
     ) {
         if (!original) {
             return;
@@ -2192,7 +2191,7 @@
                             if (result) {
                                 selectors = flattenArray(result);
                             }
-                        },
+                        }
                     );
                 }
                 defaultFunc.reset();
@@ -2204,7 +2203,7 @@
                 selectors,
                 rules,
                 this.strictImports,
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
             var rule;
             var subRule;
@@ -2312,7 +2311,7 @@
                         for (var j = 0; (subRule = rule.rules[j]); j++) {
                             if (subRule instanceof Node) {
                                 subRule.copyVisibilityInfo(
-                                    rule.visibilityInfo(),
+                                    rule.visibilityInfo()
                                 );
                                 if (
                                     !(subRule instanceof Declaration) ||
@@ -2369,7 +2368,7 @@
                     }
                 }),
                 this.strictImports,
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
             return result;
         },
@@ -2385,7 +2384,7 @@
             if (
                 lastSelector.condition &&
                 !lastSelector.condition.eval(
-                    new contexts.Eval(context, context.frames),
+                    new contexts.Eval(context, context.frames)
                 )
             ) {
                 return false;
@@ -2488,7 +2487,7 @@
                                     decl.important = result[1] || '';
                                     decl.parsed = true;
                                 }
-                            },
+                            }
                         );
                     } else {
                         decl.parsed = true;
@@ -2550,10 +2549,10 @@
                                 if (!filter || filter(rule)) {
                                     foundMixins = rule.find(
                                         new Selector(
-                                            selector.elements.slice(match),
+                                            selector.elements.slice(match)
                                         ),
                                         self,
-                                        filter,
+                                        filter
                                     );
                                     for (
                                         var i = 0;
@@ -2564,7 +2563,7 @@
                                     }
                                     Array.prototype.push.apply(
                                         rules,
-                                        foundMixins,
+                                        foundMixins
                                     );
                                 }
                             } else {
@@ -2694,7 +2693,7 @@
                             elementsToPak[j],
                             originalElement.isVariable,
                             originalElement._index,
-                            originalElement._fileInfo,
+                            originalElement._fileInfo
                         );
                     }
                     replacementParen = new Paren(new Selector(insideParent));
@@ -2708,7 +2707,7 @@
                     containedElement,
                     originalElement.isVariable,
                     originalElement._index,
-                    originalElement._fileInfo,
+                    originalElement._fileInfo
                 );
                 selector = new Selector([element]);
                 return selector;
@@ -2720,7 +2719,7 @@
                 beginningPath,
                 addPath,
                 replacedElement,
-                originalSelector,
+                originalSelector
             ) {
                 var newSelectorPath, lastSelector, newJoinedSelector;
                 // our new selector path
@@ -2731,7 +2730,7 @@
                     newSelectorPath = copyArray(beginningPath);
                     lastSelector = newSelectorPath.pop();
                     newJoinedSelector = originalSelector.createDerived(
-                        copyArray(lastSelector.elements),
+                        copyArray(lastSelector.elements)
                     );
                 } else {
                     newJoinedSelector = originalSelector.createDerived([]);
@@ -2757,11 +2756,11 @@
                             parentEl.value,
                             replacedElement.isVariable,
                             replacedElement._index,
-                            replacedElement._fileInfo,
-                        ),
+                            replacedElement._fileInfo
+                        )
                     );
                     newJoinedSelector.elements = newJoinedSelector.elements.concat(
-                        addPath[0].elements.slice(1),
+                        addPath[0].elements.slice(1)
                     );
                 }
                 // now add the joined selector - but only if it is not empty
@@ -2786,7 +2785,7 @@
                 addPaths,
                 replacedElement,
                 originalSelector,
-                result,
+                result
             ) {
                 var j;
                 for (j = 0; j < beginningPath.length; j++) {
@@ -2794,7 +2793,7 @@
                         beginningPath[j],
                         addPaths,
                         replacedElement,
-                        originalSelector,
+                        originalSelector
                     );
                     result.push(newSelectorPath);
                 }
@@ -2813,7 +2812,7 @@
                     // if the previous thing in sel is a parent this needs to join on to it
                     if (sel.length > 0) {
                         sel[sel.length - 1] = sel[sel.length - 1].createDerived(
-                            sel[sel.length - 1].elements.concat(elements),
+                            sel[sel.length - 1].elements.concat(elements)
                         );
                     } else {
                         sel.push(new Selector(elements));
@@ -2871,7 +2870,7 @@
                             // on to the current list of selectors to add
                             mergeElementsOnToSelectors(
                                 currentElements,
-                                newSelectors,
+                                newSelectors
                             );
                             var nestedPaths = [];
                             var replaced = void 0;
@@ -2879,21 +2878,21 @@
                             replaced = replaceParentSelector(
                                 nestedPaths,
                                 context,
-                                nestedSelector,
+                                nestedSelector
                             );
                             hadParentSelector = hadParentSelector || replaced;
                             // the nestedPaths array should have only one member - replaceParentSelector does not multiply selectors
                             for (k = 0; k < nestedPaths.length; k++) {
                                 var replacementSelector = createSelector(
                                     createParenthesis(nestedPaths[k], el),
-                                    el,
+                                    el
                                 );
                                 addAllReplacementsIntoPath(
                                     newSelectors,
                                     [replacementSelector],
                                     el,
                                     inSelector,
-                                    replacedNewSelectors,
+                                    replacedNewSelectors
                                 );
                             }
                             newSelectors = replacedNewSelectors;
@@ -2909,7 +2908,7 @@
                         // on to the current list of selectors to add
                         mergeElementsOnToSelectors(
                             currentElements,
-                            newSelectors,
+                            newSelectors
                         );
                         // loop through our current selectors
                         for (j = 0; j < newSelectors.length; j++) {
@@ -2926,8 +2925,8 @@
                                             '',
                                             el.isVariable,
                                             el._index,
-                                            el._fileInfo,
-                                        ),
+                                            el._fileInfo
+                                        )
                                     );
                                 }
                                 selectorsMultiplied.push(sel);
@@ -2940,7 +2939,7 @@
                                         sel,
                                         context[k],
                                         el,
-                                        inSelector,
+                                        inSelector
                                     );
                                     // add that to our new set of selectors
                                     selectorsMultiplied.push(newSelectorPath);
@@ -2964,7 +2963,7 @@
                             length - 1
                         ] = lastSelector.createDerived(
                             lastSelector.elements,
-                            inSelector.extendList,
+                            inSelector.extendList
                         );
                     }
                 }
@@ -2974,7 +2973,7 @@
                 var newSelector = deriveFrom.createDerived(
                     deriveFrom.elements,
                     deriveFrom.extendList,
-                    deriveFrom.evaldCondition,
+                    deriveFrom.evaldCondition
                 );
                 newSelector.copyVisibilityInfo(visibilityInfo);
                 return newSelector;
@@ -2985,17 +2984,14 @@
             hadParentSelector = replaceParentSelector(
                 newPaths,
                 context,
-                selector,
+                selector
             );
             if (!hadParentSelector) {
                 if (context.length > 0) {
                     newPaths = [];
                     for (i = 0; i < context.length; i++) {
                         var concatenated = context[i].map(
-                            deriveSelector.bind(
-                                this,
-                                selector.visibilityInfo(),
-                            ),
+                            deriveSelector.bind(this, selector.visibilityInfo())
                         );
                         concatenated.push(selector);
                         newPaths.push(concatenated);
@@ -3018,7 +3014,7 @@
         currentFileInfo,
         debugInfo,
         isRooted,
-        visibilityInfo,
+        visibilityInfo
     ) {
         var i;
         this.name = name;
@@ -3038,7 +3034,7 @@
                     null,
                     null,
                     index,
-                    currentFileInfo,
+                    currentFileInfo
                 ).createEmptySelectors();
             }
             for (i = 0; i < this.rules.length; i++) {
@@ -3116,7 +3112,7 @@
                 this.fileInfo(),
                 this.debugInfo,
                 this.isRooted,
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
         },
         variable: function (name) {
@@ -3189,9 +3185,9 @@
                 this.frames
                     ? new contexts.Eval(
                           context,
-                          this.frames.concat(context.frames),
+                          this.frames.concat(context.frames)
                       )
-                    : context,
+                    : context
             );
         },
     });
@@ -3211,7 +3207,7 @@
             return new Unit(
                 copyArray(this.numerator),
                 copyArray(this.denominator),
-                this.backupUnit,
+                this.backupUnit
             );
         },
         genCSS: function (context, output) {
@@ -3242,7 +3238,7 @@
         isLength: function () {
             return RegExp(
                 '^(px|em|ex|ch|rem|in|cm|mm|pc|pt|ex|vw|vh|vmin|vmax)$',
-                'gi',
+                'gi'
             ).test(this.toCSS());
         },
         isEmpty: function () {
@@ -3342,7 +3338,7 @@
             if (context && context.strictUnits && !this.unit.isSingular()) {
                 throw new Error(
                     'Multiple units in dimension. Correct the units or use the unit function. Bad unit: ' +
-                        this.unit.toString(),
+                        this.unit.toString()
                 );
             }
             var value = this.fround(context, this.value);
@@ -3397,7 +3393,7 @@
                                     unit.toString() +
                                     "' and '" +
                                     other.unit.toString() +
-                                    "'."),
+                                    "'.")
                         );
                     }
                     value = this._operate(context, op, this.value, other.value);
@@ -3593,7 +3589,7 @@
                         }
                         return e.eval(context);
                     }),
-                    this.noSpacing,
+                    this.noSpacing
                 );
             } else if (this.value.length === 1) {
                 if (
@@ -3677,7 +3673,7 @@
             if (evalArgs === false) {
                 return this.func.apply(
                     this,
-                    __spreadArrays$1([this.context], args),
+                    __spreadArrays$1([this.context], args)
                 );
             }
             return this.func.apply(this, args);
@@ -3734,7 +3730,7 @@
                 this.name,
                 context,
                 this.getIndex(),
-                this.fileInfo(),
+                this.fileInfo()
             );
             if (funcCaller.isValid()) {
                 try {
@@ -3809,7 +3805,7 @@
                     new Variable(
                         name.slice(1),
                         this.getIndex(),
-                        this.fileInfo(),
+                        this.fileInfo()
                     ).eval(context).value;
             }
             if (this.evaluating) {
@@ -3899,7 +3895,7 @@
                             v.index,
                             v.currentFileInfo,
                             v.inline,
-                            v.variable,
+                            v.variable
                         );
                     }
                     mergeRules(vArr);
@@ -3951,7 +3947,7 @@
                 this.op,
                 this.value && this.value.eval
                     ? this.value.eval(context)
-                    : this.value,
+                    : this.value
             );
         },
         genCSS: function (context, output) {
@@ -4000,7 +3996,7 @@
                 var v = new Variable(
                     '@' + name,
                     that.getIndex(),
-                    that.fileInfo(),
+                    that.fileInfo()
                 ).eval(context, true);
                 return v instanceof Quoted ? v.value : v.toCSS();
             };
@@ -4008,7 +4004,7 @@
                 var v = new Property(
                     '$' + name,
                     that.getIndex(),
-                    that.fileInfo(),
+                    that.fileInfo()
                 ).eval(context, true);
                 return v instanceof Quoted ? v.value : v.toCSS();
             };
@@ -4023,19 +4019,19 @@
             value = iterativeReplace(
                 value,
                 this.variableRegex,
-                variableReplacement,
+                variableReplacement
             );
             value = iterativeReplace(
                 value,
                 this.propRegex,
-                propertyReplacement,
+                propertyReplacement
             );
             return new Quoted(
                 this.quote + value + this.quote,
                 value,
                 this.escaped,
                 this.getIndex(),
-                this.fileInfo(),
+                this.fileInfo()
             );
         },
         compare: function (other) {
@@ -4112,7 +4108,7 @@
         features,
         index,
         currentFileInfo,
-        visibilityInfo,
+        visibilityInfo
     ) {
         this._index = index;
         this._fileInfo = currentFileInfo;
@@ -4121,7 +4117,7 @@
             null,
             null,
             this._index,
-            this._fileInfo,
+            this._fileInfo
         ).createEmptySelectors();
         this.features = new Value(features);
         this.rules = [new Ruleset(selectors, value)];
@@ -4160,7 +4156,7 @@
                 [],
                 this._index,
                 this._fileInfo,
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
             if (this.debugInfo) {
                 this.rules[0].debugInfo = this.debugInfo;
@@ -4187,7 +4183,7 @@
                     null,
                     null,
                     this.getIndex(),
-                    this.fileInfo(),
+                    this.fileInfo()
                 ).createEmptySelectors();
                 result = new Ruleset(selectors, context.mediaBlocks);
                 result.multiMedia = true;
@@ -4228,7 +4224,7 @@
                         path.splice(i, 0, new Anonymous('and'));
                     }
                     return new Expression(path);
-                }),
+                })
             );
             this.setParent(this.features, this);
             // Fake a tree-node that doesn't output anything.
@@ -4277,7 +4273,7 @@
         options,
         index,
         currentFileInfo,
-        visibilityInfo,
+        visibilityInfo
     ) {
         this.options = options;
         this._index = index;
@@ -4345,7 +4341,7 @@
                 this.options,
                 this._index,
                 this._fileInfo,
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
         },
         evalPath: function (context) {
@@ -4361,7 +4357,7 @@
                 ) {
                     path.value = context.rewritePath(
                         pathValue,
-                        fileInfo.rootpath,
+                        fileInfo.rootpath
                     );
                 } else {
                     path.value = context.normalizePath(path.value);
@@ -4395,7 +4391,7 @@
                         throw new LessError(
                             e,
                             this.root.imports,
-                            this.root.filename,
+                            this.root.filename
                         );
                     }
                 }
@@ -4425,7 +4421,7 @@
                             this.path._fileInfo.reference,
                     },
                     true,
-                    true,
+                    true
                 );
                 return this.features
                     ? new Media([contents], this.features.value)
@@ -4435,7 +4431,7 @@
                     this.evalPath(context),
                     features,
                     this.options,
-                    this._index,
+                    this._index
                 );
                 if (!newImport.css && this.error) {
                     throw this.error;
@@ -4467,18 +4463,18 @@
                     index: this.getIndex(),
                 };
             }
-            expression = expression.replace(/@\{([\w-]+)\}/g, function (
-                _,
-                name,
-            ) {
-                return that.jsify(
-                    new Variable(
-                        '@' + name,
-                        that.getIndex(),
-                        that.fileInfo(),
-                    ).eval(context),
-                );
-            });
+            expression = expression.replace(
+                /@\{([\w-]+)\}/g,
+                function (_, name) {
+                    return that.jsify(
+                        new Variable(
+                            '@' + name,
+                            that.getIndex(),
+                            that.fileInfo()
+                        ).eval(context)
+                    );
+                }
+            );
             try {
                 expression = new Function('return (' + expression + ')');
             } catch (e) {
@@ -4556,7 +4552,7 @@
                     '"' + result + '"',
                     result,
                     this.escaped,
-                    this._index,
+                    this._index
                 );
             } else if (Array.isArray(result)) {
                 return new Anonymous(result.join(', '));
@@ -4652,7 +4648,7 @@
         eval: function (context) {
             if (context.isMathOn()) {
                 return new Operation('*', [new Dimension(-1), this.value]).eval(
-                    context,
+                    context
                 );
             }
             return new Negative(this.value.eval(context));
@@ -4664,7 +4660,7 @@
         option,
         index,
         currentFileInfo,
-        visibilityInfo,
+        visibilityInfo
     ) {
         this.selector = selector;
         this.option = option;
@@ -4697,7 +4693,7 @@
                 this.option,
                 this.getIndex(),
                 this.fileInfo(),
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
         },
         clone: function (context) {
@@ -4706,7 +4702,7 @@
                 this.option,
                 this.getIndex(),
                 this.fileInfo(),
-                this.visibilityInfo(),
+                this.visibilityInfo()
             );
         },
         // it concatenates (joins) all selectors in selector array
@@ -4746,7 +4742,7 @@
             var detachedRuleset = new Variable(
                 this.variable,
                 this.getIndex(),
-                this.fileInfo(),
+                this.fileInfo()
             ).eval(context);
             var error = new LessError({
                 message: 'Could not evaluate variable call ' + this.variable,
@@ -4853,7 +4849,7 @@
         condition,
         variadic,
         frames,
-        visibilityInfo,
+        visibilityInfo
     ) {
         this.name = name || 'anonymous mixin';
         this.selectors = [
@@ -4915,7 +4911,7 @@
             }
             mixinEnv = new contexts.Eval(
                 mixinEnv,
-                [frame].concat(mixinEnv.frames),
+                [frame].concat(mixinEnv.frames)
             );
             if (args) {
                 args = copyArray(args);
@@ -4930,8 +4926,8 @@
                                 frame.prependRule(
                                     new Declaration(
                                         name,
-                                        arg.value.eval(context),
-                                    ),
+                                        arg.value.eval(context)
+                                    )
                                 );
                                 isNamedFound = true;
                                 break;
@@ -4970,8 +4966,8 @@
                         frame.prependRule(
                             new Declaration(
                                 name,
-                                new Expression(varargs).eval(context),
-                            ),
+                                new Expression(varargs).eval(context)
+                            )
                         );
                     } else {
                         val = arg && arg.value;
@@ -5027,7 +5023,7 @@
                 rules,
                 this.condition,
                 this.variadic,
-                this.frames,
+                this.frames
             );
             return result;
         },
@@ -5038,7 +5034,7 @@
                 this.rules,
                 this.condition,
                 this.variadic,
-                this.frames || copyArray(context.frames),
+                this.frames || copyArray(context.frames)
             );
         },
         evalCall: function (context, args, important) {
@@ -5050,21 +5046,21 @@
                 context,
                 new contexts.Eval(context, mixinFrames),
                 args,
-                _arguments,
+                _arguments
             );
             var rules;
             var ruleset;
             frame.prependRule(
                 new Declaration(
                     '@arguments',
-                    new Expression(_arguments).eval(context),
-                ),
+                    new Expression(_arguments).eval(context)
+                )
             );
             rules = copyArray(this.rules);
             ruleset = new Ruleset(null, rules);
             ruleset.originalRuleset = this;
             ruleset = ruleset.eval(
-                new contexts.Eval(context, [this, frame].concat(mixinFrames)),
+                new contexts.Eval(context, [this, frame].concat(mixinFrames))
             );
             if (important) {
                 ruleset = ruleset.makeImportant();
@@ -5084,15 +5080,15 @@
                                     context,
                                     this.frames
                                         ? this.frames.concat(context.frames)
-                                        : context.frames,
+                                        : context.frames
                                 ),
                                 args,
-                                [],
+                                []
                             ),
                         ]
                             .concat(this.frames || []) // the parent namespace/mixin frames
-                            .concat(context.frames),
-                    ),
+                            .concat(context.frames)
+                    )
                 )
             ) {
                 // the current environment frames
@@ -5146,7 +5142,7 @@
         args,
         index,
         currentFileInfo,
-        important,
+        important
     ) {
         this.selector = new Selector(elements);
         this.arguments = args || [];
@@ -5243,7 +5239,7 @@
                     (mixins = context.frames[i].find(
                         this.selector,
                         null,
-                        noArgumentsFilter,
+                        noArgumentsFilter
                     )).length > 0
                 ) {
                     isOneFound = true;
@@ -5319,14 +5315,14 @@
                                         null,
                                         false,
                                         null,
-                                        originalRuleset.visibilityInfo(),
+                                        originalRuleset.visibilityInfo()
                                     );
                                     mixin.originalRuleset = originalRuleset;
                                 }
                                 var newRules = mixin.evalCall(
                                     context,
                                     args,
-                                    this.important,
+                                    this.important
                                 ).rules;
                                 this._setVisibilityToReplacement(newRules);
                                 Array.prototype.push.apply(rules, newRules);
@@ -5457,7 +5453,7 @@
         };
         AbstractFileManager.prototype.tryAppendExtension = function (
             path,
-            ext,
+            ext
         ) {
             return /(\.[a-z]*$)|([\?;].*)$/.test(path) ? path : path + ext;
         };
@@ -5494,7 +5490,7 @@
             }
             max = Math.max(
                 baseUrlParts.directories.length,
-                urlParts.directories.length,
+                urlParts.directories.length
             );
             for (i = 0; i < max; i++) {
                 if (baseUrlParts.directories[i] !== urlParts.directories[i]) {
@@ -5514,7 +5510,7 @@
         // helper function, not part of API
         AbstractFileManager.prototype.extractUrlParts = function (
             url,
-            baseUrl,
+            baseUrl
         ) {
             // urlParts[1] = protocol://hostname/ OR /
             // urlParts[2] = / if path relative to host base
@@ -5536,7 +5532,7 @@
                 baseUrlParts = baseUrl.match(urlPartsRegex);
                 if (!baseUrlParts) {
                     throw new Error(
-                        "Could not parse page url - '" + baseUrl + "'",
+                        "Could not parse page url - '" + baseUrl + "'"
                     );
                 }
                 urlParts[1] = urlParts[1] || baseUrlParts[1] || '';
@@ -5579,7 +5575,7 @@
             context,
             imports,
             pluginOptions,
-            fileInfo,
+            fileInfo
         ) {
             var loader,
                 registry,
@@ -5597,7 +5593,7 @@
                 }
             }
             var shortname = new this.less.FileManager().extractUrlParts(
-                filename,
+                filename
             ).filename;
             if (filename) {
                 pluginObj = pluginManager.get(filename);
@@ -5606,7 +5602,7 @@
                         pluginObj,
                         filename,
                         shortname,
-                        pluginOptions,
+                        pluginOptions
                     );
                     if (result) {
                         return result;
@@ -5640,7 +5636,7 @@
                     'tree',
                     'less',
                     'fileInfo',
-                    contents,
+                    contents
                 );
                 loader(
                     localModule,
@@ -5649,7 +5645,7 @@
                     registry,
                     this.less.tree,
                     this.less,
-                    fileInfo,
+                    fileInfo
                 );
             } catch (e) {
                 return new LessError(e, imports, filename);
@@ -5673,7 +5669,7 @@
                         pluginObj,
                         filename,
                         shortname,
-                        pluginOptions,
+                        pluginOptions
                     );
                     if (result) {
                         return result;
@@ -5687,7 +5683,7 @@
                     pluginObj,
                     filename,
                     shortname,
-                    pluginOptions,
+                    pluginOptions
                 );
                 if (result) {
                     return result;
@@ -5705,7 +5701,7 @@
                 return new LessError(
                     { message: 'Not a valid plugin' },
                     imports,
-                    filename,
+                    filename
                 );
             }
             return pluginObj;
@@ -5714,7 +5710,7 @@
             plugin,
             filename,
             name,
-            options,
+            options
         ) {
             if (options && !plugin.setOptions) {
                 return new LessError({
@@ -5733,7 +5729,7 @@
         AbstractPluginLoader.prototype.validatePlugin = function (
             plugin,
             filename,
-            name,
+            name
         ) {
             if (plugin) {
                 // support plugins being a function
@@ -5745,7 +5741,7 @@
                     if (
                         this.compareVersion(
                             plugin.minVersion,
-                            this.less.version,
+                            this.less.version
                         ) < 0
                     ) {
                         return new LessError({
@@ -5763,7 +5759,7 @@
         };
         AbstractPluginLoader.prototype.compareVersion = function (
             aVersion,
-            bVersion,
+            bVersion
         ) {
             if (typeof aVersion === 'string') {
                 aVersion = aVersion.match(/^(\d+)\.?(\d+)?\.?(\d+)?/);
@@ -6000,7 +5996,7 @@
         this.onceFileDetectionMap = {};
         this.recursionDetector = {};
         this._sequencer = new ImportSequencer(
-            this._onSequencerEmpty.bind(this),
+            this._onSequencerEmpty.bind(this)
         );
     };
     ImportVisitor.prototype = {
@@ -6026,7 +6022,7 @@
             if (!importNode.css || inlineCSS) {
                 var context = new contexts.Eval(
                     this.context,
-                    copyArray(this.context.frames),
+                    copyArray(this.context.frames)
                 );
                 var importParent = context.frames[0];
                 this.importCount++;
@@ -6036,8 +6032,8 @@
                             this,
                             importNode,
                             context,
-                            importParent,
-                        ),
+                            importParent
+                        )
                     );
                 } else {
                     this.processImportNode(importNode, context, importParent);
@@ -6075,7 +6071,7 @@
                 var onImported = this.onImported.bind(
                         this,
                         evaldImportNode,
-                        context,
+                        context
                     ),
                     sequencedOnImported = this._sequencer.addImport(onImported);
                 this._importer.push(
@@ -6083,7 +6079,7 @@
                     tryAppendLessExtension,
                     evaldImportNode.fileInfo(),
                     evaldImportNode.options,
-                    sequencedOnImported,
+                    sequencedOnImported
                 );
             } else {
                 this.importCount--;
@@ -6098,7 +6094,7 @@
             e,
             root,
             importedAtRoot,
-            fullPath,
+            fullPath
         ) {
             if (e) {
                 if (!e.filename) {
@@ -6245,19 +6241,19 @@
         };
         ExtendFinderVisitor.prototype.visitDeclaration = function (
             declNode,
-            visitArgs,
+            visitArgs
         ) {
             visitArgs.visitDeeper = false;
         };
         ExtendFinderVisitor.prototype.visitMixinDefinition = function (
             mixinDefinitionNode,
-            visitArgs,
+            visitArgs
         ) {
             visitArgs.visitDeeper = false;
         };
         ExtendFinderVisitor.prototype.visitRuleset = function (
             rulesetNode,
-            visitArgs,
+            visitArgs
         ) {
             if (rulesetNode.root) {
                 return;
@@ -6300,7 +6296,7 @@
                         extend.firstExtendOnThisSelectorPath = true;
                     }
                     this.allExtendsStack[this.allExtendsStack.length - 1].push(
-                        extend,
+                        extend
                     );
                 }
             }
@@ -6313,7 +6309,7 @@
         };
         ExtendFinderVisitor.prototype.visitMedia = function (
             mediaNode,
-            visitArgs,
+            visitArgs
         ) {
             mediaNode.allExtends = [];
             this.allExtendsStack.push(mediaNode.allExtends);
@@ -6323,7 +6319,7 @@
         };
         ExtendFinderVisitor.prototype.visitAtRule = function (
             atRuleNode,
-            visitArgs,
+            visitArgs
         ) {
             atRuleNode.allExtends = [];
             this.allExtendsStack.push(atRuleNode.allExtends);
@@ -6345,7 +6341,7 @@
                 return root;
             }
             root.allExtends = root.allExtends.concat(
-                this.doExtendChaining(root.allExtends, root.allExtends),
+                this.doExtendChaining(root.allExtends, root.allExtends)
             );
             this.allExtendsStack = [root.allExtends];
             var newRoot = this._visitor.visit(root);
@@ -6353,7 +6349,7 @@
             return newRoot;
         };
         ProcessExtendsVisitor.prototype.checkExtendsForNonMatched = function (
-            extendList,
+            extendList
         ) {
             var indices = this.extendIndices;
             extendList
@@ -6376,7 +6372,7 @@
         ProcessExtendsVisitor.prototype.doExtendChaining = function (
             extendsList,
             extendsListTarget,
-            iterationCount,
+            iterationCount
         ) {
             //
             // chaining is different from normal extension.. if we extend an extend then we are not just copying, altering
@@ -6434,7 +6430,7 @@
                                 matches,
                                 selectorPath,
                                 selfSelector,
-                                extend.isVisible(),
+                                extend.isVisible()
                             );
                             // but now we create a new extend from it
                             newExtend = new tree.Extend(
@@ -6442,7 +6438,7 @@
                                 targetExtend.option,
                                 0,
                                 targetExtend.fileInfo(),
-                                info,
+                                info
                             );
                             newExtend.selfSelectors = newSelector;
                             // add the extend onto the list of extends for that selector
@@ -6455,7 +6451,7 @@
                             // remember its parents for circular references
                             newExtend.parent_ids = newExtend.parent_ids.concat(
                                 targetExtend.parent_ids,
-                                extend.parent_ids,
+                                extend.parent_ids
                             );
                             // only process the selector once.. if we have :extend(.a,.b) then multiple
                             // extends will look at the same selector path, so when extending
@@ -6494,8 +6490,8 @@
                     extendVisitor.doExtendChaining(
                         extendsToAdd,
                         extendsListTarget,
-                        iterationCount + 1,
-                    ),
+                        iterationCount + 1
+                    )
                 );
             } else {
                 return extendsToAdd;
@@ -6503,25 +6499,25 @@
         };
         ProcessExtendsVisitor.prototype.visitDeclaration = function (
             ruleNode,
-            visitArgs,
+            visitArgs
         ) {
             visitArgs.visitDeeper = false;
         };
         ProcessExtendsVisitor.prototype.visitMixinDefinition = function (
             mixinDefinitionNode,
-            visitArgs,
+            visitArgs
         ) {
             visitArgs.visitDeeper = false;
         };
         ProcessExtendsVisitor.prototype.visitSelector = function (
             selectorNode,
-            visitArgs,
+            visitArgs
         ) {
             visitArgs.visitDeeper = false;
         };
         ProcessExtendsVisitor.prototype.visitRuleset = function (
             rulesetNode,
-            visitArgs,
+            visitArgs
         ) {
             if (rulesetNode.root) {
                 return;
@@ -6558,19 +6554,19 @@
                     }
                     matches = this.findMatch(
                         allExtends[extendIndex],
-                        selectorPath,
+                        selectorPath
                     );
                     if (matches.length) {
                         allExtends[extendIndex].hasFoundMatches = true;
                         allExtends[extendIndex].selfSelectors.forEach(function (
-                            selfSelector,
+                            selfSelector
                         ) {
                             var extendedSelectors;
                             extendedSelectors = extendVisitor.extendSelector(
                                 matches,
                                 selectorPath,
                                 selfSelector,
-                                allExtends[extendIndex].isVisible(),
+                                allExtends[extendIndex].isVisible()
                             );
                             selectorsToAdd.push(extendedSelectors);
                         });
@@ -6581,7 +6577,7 @@
         };
         ProcessExtendsVisitor.prototype.findMatch = function (
             extend,
-            haystackSelectorPath,
+            haystackSelectorPath
         ) {
             //
             // look through the haystack selector path to try and find the needle - extend.selector
@@ -6641,7 +6637,7 @@
                         if (
                             !extendVisitor.isElementValuesEqual(
                                 needleElements[potentialMatch.matched].value,
-                                haystackElement.value,
+                                haystackElement.value
                             ) ||
                             (potentialMatch.matched > 0 &&
                                 needleElements[potentialMatch.matched]
@@ -6688,7 +6684,7 @@
         };
         ProcessExtendsVisitor.prototype.isElementValuesEqual = function (
             elementValue1,
-            elementValue2,
+            elementValue2
         ) {
             if (
                 typeof elementValue1 === 'string' ||
@@ -6743,7 +6739,7 @@
                     if (
                         !this.isElementValuesEqual(
                             elementValue1.elements[i].value,
-                            elementValue2.elements[i].value,
+                            elementValue2.elements[i].value
                         )
                     ) {
                         return false;
@@ -6757,7 +6753,7 @@
             matches,
             selectorPath,
             replacementSelector,
-            isVisible,
+            isVisible
         ) {
             // for a set of matches, replace each match with the replacement selector
             var currentSelectorPathIndex = 0,
@@ -6776,7 +6772,7 @@
                     replacementSelector.elements[0].value,
                     replacementSelector.elements[0].isVariable,
                     replacementSelector.elements[0].getIndex(),
-                    replacementSelector.elements[0].fileInfo(),
+                    replacementSelector.elements[0].fileInfo()
                 );
                 if (
                     match.pathIndex > currentSelectorPathIndex &&
@@ -6786,8 +6782,8 @@
                         path.length - 1
                     ].elements.concat(
                         selectorPath[currentSelectorPathIndex].elements.slice(
-                            currentSelectorPathElementIndex,
-                        ),
+                            currentSelectorPathElementIndex
+                        )
                     );
                     currentSelectorPathElementIndex = 0;
                     currentSelectorPathIndex++;
@@ -6807,8 +6803,8 @@
                     path = path.concat(
                         selectorPath.slice(
                             currentSelectorPathIndex,
-                            match.pathIndex,
-                        ),
+                            match.pathIndex
+                        )
                     );
                     path.push(new tree.Selector(newElements));
                 }
@@ -6830,16 +6826,16 @@
                     path.length - 1
                 ].elements.concat(
                     selectorPath[currentSelectorPathIndex].elements.slice(
-                        currentSelectorPathElementIndex,
-                    ),
+                        currentSelectorPathElementIndex
+                    )
                 );
                 currentSelectorPathIndex++;
             }
             path = path.concat(
                 selectorPath.slice(
                     currentSelectorPathIndex,
-                    selectorPath.length,
-                ),
+                    selectorPath.length
+                )
             );
             path = path.map(function (currentValue) {
                 // we can re-use elements here, because the visibility property matters only for selectors
@@ -6855,13 +6851,13 @@
         };
         ProcessExtendsVisitor.prototype.visitMedia = function (
             mediaNode,
-            visitArgs,
+            visitArgs
         ) {
             var newAllExtends = mediaNode.allExtends.concat(
-                this.allExtendsStack[this.allExtendsStack.length - 1],
+                this.allExtendsStack[this.allExtendsStack.length - 1]
             );
             newAllExtends = newAllExtends.concat(
-                this.doExtendChaining(newAllExtends, mediaNode.allExtends),
+                this.doExtendChaining(newAllExtends, mediaNode.allExtends)
             );
             this.allExtendsStack.push(newAllExtends);
         };
@@ -6871,13 +6867,13 @@
         };
         ProcessExtendsVisitor.prototype.visitAtRule = function (
             atRuleNode,
-            visitArgs,
+            visitArgs
         ) {
             var newAllExtends = atRuleNode.allExtends.concat(
-                this.allExtendsStack[this.allExtendsStack.length - 1],
+                this.allExtendsStack[this.allExtendsStack.length - 1]
             );
             newAllExtends = newAllExtends.concat(
-                this.doExtendChaining(newAllExtends, atRuleNode.allExtends),
+                this.doExtendChaining(newAllExtends, atRuleNode.allExtends)
             );
             this.allExtendsStack.push(newAllExtends);
         };
@@ -6898,19 +6894,19 @@
         };
         JoinSelectorVisitor.prototype.visitDeclaration = function (
             declNode,
-            visitArgs,
+            visitArgs
         ) {
             visitArgs.visitDeeper = false;
         };
         JoinSelectorVisitor.prototype.visitMixinDefinition = function (
             mixinDefinitionNode,
-            visitArgs,
+            visitArgs
         ) {
             visitArgs.visitDeeper = false;
         };
         JoinSelectorVisitor.prototype.visitRuleset = function (
             rulesetNode,
-            visitArgs,
+            visitArgs
         ) {
             var context = this.contexts[this.contexts.length - 1];
             var paths = [];
@@ -6940,7 +6936,7 @@
         };
         JoinSelectorVisitor.prototype.visitMedia = function (
             mediaNode,
-            visitArgs,
+            visitArgs
         ) {
             var context = this.contexts[this.contexts.length - 1];
             mediaNode.rules[0].root =
@@ -6948,7 +6944,7 @@
         };
         JoinSelectorVisitor.prototype.visitAtRule = function (
             atRuleNode,
-            visitArgs,
+            visitArgs
         ) {
             var context = this.contexts[this.contexts.length - 1];
             if (atRuleNode.rules && atRuleNode.rules.length) {
@@ -6965,7 +6961,7 @@
             this._context = context;
         }
         CSSVisitorUtils.prototype.containsSilentNonBlockedChild = function (
-            bodyRules,
+            bodyRules
         ) {
             var rule;
             if (!bodyRules) {
@@ -7002,7 +6998,7 @@
         };
         CSSVisitorUtils.prototype.resolveVisibility = function (
             node,
-            originalRules,
+            originalRules
         ) {
             if (!node.blocksVisibility()) {
                 if (
@@ -7135,7 +7131,7 @@
                                 atRuleNode
                                     .toCSS(this._context)
                                     .replace(/\n/g, '') +
-                                ' */\n',
+                                ' */\n'
                         );
                         comment.debugInfo = atRuleNode.debugInfo;
                         return this._visitor.visit(comment);
@@ -7419,7 +7415,7 @@
                             if (chunkerCurrentIndex == len - 1) {
                                 return fail(
                                     'unescaped `\\`',
-                                    chunkerCurrentIndex,
+                                    chunkerCurrentIndex
                                 );
                             }
                             chunkerCurrentIndex++;
@@ -7430,7 +7426,7 @@
                     }
                     return fail(
                         'unmatched `' + String.fromCharCode(cc) + '`',
-                        currentChunkStartIndex,
+                        currentChunkStartIndex
                     );
                 case 47: // /, check for comment
                     if (parenLevel || chunkerCurrentIndex == len - 1) {
@@ -7473,7 +7469,7 @@
                         if (chunkerCurrentIndex == len - 1) {
                             return fail(
                                 'missing closing `*/`',
-                                currentChunkStartIndex,
+                                currentChunkStartIndex
                             );
                         }
                         chunkerCurrentIndex++;
@@ -7557,21 +7553,21 @@
                         parserInput.i = nextNewLine;
                         comment.text = inp.substr(
                             comment.index,
-                            parserInput.i - comment.index,
+                            parserInput.i - comment.index
                         );
                         parserInput.commentStore.push(comment);
                         continue;
                     } else if (nextChar === '*') {
                         var nextStarSlash = inp.indexOf(
                             '*/',
-                            parserInput.i + 2,
+                            parserInput.i + 2
                         );
                         if (nextStarSlash >= 0) {
                             comment = {
                                 index: parserInput.i,
                                 text: inp.substr(
                                     parserInput.i,
-                                    nextStarSlash + 2 - parserInput.i,
+                                    nextStarSlash + 2 - parserInput.i
                                 ),
                                 isLineComment: false,
                             };
@@ -7750,7 +7746,7 @@
                             i++;
                             nextChar = input.charAt(i);
                             parseGroups.push(
-                                input.substr(lastPos, i - lastPos + 1),
+                                input.substr(lastPos, i - lastPos + 1)
                             );
                             lastPos = i + 1;
                             break;
@@ -7767,7 +7763,7 @@
                             if (quote) {
                                 parseGroups.push(
                                     input.substr(lastPos, i - lastPos),
-                                    quote,
+                                    quote
                                 );
                                 i += quote[1].length - 1;
                                 lastPos = i + 1;
@@ -7934,7 +7930,7 @@
                     type: type || 'Syntax',
                     message: msg,
                 },
-                imports,
+                imports
             );
         }
         function expect(arg, msg) {
@@ -7954,7 +7950,7 @@
                           "' got '" +
                           parserInput.currentChar() +
                           "'"
-                        : 'unexpected token'),
+                        : 'unexpected token')
             );
         }
         // Specialization of expect()
@@ -7968,7 +7964,7 @@
                         arg +
                         "' got '" +
                         parserInput.currentChar() +
-                        "'",
+                        "'"
             );
         }
         function getDebugInfo(index) {
@@ -8027,7 +8023,7 @@
                         message: e.message,
                     },
                     imports,
-                    fileInfo.filename,
+                    fileInfo.filename
                 );
             }
         }
@@ -8089,20 +8085,21 @@
                 // with the `root` property set to true, so no `{}` are
                 // output. The callback is called when the input is parsed.
                 try {
-                    parserInput.start(str, context.chunkInput, function fail(
-                        msg,
-                        index,
-                    ) {
-                        throw new LessError(
-                            {
-                                index: index,
-                                type: 'Parse',
-                                message: msg,
-                                filename: fileInfo.filename,
-                            },
-                            imports,
-                        );
-                    });
+                    parserInput.start(
+                        str,
+                        context.chunkInput,
+                        function fail(msg, index) {
+                            throw new LessError(
+                                {
+                                    index: index,
+                                    type: 'Parse',
+                                    message: msg,
+                                    filename: fileInfo.filename,
+                                },
+                                imports
+                            );
+                        }
+                    );
                     tree.Node.prototype.parse = this;
                     root = new tree.Ruleset(null, this.parsers.primary());
                     tree.Node.prototype.rootNode = root;
@@ -8111,7 +8108,7 @@
                     root.functionRegistry = functionRegistry.inherit();
                 } catch (e) {
                     return callback(
-                        new LessError(e, imports, fileInfo.filename),
+                        new LessError(e, imports, fileInfo.filename)
                     );
                 }
                 // If `i` is smaller than the `input.length - 1`,
@@ -8142,7 +8139,7 @@
                             index: endInfo.furthest,
                             filename: fileInfo.filename,
                         },
-                        imports,
+                        imports
                     );
                 }
                 var finish = function (e) {
@@ -8262,7 +8259,7 @@
                             comment.text,
                             comment.isLineComment,
                             comment.index,
-                            fileInfo,
+                            fileInfo
                         );
                     }
                 },
@@ -8300,7 +8297,7 @@
                             str.substr(1, str.length - 2),
                             isEscaped,
                             index,
-                            fileInfo,
+                            fileInfo
                         );
                     },
                     //
@@ -8312,7 +8309,7 @@
                         var k =
                             parserInput.$char('%') ||
                             parserInput.$re(
-                                /^\[?(?:[\w-]|\\(?:[A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))+\]?/,
+                                /^\[?(?:[\w-]|\\(?:[A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))+\]?/
                             );
                         if (k) {
                             return (
@@ -8338,7 +8335,7 @@
                         }
                         parserInput.save();
                         name = parserInput.$re(
-                            /^([\w-]+|%|~|progid:[\w\.]+)\(/,
+                            /^([\w-]+|%|~|progid:[\w\.]+)\(/
                         );
                         if (!name) {
                             parserInput.forget();
@@ -8356,7 +8353,7 @@
                         args = this.arguments(args);
                         if (!parserInput.$char(')')) {
                             parserInput.restore(
-                                "Could not parse call arguments or missing ')'",
+                                "Could not parse call arguments or missing ')'"
                             );
                             return;
                         }
@@ -8498,7 +8495,7 @@
                                 ? value
                                 : new tree.Anonymous(value, index),
                             index,
-                            fileInfo,
+                            fileInfo
                         );
                     },
                     //
@@ -8547,7 +8544,7 @@
                             return new tree.Variable(
                                 '@' + curly[1],
                                 index,
-                                fileInfo,
+                                fileInfo
                             );
                         }
                     },
@@ -8577,7 +8574,7 @@
                             return new tree.Property(
                                 '$' + curly[1],
                                 index,
-                                fileInfo,
+                                fileInfo
                             );
                         }
                     },
@@ -8594,7 +8591,7 @@
                         if (
                             parserInput.currentChar() === '#' &&
                             (rgb = parserInput.$re(
-                                /^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3,4})([\w.#\[])?/,
+                                /^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3,4})([\w.#\[])?/
                             ))
                         ) {
                             if (!rgb[2]) {
@@ -8602,7 +8599,7 @@
                                 return new tree.Color(
                                     rgb[1],
                                     undefined,
-                                    rgb[0],
+                                    rgb[0]
                                 );
                             }
                         }
@@ -8635,7 +8632,7 @@
                             return;
                         }
                         var value = parserInput.$re(
-                            /^([+-]?\d*\.?\d+)(%|[a-z_]+)?/i,
+                            /^([+-]?\d*\.?\d+)(%|[a-z_]+)?/i
                         );
                         if (value) {
                             return new tree.Dimension(value[1], value[2]);
@@ -8649,7 +8646,7 @@
                     unicodeDescriptor: function () {
                         var ud;
                         ud = parserInput.$re(
-                            /^U\+[0-9a-fA-F?]+(\-[0-9a-fA-F?]+)?/,
+                            /^U\+[0-9a-fA-F?]+(\-[0-9a-fA-F?]+)?/
                         );
                         if (ud) {
                             return new tree.UnicodeDescriptor(ud[0]);
@@ -8677,7 +8674,7 @@
                                 js.substr(0, js.length - 1),
                                 Boolean(escape),
                                 index,
-                                fileInfo,
+                                fileInfo
                             );
                         }
                         parserInput.restore('invalid javascript definition');
@@ -8723,7 +8720,7 @@
                                 name[2] !== '()')
                         ) {
                             parserInput.restore(
-                                "Missing '[...]' lookup in variable call",
+                                "Missing '[...]' lookup in variable call"
                             );
                             return;
                         }
@@ -8740,7 +8737,7 @@
                                 call,
                                 lookups,
                                 i,
-                                fileInfo,
+                                fileInfo
                             );
                         }
                     }
@@ -8783,7 +8780,7 @@
                             new tree.Selector(elements),
                             option,
                             index,
-                            fileInfo,
+                            fileInfo
                         );
                         if (extendList) {
                             extendList.push(extend);
@@ -8864,12 +8861,12 @@
                                     args,
                                     index,
                                     fileInfo,
-                                    !lookups && important,
+                                    !lookups && important
                                 );
                                 if (lookups) {
                                     return new tree.NamespaceValue(
                                         mixin,
-                                        lookups,
+                                        lookups
                                     );
                                 } else {
                                     return mixin;
@@ -8900,7 +8897,7 @@
                                 e,
                                 false,
                                 elemIndex,
-                                fileInfo,
+                                fileInfo
                             );
                             if (elements) {
                                 elements.push(elem);
@@ -8980,7 +8977,7 @@
                                     if (expressions.length > 0) {
                                         if (isSemiColonSeparated) {
                                             error(
-                                                'Cannot mix ; and , as delimiter types',
+                                                'Cannot mix ; and , as delimiter types'
                                             );
                                         }
                                         expressionContainsNamed = true;
@@ -8991,7 +8988,7 @@
                                     if (!value) {
                                         if (isCall) {
                                             error(
-                                                'could not understand value for named argument',
+                                                'could not understand value for named argument'
                                             );
                                         } else {
                                             parserInput.restore();
@@ -9041,7 +9038,7 @@
                             if (hasSep || isSemiColonSeparated) {
                                 if (expressionContainsNamed) {
                                     error(
-                                        'Cannot mix ; and , as delimiter types',
+                                        'Cannot mix ; and , as delimiter types'
                                     );
                                 }
                                 isSemiColonSeparated = true;
@@ -9099,7 +9096,7 @@
                         }
                         parserInput.save();
                         match = parserInput.$re(
-                            /^([#.](?:[\w-]|\\(?:[A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))+)\s*\(/,
+                            /^([#.](?:[\w-]|\\(?:[A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))+)\s*\(/
                         );
                         if (match) {
                             name = match[1];
@@ -9120,7 +9117,7 @@
                                 // Guard
                                 cond = expect(
                                     parsers.conditions,
-                                    'expected condition',
+                                    'expected condition'
                                 );
                             }
                             ruleset = parsers.block();
@@ -9131,7 +9128,7 @@
                                     params,
                                     ruleset,
                                     cond,
-                                    variadic,
+                                    variadic
                                 );
                             } else {
                                 parserInput.restore();
@@ -9167,7 +9164,7 @@
                             return;
                         }
                         var name = parserInput.$re(
-                            /^(?:[@$]{0,2})[_a-zA-Z0-9-]*/,
+                            /^(?:[@$]{0,2})[_a-zA-Z0-9-]*/
                         );
                         if (!parserInput.$char(']')) {
                             parserInput.restore();
@@ -9221,7 +9218,7 @@
                     if (!value) {
                         value = expect(
                             parsers.entities.variable,
-                            'Could not parse alpha',
+                            'Could not parse alpha'
                         );
                         value = '@{' + value.name.slice(1) + '}';
                     }
@@ -9249,7 +9246,7 @@
                     e =
                         parserInput.$re(/^(?:\d+\.\d+|\d+)%/) ||
                         parserInput.$re(
-                            /^(?:[.#]?|:*)(?:[\w-]|[^\x00-\x9f]|\\(?:[A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))+/,
+                            /^(?:[.#]?|:*)(?:[\w-]|[^\x00-\x9f]|\\(?:[A-Fa-f0-9]{1,6} ?|[^A-Fa-f0-9]))+/
                         ) ||
                         parserInput.$char('*') ||
                         parserInput.$char('&') ||
@@ -9279,7 +9276,7 @@
                             e,
                             e instanceof tree.Variable,
                             index,
-                            fileInfo,
+                            fileInfo
                         );
                     }
                 },
@@ -9352,11 +9349,11 @@
                         if (when) {
                             condition = expect(
                                 this.conditions,
-                                'expected condition',
+                                'expected condition'
                             );
                         } else if (condition) {
                             error(
-                                'CSS guard can only be used at the end of selector',
+                                'CSS guard can only be used at the end of selector'
                             );
                         } else if (extendList) {
                             if (allExtends) {
@@ -9367,7 +9364,7 @@
                         } else {
                             if (allExtends) {
                                 error(
-                                    'Extend can only be used at the end of selector',
+                                    'Extend can only be used at the end of selector'
                                 );
                             }
                             c = parserInput.currentChar();
@@ -9394,12 +9391,12 @@
                             allExtends,
                             condition,
                             index,
-                            fileInfo,
+                            fileInfo
                         );
                     }
                     if (allExtends) {
                         error(
-                            'Extend must be used to extend a selector, it cannot be used on its own',
+                            'Extend must be used to extend a selector, it cannot be used on its own'
                         );
                     }
                 },
@@ -9419,7 +9416,7 @@
                         parserInput.commentStore.length = 0;
                         if (s.condition && selectors.length > 1) {
                             error(
-                                'Guards are only currently allowed on a single selector.',
+                                'Guards are only currently allowed on a single selector.'
                             );
                         }
                         if (!parserInput.$char(',')) {
@@ -9427,7 +9424,7 @@
                         }
                         if (s.condition) {
                             error(
-                                'Guards are only currently allowed on a single selector.',
+                                'Guards are only currently allowed on a single selector.'
                             );
                         }
                         parserInput.commentStore.length = 0;
@@ -9444,7 +9441,7 @@
                     var op;
                     if (!(key = entities.variableCurly())) {
                         key = expect(
-                            /^(?:[_A-Za-z0-9-\*]*\|)?(?:[_A-Za-z0-9-]|\\.)+/,
+                            /^(?:[_A-Za-z0-9-\*]*\|)?(?:[_A-Za-z0-9-]|\\.)+/
                         );
                     }
                     op = parserInput.$re(/^[|~*$^]?=/);
@@ -9508,7 +9505,7 @@
                                 params,
                                 blockRuleset,
                                 null,
-                                variadic,
+                                variadic
                             );
                         }
                         return new tree.DetachedRuleset(blockRuleset);
@@ -9532,7 +9529,7 @@
                         var ruleset = new tree.Ruleset(
                             selectors,
                             rules,
-                            context.strictImports,
+                            context.strictImports
                         );
                         if (context.dumpLineNumbers) {
                             ruleset.debugInfo = debugInfo;
@@ -9594,7 +9591,7 @@
                                     false,
                                     merge,
                                     index,
-                                    fileInfo,
+                                    fileInfo
                                 );
                             }
                             if (!value) {
@@ -9615,7 +9612,7 @@
                                 important,
                                 merge,
                                 index,
-                                fileInfo,
+                                fileInfo
                             );
                         } else {
                             parserInput.restore();
@@ -9705,8 +9702,8 @@
                                         item[1],
                                         true,
                                         index,
-                                        fileInfo,
-                                    ),
+                                        fileInfo
+                                    )
                                 );
                             } else {
                                 if (i === value.length - 1) {
@@ -9718,7 +9715,7 @@
                                     item,
                                     true,
                                     index,
-                                    fileInfo,
+                                    fileInfo
                                 );
                                 quote.variableRegex = /@([\w-]+)/g;
                                 quote.propRegex = /\$([\w-]+)/g;
@@ -9755,7 +9752,7 @@
                             if (!parserInput.$char(';')) {
                                 parserInput.i = index;
                                 error(
-                                    'missing semi-colon or unrecognised media features on import',
+                                    'missing semi-colon or unrecognised media features on import'
                                 );
                             }
                             features = features && new tree.Value(features);
@@ -9764,7 +9761,7 @@
                                 features,
                                 options,
                                 index,
-                                fileInfo,
+                                fileInfo
                             );
                         } else {
                             parserInput.i = index;
@@ -9807,7 +9804,7 @@
                 },
                 importOption: function () {
                     var opt = parserInput.$re(
-                        /^(less|css|multiple|once|inline|reference|optional)/,
+                        /^(less|css|multiple|once|inline|reference|optional)/
                     );
                     if (opt) {
                         return opt[1];
@@ -9840,15 +9837,15 @@
                                                 null,
                                                 parserInput.i,
                                                 fileInfo,
-                                                true,
-                                            ),
-                                        ),
+                                                true
+                                            )
+                                        )
                                     );
                                 } else if (e) {
                                     nodes.push(new tree.Paren(e));
                                 } else {
                                     error(
-                                        'badly formed media feature definition',
+                                        'badly formed media feature definition'
                                     );
                                 }
                             } else {
@@ -9899,7 +9896,7 @@
                         rules = this.block();
                         if (!rules) {
                             error(
-                                'media definitions require block statements after any features',
+                                'media definitions require block statements after any features'
                             );
                         }
                         parserInput.forget();
@@ -9907,7 +9904,7 @@
                             rules,
                             features,
                             index,
-                            fileInfo,
+                            fileInfo
                         );
                         if (context.dumpLineNumbers) {
                             media.debugInfo = debugInfo;
@@ -9950,7 +9947,7 @@
                                 null,
                                 options,
                                 index,
-                                fileInfo,
+                                fileInfo
                             );
                         } else {
                             parserInput.i = index;
@@ -10050,7 +10047,7 @@
                             ) {
                                 error(
                                     name +
-                                        ' rule is missing block or ending semi-colon',
+                                        ' rule is missing block or ending semi-colon'
                                 );
                             }
                         } else if (!value.value) {
@@ -10074,7 +10071,7 @@
                             context.dumpLineNumbers
                                 ? getDebugInfo(index)
                                 : null,
-                            isRooted,
+                            isRooted
                         );
                     }
                     parserInput.restore('at-rule options not recognised');
@@ -10159,7 +10156,7 @@
                             operation = new tree.Operation(
                                 op,
                                 [operation || m, a],
-                                isSpaced,
+                                isSpaced
                             );
                             isSpaced = parserInput.isWhitespace(-1);
                         }
@@ -10193,7 +10190,7 @@
                             operation = new tree.Operation(
                                 op,
                                 [operation || m, a],
-                                isSpaced,
+                                isSpaced
                             );
                             isSpaced = parserInput.isWhitespace(-1);
                         }
@@ -10222,7 +10219,7 @@
                                 'or',
                                 condition || a,
                                 b,
-                                index,
+                                index
                             );
                         }
                         return condition || a;
@@ -10327,7 +10324,7 @@
                         parserInput.restore(
                             "expected ')' got '" +
                                 parserInput.currentChar() +
-                                "'",
+                                "'"
                         );
                         return;
                     }
@@ -10386,7 +10383,7 @@
                                 a,
                                 new tree.Keyword('true'),
                                 index,
-                                false,
+                                false
                             );
                         }
                         return c;
@@ -10447,7 +10444,7 @@
                                 delim = parserInput.$char('/');
                                 if (delim) {
                                     entities.push(
-                                        new tree.Anonymous(delim, index),
+                                        new tree.Anonymous(delim, index)
                                     );
                                 }
                             }
@@ -10470,7 +10467,7 @@
                     var k;
                     parserInput.save();
                     var simpleProperty = parserInput.$re(
-                        /^([_a-zA-Z0-9-]+)\s*:/,
+                        /^([_a-zA-Z0-9-]+)\s*:/
                     );
                     if (simpleProperty) {
                         name = [new tree.Keyword(simpleProperty[1])];
@@ -10508,12 +10505,12 @@
                                     ? new tree.Variable(
                                           '@' + s.slice(2, -1),
                                           index[k],
-                                          fileInfo,
+                                          fileInfo
                                       )
                                     : new tree.Property(
                                           '$' + s.slice(2, -1),
                                           index[k],
-                                          fileInfo,
+                                          fileInfo
                                       );
                         }
                         return name;
@@ -10741,7 +10738,7 @@
                 vs[perm[i][0]] * 255,
                 vs[perm[i][1]] * 255,
                 vs[perm[i][2]] * 255,
-                a,
+                a
             );
         },
         hue: function (color) {
@@ -10959,7 +10956,7 @@
             if (
                 c instanceof Quoted &&
                 /^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3,4})$/i.test(
-                    c.value,
+                    c.value
                 )
             ) {
                 var val = c.value.slice(1);
@@ -10979,14 +10976,14 @@
             return colorFunctions.mix(
                 colorFunctions.rgb(255, 255, 255),
                 color,
-                amount,
+                amount
             );
         },
         shade: function (color, amount) {
             return colorFunctions.mix(
                 colorFunctions.rgb(0, 0, 0),
                 color,
-                amount,
+                amount
             );
         },
     };
@@ -11066,7 +11063,7 @@
             return new URL(
                 node,
                 functionThis.index,
-                functionThis.currentFileInfo,
+                functionThis.currentFileInfo
             ).eval(functionThis.context);
         };
         return {
@@ -11094,7 +11091,7 @@
                     currentDirectory,
                     context,
                     environment,
-                    true,
+                    true
                 );
                 if (!fileManager) {
                     return fallback(this, filePathNode);
@@ -11120,13 +11117,13 @@
                     filePath,
                     currentDirectory,
                     context,
-                    environment,
+                    environment
                 );
                 if (!fileSync.contents) {
                     logger.warn(
                         'Skipped data-uri embedding of ' +
                             filePath +
-                            ' because file not found',
+                            ' because file not found'
                     );
                     return fallback(this, filePathNode || mimetypeNode);
                 }
@@ -11144,10 +11141,10 @@
                         uri,
                         false,
                         this.index,
-                        this.currentFileInfo,
+                        this.currentFileInfo
                     ),
                     this.index,
-                    this.currentFileInfo,
+                    this.currentFileInfo
                 );
             },
         };
@@ -11272,8 +11269,8 @@
                             false,
                             false,
                             this.index,
-                            this.currentFileInfo,
-                        ),
+                            this.currentFileInfo
+                        )
                     );
                 }
                 if (indexName) {
@@ -11284,8 +11281,8 @@
                             false,
                             false,
                             this.index,
-                            this.currentFileInfo,
-                        ),
+                            this.currentFileInfo
+                        )
                     );
                 }
                 if (keyName) {
@@ -11296,8 +11293,8 @@
                             false,
                             false,
                             this.index,
-                            this.currentFileInfo,
-                        ),
+                            this.currentFileInfo
+                        )
                     );
                 }
                 rules.push(
@@ -11305,15 +11302,15 @@
                         [new Selector([new Element('', '&')])],
                         newRules,
                         rs.strictImports,
-                        rs.visibilityInfo(),
-                    ),
+                        rs.visibilityInfo()
+                    )
                 );
             }
             return new Ruleset(
                 [new Selector([new Element('', '&')])],
                 rules,
                 rs.strictImports,
-                rs.visibilityInfo(),
+                rs.visibilityInfo()
             ).eval(this.context);
         },
     };
@@ -11348,7 +11345,7 @@
             mathFunctions[f$1] = MathHelper.bind(
                 null,
                 Math[f$1],
-                mathFunctions[f$1],
+                mathFunctions[f$1]
             );
         }
     }
@@ -11359,7 +11356,7 @@
                 return num.toFixed(fraction);
             },
             null,
-            n,
+            n
         );
     };
 
@@ -11390,7 +11387,7 @@
                 if (Array.isArray(args[i].value)) {
                     Array.prototype.push.apply(
                         args,
-                        Array.prototype.slice.call(args[i].value),
+                        Array.prototype.slice.call(args[i].value)
                     );
                 }
                 continue;
@@ -11492,7 +11489,7 @@
                     return num * 100;
                 },
                 '%',
-                n,
+                n
             );
             return result;
         },
@@ -11503,7 +11500,7 @@
             return new Quoted(
                 '"',
                 str instanceof JavaScript ? str.evaluated : str.value,
-                true,
+                true
             );
         },
         escape: function (str) {
@@ -11514,7 +11511,7 @@
                     .replace(/#/g, '%23')
                     .replace(/;/g, '%3B')
                     .replace(/\(/g, '%28')
-                    .replace(/\)/g, '%29'),
+                    .replace(/\)/g, '%29')
             );
         },
         replace: function (string, pattern, replacement, flags) {
@@ -11525,7 +11522,7 @@
                     : replacement.toCSS();
             result = result.replace(
                 new RegExp(pattern.value, flags ? flags.value : ''),
-                replacement,
+                replacement
             );
             return new Quoted(string.quote || '', result, string.escaped);
         },
@@ -11670,10 +11667,10 @@
                         returner,
                         false,
                         this.index,
-                        this.currentFileInfo,
+                        this.currentFileInfo
                     ),
                     this.index,
-                    this.currentFileInfo,
+                    this.currentFileInfo
                 );
             },
         };
@@ -11897,7 +11894,7 @@
         PluginManager.prototype.addPlugin = function (
             plugin,
             filename,
-            functionRegistry,
+            functionRegistry
         ) {
             this.installedPlugins.push(plugin);
             if (filename) {
@@ -11907,7 +11904,7 @@
                 plugin.install(
                     this.less,
                     this,
-                    functionRegistry || this.less.functions.functionRegistry,
+                    functionRegistry || this.less.functions.functionRegistry
                 );
             }
         };
@@ -11933,7 +11930,7 @@
          */
         PluginManager.prototype.addPreProcessor = function (
             preProcessor,
-            priority,
+            priority
         ) {
             var indexToInsertAt;
             for (
@@ -11957,7 +11954,7 @@
          */
         PluginManager.prototype.addPostProcessor = function (
             postProcessor,
-            priority,
+            priority
         ) {
             var indexToInsertAt;
             for (
@@ -12054,7 +12051,7 @@
                 if (options.sourceMapFilename) {
                     this._sourceMapFilename = options.sourceMapFilename.replace(
                         /\\/g,
-                        '/',
+                        '/'
                     );
                 }
                 this._outputFilename = options.outputFilename;
@@ -12062,17 +12059,17 @@
                 if (options.sourceMapBasepath) {
                     this._sourceMapBasepath = options.sourceMapBasepath.replace(
                         /\\/g,
-                        '/',
+                        '/'
                     );
                 }
                 if (options.sourceMapRootpath) {
                     this._sourceMapRootpath = options.sourceMapRootpath.replace(
                         /\\/g,
-                        '/',
+                        '/'
                     );
                     if (
                         this._sourceMapRootpath.charAt(
-                            this._sourceMapRootpath.length - 1,
+                            this._sourceMapRootpath.length - 1
                         ) !== '/'
                     ) {
                         this._sourceMapRootpath += '/';
@@ -12106,7 +12103,7 @@
                 chunk,
                 fileInfo,
                 index,
-                mapLines,
+                mapLines
             ) {
                 // ignore adding empty strings
                 if (!chunk) {
@@ -12126,7 +12123,7 @@
                         }
                         // adjust the source
                         inputSource = inputSource.slice(
-                            this._contentsIgnoredCharsMap[fileInfo.filename],
+                            this._contentsIgnoredCharsMap[fileInfo.filename]
                         );
                     }
                     /**
@@ -12168,7 +12165,7 @@
                                     column: i === 0 ? sourceColumns.length : 0,
                                 },
                                 source: this.normalizeFilename(
-                                    fileInfo.filename,
+                                    fileInfo.filename
                                 ),
                             });
                         }
@@ -12187,7 +12184,7 @@
             };
             SourceMapOutput.prototype.toCSS = function (context) {
                 this._sourceMapGenerator = new this._sourceMapGeneratorConstructor(
-                    { file: this._outputFilename, sourceRoot: null },
+                    { file: this._outputFilename, sourceRoot: null }
                 );
                 if (this._outputSourceFiles) {
                     for (var filename in this._contentsMap) {
@@ -12195,12 +12192,12 @@
                             var source = this._contentsMap[filename];
                             if (this._contentsIgnoredCharsMap[filename]) {
                                 source = source.slice(
-                                    this._contentsIgnoredCharsMap[filename],
+                                    this._contentsIgnoredCharsMap[filename]
                                 );
                             }
                             this._sourceMapGenerator.setSourceContent(
                                 this.normalizeFilename(filename),
-                                source,
+                                source
                             );
                         }
                     }
@@ -12209,7 +12206,7 @@
                 if (this._css.length > 0) {
                     var sourceMapURL = void 0;
                     var sourceMapContent = JSON.stringify(
-                        this._sourceMapGenerator.toJSON(),
+                        this._sourceMapGenerator.toJSON()
                     );
                     if (this.sourceMapURL) {
                         sourceMapURL = this.sourceMapURL;
@@ -12234,7 +12231,7 @@
             SourceMapBuilder.prototype.toCSS = function (
                 rootNode,
                 options,
-                imports,
+                imports
             ) {
                 var sourceMapOutput = new SourceMapOutput({
                     contentsIgnoredCharsMap: imports.contentsIgnoredChars,
@@ -12256,7 +12253,7 @@
                 this.sourceMapURL = sourceMapOutput.sourceMapURL;
                 if (this.options.sourceMapInputFilename) {
                     this.sourceMapInputFilename = sourceMapOutput.normalizeFilename(
-                        this.options.sourceMapInputFilename,
+                        this.options.sourceMapInputFilename
                     );
                 }
                 if (
@@ -12264,7 +12261,7 @@
                     this.sourceMapURL !== undefined
                 ) {
                     this.sourceMapURL = sourceMapOutput.removeBasepath(
-                        this.sourceMapURL,
+                        this.sourceMapURL
                     );
                 }
                 return css + this.getCSSAppendage();
@@ -12291,7 +12288,7 @@
                 return this.sourceMap;
             };
             SourceMapBuilder.prototype.setExternalSourceMap = function (
-                sourceMap,
+                sourceMap
             ) {
                 this.sourceMap = sourceMap;
             };
@@ -12332,7 +12329,7 @@
                     if (compress) {
                         logger.warn(
                             'The compress option has been deprecated. ' +
-                                'We recommend you use a dedicated css minifier, for instance see less-plugin-clean-css.',
+                                'We recommend you use a dedicated css minifier, for instance see less-plugin-clean-css.'
                         );
                     }
                     var toCSSOptions = {
@@ -12343,12 +12340,12 @@
                     };
                     if (options.sourceMap) {
                         sourceMapBuilder = new SourceMapBuilder(
-                            options.sourceMap,
+                            options.sourceMap
                         );
                         result.css = sourceMapBuilder.toCSS(
                             evaldRoot,
                             toCSSOptions,
-                            this.imports,
+                            this.imports
                         );
                     } else {
                         result.css = evaldRoot.toCSS(toCSSOptions);
@@ -12421,7 +12418,7 @@
                 tryAppendExtension,
                 currentFileInfo,
                 importOptions,
-                callback,
+                callback
             ) {
                 var importManager = this,
                     pluginLoader = this.context.pluginManager.Loader;
@@ -12429,7 +12426,7 @@
                 var fileParsedFunc = function (e, root, fullPath) {
                     importManager.queue.splice(
                         importManager.queue.indexOf(path),
-                        1,
+                        1
                     ); // Remove the path from the queue
                     var importedEqualsRoot =
                         fullPath === importManager.rootFilename;
@@ -12438,7 +12435,7 @@
                         logger.info(
                             'The file ' +
                                 fullPath +
-                                ' was skipped because it was not found and the import was marked optional.',
+                                ' was skipped because it was not found and the import was marked optional.'
                         );
                     } else {
                         // Inline imports aren't cached here.
@@ -12469,7 +12466,7 @@
                     path,
                     currentFileInfo.currentDirectory,
                     this.context,
-                    environment,
+                    environment
                 );
                 if (!fileManager) {
                     fileParsedFunc({
@@ -12490,15 +12487,15 @@
                     // - If path of imported file is '../mixins.less' and rootpath is 'less/',
                     //   then rootpath should become 'less/../'
                     newFileInfo.currentDirectory = fileManager.getPath(
-                        resolvedFilename,
+                        resolvedFilename
                     );
                     if (newFileInfo.rewriteUrls) {
                         newFileInfo.rootpath = fileManager.join(
                             importManager.context.rootpath || '',
                             fileManager.pathDiff(
                                 newFileInfo.currentDirectory,
-                                newFileInfo.entryPath,
-                            ),
+                                newFileInfo.entryPath
+                            )
                         );
                         if (
                             !fileManager.isPathAbsolute(newFileInfo.rootpath) &&
@@ -12506,7 +12503,7 @@
                         ) {
                             newFileInfo.rootpath = fileManager.join(
                                 newFileInfo.entryPath,
-                                newFileInfo.rootpath,
+                                newFileInfo.rootpath
                             );
                         }
                     }
@@ -12523,7 +12520,7 @@
                             newEnv,
                             importManager,
                             importOptions.pluginArgs,
-                            newFileInfo,
+                            newFileInfo
                         );
                         if (plugin instanceof LessError) {
                             fileParsedFunc(plugin, null, resolvedFilename);
@@ -12544,13 +12541,13 @@
                             fileParsedFunc(
                                 null,
                                 importManager.files[resolvedFilename].root,
-                                resolvedFilename,
+                                resolvedFilename
                             );
                         } else {
                             new Parser(
                                 newEnv,
                                 importManager,
-                                newFileInfo,
+                                newFileInfo
                             ).parse(contents, function (e, root) {
                                 fileParsedFunc(e, root, resolvedFilename);
                             });
@@ -12571,7 +12568,7 @@
                             currentFileInfo.currentDirectory,
                             context,
                             environment,
-                            fileManager,
+                            fileManager
                         );
                     } else {
                         promise = pluginLoader.loadPlugin(
@@ -12579,7 +12576,7 @@
                             currentFileInfo.currentDirectory,
                             context,
                             environment,
-                            fileManager,
+                            fileManager
                         );
                     }
                 } else {
@@ -12588,7 +12585,7 @@
                             path,
                             currentFileInfo.currentDirectory,
                             context,
-                            environment,
+                            environment
                         );
                     } else {
                         promise = fileManager.loadFile(
@@ -12602,7 +12599,7 @@
                                 } else {
                                     loadFileCallback(loadedFile);
                                 }
-                            },
+                            }
                         );
                     }
                 }
@@ -12645,7 +12642,7 @@
                 var rootFileInfo = void 0;
                 var pluginManager_1 = new PluginManagerFactory(
                     this,
-                    !options.reUsePluginManager,
+                    !options.reUsePluginManager
                 );
                 options.pluginManager = pluginManager_1;
                 context_1 = new contexts.Parse(options);
@@ -12673,7 +12670,7 @@
                 var imports_1 = new ImportManager(
                     this,
                     context_1,
-                    rootFileInfo,
+                    rootFileInfo
                 );
                 this.importManager = imports_1;
                 // TODO: allow the plugins to be just a list of paths or names
@@ -12684,14 +12681,14 @@
                         if (plugin.fileContent) {
                             contents = plugin.fileContent.replace(
                                 /^\uFEFF/,
-                                '',
+                                ''
                             );
                             evalResult = pluginManager_1.Loader.evalPlugin(
                                 contents,
                                 context_1,
                                 imports_1,
                                 plugin.options,
-                                plugin.filename,
+                                plugin.filename
                             );
                             if (evalResult instanceof LessError) {
                                 return callback(evalResult);
@@ -12709,7 +12706,7 @@
                         }
                         callback(null, root, imports_1, options);
                     },
-                    options,
+                    options
                 );
             }
         };
@@ -12736,24 +12733,23 @@
                     });
                 });
             } else {
-                this.parse(input, options, function (
-                    err,
-                    root,
-                    imports,
+                this.parse(
+                    input,
                     options,
-                ) {
-                    if (err) {
-                        return callback(err);
+                    function (err, root, imports, options) {
+                        if (err) {
+                            return callback(err);
+                        }
+                        var result;
+                        try {
+                            var parseTree = new ParseTree(root, imports);
+                            result = parseTree.toCSS(options);
+                        } catch (err) {
+                            return callback(err);
+                        }
+                        callback(null, result);
                     }
-                    var result;
-                    try {
-                        var parseTree = new ParseTree(root, imports);
-                        result = parseTree.toCSS(options);
-                    } catch (err) {
-                        return callback(err);
-                    }
-                    callback(null, result);
-                });
+                );
             }
         };
         return render;
@@ -12763,7 +12759,7 @@
 
     function parseNodeVersion(version) {
         var match = version.match(
-            /^v(\d{1,2})\.(\d{1,2})\.(\d{1,2})(?:-([0-9A-Za-z-.]+))?(?:\+([0-9A-Za-z-.]+))?$/,
+            /^v(\d{1,2})\.(\d{1,2})\.(\d{1,2})(?:-([0-9A-Za-z-.]+))?(?:\+([0-9A-Za-z-.]+))?$/
         ); // eslint-disable-line max-len
         if (!match) {
             throw new Error('Unable to parse: ' + version);
@@ -12876,14 +12872,14 @@
             xhr.open('GET', url, async);
             xhr.setRequestHeader(
                 'Accept',
-                type || 'text/x-less, text/css; q=0.9, */*; q=0.5',
+                type || 'text/x-less, text/css; q=0.9, */*; q=0.5'
             );
             xhr.send(null);
             function handleResponse(xhr, callback, errback) {
                 if (xhr.status >= 200 && xhr.status < 300) {
                     callback(
                         xhr.responseText,
-                        xhr.getResponseHeader('Last-Modified'),
+                        xhr.getResponseHeader('Last-Modified')
                     );
                 } else if (typeof errback === 'function') {
                     errback(xhr.status, url);
@@ -12928,7 +12924,7 @@
             // some context variables for imports
             var hrefParts = this.extractUrlParts(
                 filename,
-                window.location.href,
+                window.location.href
             );
             var href = hrefParts.url;
             var self = this;
@@ -12972,7 +12968,7 @@
                                 "'" + url + "' wasn't found (" + status + ')',
                             href: href,
                         });
-                    },
+                    }
                 );
             });
         },
@@ -12997,7 +12993,7 @@
             basePath,
             context,
             environment,
-            fileManager,
+            fileManager
         ) {
             return new Promise(function (fulfill, reject) {
                 fileManager
@@ -13085,10 +13081,10 @@
                         template
                             .replace(
                                 /\{line\}/,
-                                (parseInt(e.line, 10) || 0) + (i - 1),
+                                (parseInt(e.line, 10) || 0) + (i - 1)
                             )
                             .replace(/\{class\}/, classname)
-                            .replace(/\{content\}/, e.extract[i]),
+                            .replace(/\{content\}/, e.extract[i])
                     );
                 }
             };
@@ -13152,7 +13148,7 @@
                     'border-bottom: 1px dashed red;',
                     '}',
                 ].join('\n'),
-                { title: 'error-message' },
+                { title: 'error-message' }
             );
             elem.style.cssText = [
                 'font-family: Arial, sans-serif',
@@ -13173,7 +13169,7 @@
                         if (document.getElementById(id)) {
                             body.replaceChild(
                                 elem,
-                                document.getElementById(id),
+                                document.getElementById(id)
                             );
                         } else {
                             body.insertBefore(elem, body.firstChild);
@@ -13185,7 +13181,7 @@
         }
         function removeErrorHTML(path) {
             var node = window.document.getElementById(
-                'less-error-message:' + extractId(path),
+                'less-error-message:' + extractId(path)
             );
             if (node) {
                 node.parentNode.removeChild(node);
@@ -13215,10 +13211,10 @@
                         template
                             .replace(
                                 /\{line\}/,
-                                (parseInt(e.line, 10) || 0) + (i - 1),
+                                (parseInt(e.line, 10) || 0) + (i - 1)
                             )
                             .replace(/\{class\}/, classname)
-                            .replace(/\{content\}/, e.extract[i]),
+                            .replace(/\{content\}/, e.extract[i])
                     );
                 }
             };
@@ -13275,7 +13271,7 @@
                         if (modifyVars) {
                             cache.setItem(
                                 path + ':vars',
-                                JSON.stringify(modifyVars),
+                                JSON.stringify(modifyVars)
                             );
                         }
                     } catch (e) {
@@ -13283,7 +13279,7 @@
                         logger.error(
                             'failed to save "' +
                                 path +
-                                '" to local storage for caching.',
+                                '" to local storage for caching.'
                         );
                     }
                 }
@@ -13368,7 +13364,7 @@
             var curryArgs = Array.prototype.slice.call(arguments, 2);
             return function () {
                 var args = curryArgs.concat(
-                    Array.prototype.slice.call(arguments, 0),
+                    Array.prototype.slice.call(arguments, 0)
                 );
                 return func.apply(thisArg, args);
             };
@@ -13384,7 +13380,7 @@
                     var lessText = style.innerHTML || '';
                     instanceOptions.filename = document.location.href.replace(
                         /#.*$/,
-                        '',
+                        ''
                     );
                     /* jshint loopfunc:true */
                     // use closure to store current style
@@ -13405,8 +13401,8 @@
                                 }
                             },
                             null,
-                            style,
-                        ),
+                            style
+                        )
                     );
                 }
             }
@@ -13416,7 +13412,7 @@
             callback,
             reload,
             remaining,
-            modifyVars,
+            modifyVars
         ) {
             var instanceOptions = clone(options);
             addDataAttr(instanceOptions, sheet);
@@ -13442,7 +13438,7 @@
                     var css = cache.getCSS(
                         path,
                         webInfo,
-                        instanceOptions.modifyVars,
+                        instanceOptions.modifyVars
                     );
                     if (!reload && css) {
                         webInfo.local = true;
@@ -13462,7 +13458,7 @@
                             sheet.href,
                             webInfo.lastModified,
                             instanceOptions.modifyVars,
-                            result.css,
+                            result.css
                         );
                         callback(null, result.css, data, sheet, webInfo, path);
                     }
@@ -13485,7 +13481,7 @@
                     callback,
                     reload,
                     less.sheets.length - (i + 1),
-                    modifyVars,
+                    modifyVars
                 );
             }
         }
@@ -13571,7 +13567,7 @@
                     endTime = new Date();
                     totalMilliseconds = endTime - startTime;
                     less.logger.info(
-                        'Less has finished and no sheets were loaded.',
+                        'Less has finished and no sheets were loaded.'
                     );
                     resolve({
                         startTime: startTime,
@@ -13590,11 +13586,11 @@
                             }
                             if (webInfo.local) {
                                 less.logger.info(
-                                    'Loading ' + sheet.href + ' from cache.',
+                                    'Loading ' + sheet.href + ' from cache.'
                                 );
                             } else {
                                 less.logger.info(
-                                    'Rendered ' + sheet.href + ' successfully.',
+                                    'Rendered ' + sheet.href + ' successfully.'
                                 );
                             }
                             browser.createCSS(window.document, css, sheet);
@@ -13603,7 +13599,7 @@
                                     sheet.href +
                                     ' generated in ' +
                                     (new Date() - endTime) +
-                                    'ms',
+                                    'ms'
                             );
                             // Count completed sheet
                             remainingSheets--;
@@ -13613,7 +13609,7 @@
                                 less.logger.info(
                                     'Less has finished. CSS generated in ' +
                                         totalMilliseconds +
-                                        'ms',
+                                        'ms'
                                 );
                                 resolve({
                                     startTime: startTime,
@@ -13625,7 +13621,7 @@
                             endTime = new Date();
                         },
                         reload,
-                        modifyVars,
+                        modifyVars
                     );
                 }
                 loadStyles(modifyVars);

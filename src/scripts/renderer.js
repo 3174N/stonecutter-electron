@@ -176,14 +176,14 @@ function openFileFromList(fileName) {
             // Replace image
             $(`.${fileName}-dir-img`).attr(
                 'src',
-                './styles/media/dir_open.png',
+                './styles/media/dir_open.png'
             );
             $(`.${fileName}-folder`).css('display', 'inline-block'); // Show sub-files
         } else if ($(`.${fileName}-folder`).css('display') == 'inline-block') {
             // Replace image
             $(`.${fileName}-dir-img`).attr(
                 'src',
-                './styles/media/dir_closed.png',
+                './styles/media/dir_closed.png'
             );
             $(`.${fileName}-folder`).css('display', 'none'); // Hide sub-files
         }
@@ -208,7 +208,7 @@ function displayFile(fileName, ulClass = '.files') {
         $(`${ulClass}`).append(
             `<li onClick="openFileFromList($(this).text());" id="${fileName}" class="file">` +
                 fileName +
-                '</li>',
+                '</li>'
         );
     } else {
         // * File is a directory * //
@@ -217,7 +217,7 @@ function displayFile(fileName, ulClass = '.files') {
             `<li onClick="openFileFromList($(this).text());" id="${fileName}" class="folder">` +
                 `<img src="./styles/media/dir_closed.png" class="dir-img ${fileName}-dir-img"> ` +
                 fileName +
-                '</li>',
+                '</li>'
         );
 
         if (!$(`.${fileName}-folder`).length) {
@@ -253,7 +253,7 @@ function countLines() {
     var divHeight = el.offsetHeight;
     console.log(
         '🚀 ~ file: renderer.js ~ line 254 ~ countLines ~ divHeight',
-        divHeight,
+        divHeight
     );
 
     // Get line height

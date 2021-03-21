@@ -31,7 +31,7 @@ function openPopup() {
             pathname: path.join(__dirname, '/pages/popup.html'),
             protocol: 'file:',
             slashes: true,
-        }),
+        })
     );
 
     // Comment next line for dev-tools access
@@ -63,7 +63,7 @@ $('#create-project-form').on('submit', function (e) {
 
     var projPath = path.join(
         values['directory'].replace(/["]+/g, ''),
-        `${values['name'].replace(/["]+/g, '')}`,
+        `${values['name'].replace(/["]+/g, '')}`
     );
 
     // Creates project folder if doesn't already exist
@@ -79,7 +79,7 @@ $('#create-project-form').on('submit', function (e) {
         path.join(projPath, `project.cutter`),
         `# Editing this file could break your Stonecutter project;
 # Do not touch unless you know what you're doing.
-${yaml.safeDump(values).replace(/[']+/g, '')}`,
+${yaml.safeDump(values).replace(/[']+/g, '')}`
     );
 
     // Creates pack.mcmeta
@@ -90,7 +90,7 @@ ${yaml.safeDump(values).replace(/[']+/g, '')}`,
                 "pack_format": 6,
                 "description": ${values['description']}
             }
-        }`,
+        }`
     );
 
     // Create data folder
@@ -103,7 +103,7 @@ ${yaml.safeDump(values).replace(/[']+/g, '')}`,
 
     projPath = path.join(
         projPath,
-        `data/${values['name'].replace(/["]+/g, '')}`,
+        `data/${values['name'].replace(/["]+/g, '')}`
     );
 
     // Create namespace folder
