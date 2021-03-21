@@ -40,9 +40,10 @@ function updateTitle() {
     document.title = `${savedChar} ${currentFile} - ${projectName} - Stonecutter`;
 }
 
-// These variables are used to keep track of opened files
+// These variables are used to keep track of opened files and tabs
 var filePaths = {};
 var currentFile = '';
+var openTabs = [];
 
 // Open file
 document
@@ -169,10 +170,13 @@ function openFileFromList(fileName) {
         isChanged = false;
         updateTitle();
 
-        // Add file tab
-        $('.tabs').append(
-            `<button class="tab-btn" onClick="openFileFromTab($(this).text());">${currentFile}</button>`
-        )
+        if (!openTabs.includes(currentFile)) {
+            // Add file tab
+            $('.tabs').append(
+                `<button class="tab-btn" onClick="openFileFromTab($(this).text());">${currentFile}</button>`
+            );
+            openTabs.push(currentFile);
+        }
     } else {
         // * File is a directory * //
 
@@ -181,14 +185,14 @@ function openFileFromList(fileName) {
             // Replace image
             $(`.${fileName}-dir-img`).attr(
                 'src',
-                './styles/media/dir_open.png',
+                './styles/media/dir_open.png'
             );
             $(`.${fileName}-folder`).css('display', 'inline-block'); // Show sub-files
         } else if ($(`.${fileName}-folder`).css('display') == 'inline-block') {
             // Replace image
             $(`.${fileName}-dir-img`).attr(
                 'src',
-                './styles/media/dir_closed.png',
+                './styles/media/dir_closed.png'
             );
             $(`.${fileName}-folder`).css('display', 'none'); // Hide sub-files
         }
@@ -234,7 +238,7 @@ function displayFile(fileName, ulClass = '.files') {
         $(`${ulClass}`).append(
             `<li onClick="openFileFromList($(this).text());" id="${fileName}" class="file">` +
                 fileName +
-                '</li>',
+                '</li>'
         );
     } else {
         // * File is a directory * //
@@ -243,7 +247,7 @@ function displayFile(fileName, ulClass = '.files') {
             `<li onClick="openFileFromList($(this).text());" id="${fileName}" class="folder">` +
                 `<img src="./styles/media/dir_closed.png" class="dir-img ${fileName}-dir-img"> ` +
                 fileName +
-                '</li>',
+                '</li>'
         );
 
         if (!$(`.${fileName}-folder`).length) {
@@ -279,7 +283,7 @@ function countLines() {
     var divHeight = el.offsetHeight;
     console.log(
         '🚀 ~ file: renderer.js ~ line 254 ~ countLines ~ divHeight',
-        divHeight,
+        divHeight
     );
 
     // Get line height
