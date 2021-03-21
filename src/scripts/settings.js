@@ -1,3 +1,8 @@
+/**
+ * Create a config file, settings.cutter,
+ * in the OS's respective configuration directory
+ * if one does not already exist.
+ */
 function initSettings() {
     switch (process.platform) {
         case 'linux':
@@ -28,6 +33,18 @@ function initSettings() {
             }
         );
     }
+}
+
+/**
+ * Load settings from settings.cutter
+ * into object 'settings'.
+ */
+try {
+    const settings = yaml.load(fs.readFileSync('src/settings.cutter', 'utf8'));
+    console.log('Loaded settings.');
+    console.log(settings);
+} catch (err) {
+    throw err;
 }
 
 initSettings();
