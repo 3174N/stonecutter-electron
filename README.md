@@ -78,4 +78,4 @@ Got stuck? Need help? The official documentation for Stonecutter is hosted [here
 
 Copyright (c) 2021 3174N & SFR
 
-We strongly believe in and endorse the open source community, and as such, _Stonecutter_ is licensed under the MIT permissive license, and [_Craft Mono_](https://github.com/SFR-git/craft-mono) under the SIL Open Font license. Simply put, we grant you the right to freely mod, fork, change, give, sell and repackage this application, as long as you provide proper credit. Go nuts.
+We strongly believe in and endorse the open source community, and as such, _Stonecutter_ is licensed under the MIT permissive license. Simply put, we grant you the right to freely mod, fork, change, give, sell and repackage this application, as long as you provide proper credit. Go nuts.
