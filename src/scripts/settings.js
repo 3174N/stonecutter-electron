@@ -35,6 +35,8 @@ function initSettings() {
     }
 }
 
+initSettings();
+
 /**
  * Load settings from settings.cutter
  * into object 'settings'.
@@ -42,9 +44,14 @@ function initSettings() {
 try {
     const settings = yaml.load(fs.readFileSync('src/settings.cutter', 'utf8'));
     console.log('Loaded settings.');
-    console.log(settings);
+    // Apply CSS
+    $('.file-content').css({
+        'font-family': settings.font.family,
+        /// "font-variant": settings.font.style,
+        'font-size': settings.font.size,
+        /// 'font-variant-ligatures': settings.font.ligatures,
+    });
+    console.log('Applied settings.');
 } catch (err) {
     throw err;
 }
-
-initSettings();
