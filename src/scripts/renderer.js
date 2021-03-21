@@ -171,7 +171,7 @@ function openFileFromList(fileName) {
 
         // Add file tab
         $('.tabs').append(
-            `<button class="tab-btn" onClick="openFileFromList($(this).text());">${currentFile}</button>`
+            `<button class="tab-btn" onClick="openFileFromTab($(this).text());">${currentFile}</button>`
         )
     } else {
         // * File is a directory * //
@@ -193,6 +193,27 @@ function openFileFromList(fileName) {
             $(`.${fileName}-folder`).css('display', 'none'); // Hide sub-files
         }
     }
+}
+
+/**
+ * Used to open a file from a tab to the file view.
+ *
+ * @param {String} [fileName] The file to open.
+ */
+function openFileFromTab(fileName) {
+    currentFile = fileName;
+    filePath = filePaths[currentFile];
+
+    updateTitle();
+
+    fs.readFile(filePaths[currentFile], function (err, data) {
+        if (err) return console.log(err);
+
+        $('.file-content').text(data.toString());
+    });
+
+    isChanged = false;
+    updateTitle();
 }
 
 /**
