@@ -4,10 +4,10 @@
     font-family: OpenSans;
     src: url('fonts/OpenSans/OpenSans-Regular.ttf');
 }
-/* Craft Mono */
+/* Minecraft */
 @font-face {
-    font-family: craft-mono;
-    src: url('fonts/craft-mono/craft-mono.ttf');
+    font-family: Minecraft;
+    src: url('fonts/Minecraft/Minecraft.otf') format('opentype');
 }
 
 body {
@@ -34,12 +34,12 @@ body {
 }
 
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'craft-mono', monospace;
+h2 {
+    font-family: 'Minecraft';
+}
+
+h1 {
+    font-size: 50;
 }
 
 a {
