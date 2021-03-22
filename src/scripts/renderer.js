@@ -40,9 +40,10 @@ function updateTitle() {
     document.title = `${savedChar} ${currentFile} - ${projectName} - Stonecutter`;
 }
 
-// These variables are used to keep track of opened files
+// These variables are used to keep track of opened files and tabs
 var filePaths = {};
 var currentFile = '';
+var openTabs = [];
 
 // Open file
 document
@@ -168,6 +169,17 @@ function openFileFromList(fileName) {
         });
         isChanged = false;
         updateTitle();
+
+        if (!openTabs.includes(currentFile)) {
+            // Add file tab
+            $('.tabs').append(
+                `<div class="tab-div" id="${currentFile}-tab">
+                     <button class="tab-btn" onClick="openFileFromTab($(this).text());">${currentFile}</button>
+                     <button class="close-tab-btn" onClick="closeTab('${currentFile}');">x</button>
+                 </div>`
+            );
+            openTabs.push(currentFile);
+        }
     } else {
         // * File is a directory * //
 
@@ -188,6 +200,69 @@ function openFileFromList(fileName) {
             $(`.${fileName}-folder`).css('display', 'none'); // Hide sub-files
         }
     }
+}
+
+/**
+ * Used to open a file from a tab to the file view.
+ *
+ * @param {String} [fileName] The file to open.
+ */
+function openFileFromTab(fileName) {
+    currentFile = fileName;
+    filePath = filePaths[currentFile];
+
+    updateTitle();
+
+    fs.readFile(filePaths[currentFile], function (err, data) {
+        if (err) return console.log(err);
+
+        $('.file-content').text(data.toString());
+    });
+
+    isChanged = false;
+    updateTitle();
+}
+
+/**
+ * Used to remove element from DOM.
+ */
+Element.prototype.remove = function () {
+    this.parentElement.removeChild(this);
+};
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
+    for (var i = this.length - 1; i >= 0; i--) {
+        if (this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+};
+
+/**
+ * Used to close a tab.
+ *
+ * @param {String} [tabName] The tab to close.
+ */
+function closeTab(tabName) {
+    document.getElementById(`${tabName}-tab`).remove();
+
+    let index = openTabs.indexOf(tabName);
+
+    if (index != 0) {
+        openFileFromTab(openTabs[index - 1]);
+    } else if (index != openTabs.length) {
+        openFileFromTab(openTabs[index + 1]);
+    } else {
+        //closeCurrentFile() // TODO: Implement buffer closing
+    }
+
+    openTabs.splice(index, 1);
+}
+
+/**
+ * Used to close the current tab.
+ */
+function closeCurrentTab() {
+    closeTab(currentFile);
 }
 
 /**
@@ -251,10 +326,6 @@ function countLines() {
 
     // Get total height of the content
     var divHeight = el.offsetHeight;
-    console.log(
-        '🚀 ~ file: renderer.js ~ line 254 ~ countLines ~ divHeight',
-        divHeight
-    );
 
     // Get line height
     var lineHeight = parseInt($('#file-content').css('line-height'));
@@ -382,4 +453,8 @@ ipc.on('save-as', (event) => {
 
 ipc.on('open-popup', (event) => {
     openPopup();
+});
+
+ipc.on('close-tab', (event) => {
+    closeCurrentTab();
 });
