@@ -9,16 +9,13 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - run: 'sudo apt-add-repository ppa:alexlarsson/flatpak && sudo apt-get update'
-            - run: 'sudo apt-get install flatpak flatpak-builder elfutils'
-            - run: 'flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo'
-            - run: 'flatpak --user install -y org.freedesktop.Platform/x86_64/19.08 org.freedesktop.Sdk/x86_64/19.08 org.electronjs.Electron2.BaseApp/x86_64/stable'
             - uses: actions/setup-node@v1
             - run: npm ci
             - run: npm run make
             - uses: actions/upload-artifact@v2
               with:
-                  name: 'Stonecutter-vX.Y.Z.flatpak'
-                  path: 'out/make/flatpak/x86_64/org.stonecutter.Stonecutter_stable_x86_64.flatpak'
+                  name: 'Stonecutter-vX.Y.Z.tar.gz'
+                  path: 'out/stonecutter-electron-*'
     macos:
         name: macOS
         runs-on: macos-latest
