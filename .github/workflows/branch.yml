@@ -8,13 +8,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - run: 'sudo apt-add-repository ppa:alexlarsson/flatpak && sudo apt-get update'
             - uses: actions/setup-node@v1
             - run: npm ci
             - run: npm run make
             - uses: actions/upload-artifact@v2
               with:
-                  name: 'Stonecutter-vX.Y.Z.tar.gz'
+                  name: 'Stonecutter-linux'
                   path: 'out/stonecutter-electron-*'
     macos:
         name: macOS
@@ -26,7 +25,7 @@ jobs:
             - run: npm run make
             - uses: actions/upload-artifact@v2
               with:
-                  name: 'Stonecutter-vX.Y.Z.dmg'
+                  name: 'Stonecutter-macos'
                   path: 'out/make/*'
     windows:
         name: Windows
@@ -38,5 +37,5 @@ jobs:
             - run: npm run make
             - uses: actions/upload-artifact@v2
               with:
-                  name: 'Stonecutter-vX.Y.Z.exe'
+                  name: 'Stonecutter-win'
                   path: 'out/make/squirrel.windows/x64/*.exe'
