@@ -8,7 +8,7 @@
 
 # Font
 font:
-    family: "Craft Mono" # Default: Craft Mono
+    family: "monospace" # Default: Craft Mono
     style: "Regular" # Default: Regular
     size: 11.0 # Default: 11.0
     ligatures: false

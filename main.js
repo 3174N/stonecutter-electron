@@ -231,6 +231,22 @@ function createWindow() {
     );
 }
 
+/*
+    macOS apps don't quit on close;
+    they simply become windowless.
+*/
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
+
+app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+    }
+});
+
 console.log('Launching Stonecutter...');
 var t0 = performance.now();
 app.on('ready', createWindow);
