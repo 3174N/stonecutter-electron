@@ -252,11 +252,17 @@ function closeTab(tabName) {
     } else if (index != openTabs.length) {
         openFileFromTab(openTabs[index + 1]);
     } else {
-        console.log('fdhjdskjf');
         //closeCurrentFile() // TODO: Implement buffer closing
     }
 
     openTabs.splice(index, 1);
+}
+
+/**
+ * Used to close the current tab.
+ */
+function closeCurrentTab() {
+    closeTab(currentFile);
 }
 
 /**
@@ -447,4 +453,8 @@ ipc.on('save-as', (event) => {
 
 ipc.on('open-popup', (event) => {
     openPopup();
+});
+
+ipc.on('close-tab', (event) => {
+    closeCurrentTab();
 });

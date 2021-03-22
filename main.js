@@ -160,7 +160,13 @@ function createWindow() {
                               accelerator: 'CmdOrCtrl+,',
                           }, // TODO: Add preferences (new window?) (if not new window then remove ellipsis)
                           { type: 'separator' },
-                          { label: 'Close Tab', accelerator: 'CmdOrCtrl+W' },
+                          {
+                              label: 'Close Tab',
+                              click() {
+                                  win.webContents.send('close-tab');
+                              },
+                              accelerator: 'CmdOrCtrl+W',
+                          },
                           {
                               label: 'Close Instance',
                               role: 'close',
