@@ -23,10 +23,12 @@ jobs:
             - uses: actions/setup-node@v1
             - run: npm ci
             - run: npm run make
+              env: 
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - uses: actions/upload-artifact@v2
               with:
                   name: 'Stonecutter-macos'
-                  path: 'out/make/*'
+                  path: 'out/Stonecutter-*.dmg'
     windows:
         name: Windows
         runs-on: windows-latest
