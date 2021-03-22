@@ -224,26 +224,39 @@ function openFileFromTab(fileName) {
 }
 
 /**
+ * Used to remove element from DOM.
+ */
+Element.prototype.remove = function () {
+    this.parentElement.removeChild(this);
+};
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
+    for (var i = this.length - 1; i >= 0; i--) {
+        if (this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+};
+
+/**
  * Used to close a tab.
  *
  * @param {String} [tabName] The tab to close.
  */
 function closeTab(tabName) {
-    $(`#${tabName}-tab`).remove();
+    document.getElementById(`${tabName}-tab`).remove();
 
     let index = openTabs.indexOf(tabName);
-    console.log(index);
 
     if (index != 0) {
         openFileFromTab(openTabs[index - 1]);
     } else if (index != openTabs.length) {
         openFileFromTab(openTabs[index + 1]);
-    } /* else {
-       closeCurrentFile() // TODO: Implement buffer closing
-    } */
+    } else {
+        console.log('fdhjdskjf');
+        //closeCurrentFile() // TODO: Implement buffer closing
+    }
 
     openTabs.splice(index, 1);
-    console.log(openTabs);
 }
 
 /**
@@ -307,10 +320,6 @@ function countLines() {
 
     // Get total height of the content
     var divHeight = el.offsetHeight;
-    console.log(
-        '🚀 ~ file: renderer.js ~ line 254 ~ countLines ~ divHeight',
-        divHeight
-    );
 
     // Get line height
     var lineHeight = parseInt($('#file-content').css('line-height'));
