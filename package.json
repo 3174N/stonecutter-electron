@@ -4,10 +4,9 @@
     "description": "An extensible IDE for Minecraft datapacks",
     "main": "main.js",
     "scripts": {
-        "start": "electron .",
-        "package": "electron-forge package",
-        "make": "electron-forge make",
-        "publish": "electron-forge publish"
+        "start": "electron main.js",
+        "pack": "electron-builder --dir",
+        "make": "electron-builder"
     },
     "repository": {
         "type": "git",
@@ -21,15 +20,10 @@
     "homepage": "https://stonecutter.org/",
     "dependencies": {
         "debug": "^4.3.1",
-        "electron-squirrel-startup": "^1.0.0",
         "jquery": "^3.6.0",
         "js-yaml": "^4.0.0"
     },
     "devDependencies": {
-        "@electron-forge/cli": "^6.0.0-beta.54",
-        "@electron-forge/maker-dmg": "^6.0.0-beta.54",
-        "@electron-forge/maker-flatpak": "^6.0.0-beta.54",
-        "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
         "async": "^3.2.0",
         "electron": "11.3.0",
         "fs-temp": "^1.2.1",
@@ -37,12 +31,7 @@
         "less": "^4.1.1",
         "parse-color": "^1.0.0"
     },
-    "optionalDependencies": {
-        "ds-store": "^0.1.6",
-        "fs-xattr": "^0.3.1"
-    },
     "config": {
-        "forge": "./forge.config.js",
         "prettier": "./prettier.config.js"
     }
 }
