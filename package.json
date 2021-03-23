@@ -28,6 +28,7 @@
         "electron": "11.3.0",
         "electron-builder": "^22.10.5",
         "fs-temp": "^1.2.1",
+        "highlight.js": "^10.7.1",
         "is-my-json-valid": "^2.20.5",
         "less": "^4.1.1",
         "parse-color": "^1.0.0"
