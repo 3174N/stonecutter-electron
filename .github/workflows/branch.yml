@@ -42,4 +42,4 @@ jobs:
             - uses: actions/upload-artifact@v2
               with:
                   name: 'Stonecutter-win'
-                  path: 'out/make/squirrel.windows/x64/*.exe'
+                  path: 'out/Stonecutter*.exe'
