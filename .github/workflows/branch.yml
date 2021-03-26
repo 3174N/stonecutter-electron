@@ -37,6 +37,8 @@ jobs:
             - uses: actions/setup-node@v1
             - run: npm ci
             - run: npm run make
+              env: 
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - uses: actions/upload-artifact@v2
               with:
                   name: 'Stonecutter-win'
