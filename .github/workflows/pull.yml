@@ -19,6 +19,8 @@ jobs:
             - uses: actions/setup-node@v1
             - run: npm ci
             - run: npm run make
+              env: 
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     windows:
         name: Windows
         runs-on: windows-latest
