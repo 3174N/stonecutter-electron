@@ -17,3 +17,7 @@ dmg:
     window:
         width: 540
         height: 380
+
+win:
+    target: nsis
+    icon: 'src/styles/media/icon.ico'
