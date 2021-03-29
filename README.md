@@ -31,11 +31,9 @@ The current state of datapack development is not good. Most novice to mid-level 
 
 ## Installation
 
-[![GitHub Release](https://badgen.net/github/release/3174N/stonecutter-electron)](https://github.com/3174N/stonecutter-electron/releases) [![Flathub](https://img.shields.io/flathub/v/org.stonecutter.Stonecutter)](https://www.flathub.org/apps/details/org.stonecutter.Stonecutter)
+[![GitHub Release](https://badgen.net/github/release/3174N/stonecutter-electron)](https://github.com/3174N/stonecutter-electron/releases)
 
-If you're a _Windows_ or _macOS_ user, simply download the latest release package from our [releases page](https://github.com/3174N/stonecutter-electron/releases).
-
-If you're a _Linux_ user, a Flatpak is available over at [Flathub](https://www.flathub.org/apps/details/org.stonecutter.Stonecutter)<sup>_Not yet implemented_</sup>. If you don't have Flatpak or don't know how to install apps from it, please consult [Flatpak's docs](https://flatpak.org/setup).
+To install Stonecutter, simply download the latest release package from our [releases page](https://github.com/3174N/stonecutter-electron/releases).
 
 _Note: Stonecutter is still in very, **very** early development. Usage is likely to be lackluster and buggy at times._
 
@@ -46,28 +44,23 @@ Prerequisites:
 -   [`git`](https://git-scm.com)
 -   [`node`](https://nodejs.org)
 -   [`npm`](https://npmjs.com)
--   _For Linux:_
-    -   `elfutils`
-    -   [`flatpak`](https://flatpak.org)
-    -   `flatpak-builder`
 
 ```sh
 # Clone the repository
-$ git clone https://github.com/3174N/stonecutter-electron
+$ git clone https://github.com/3174N/stonecutter-electron.git
 $ cd stonecutter-electron
 # Install dependencies
-$ npm install
+$ npm ci
 # Build the app
 $ npm run make
 # Open your app
 ## macOS:
 $ open out/make/Stonecutter\ v0.1.0.dmg
 ## Windows:
-$ "out\make\squirrel.windows\x64\Stonecutter-0.1.0 Setup.exe"
+$ "out\Stonecutter Setup <version>.exe"
 ## Linux:
-$ out/stonecutter-electron-linux-x64/stonecutter-electron
-$ cd out/make/flatpak/x86_64
-$ flatpak install org.stonecutter.Stonecutter_stable_x86_64.flatpak
+$ tar out/stonecutter-electron-<version>.tar.gz
+$ out/stonecutter-electron-<version>/stonecutter-electron
 ```
 
 ## Getting Help
