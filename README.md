@@ -16,9 +16,6 @@
     <tr><td>
         <a href="https://david-dm.org/3174N/stonecutter-electron?type=dev"><img src="https://badgen.net/david/dev/3174N/stonecutter-electron" /></a>
     </td></tr>
-    <tr><td>
-        <a href="https://david-dm.org/3174N/stonecutter-electron?type=optional"><img src="https://badgen.net/david/optional/3174N/stonecutter-electron" /></a>
-    </td></tr>
 </table>
 
 ### What?
@@ -45,7 +42,7 @@ Prerequisites:
 -   [`node`](https://nodejs.org)
 -   [`npm`](https://npmjs.com)
 
-```sh
+<pre><code>
 # Clone the repository
 $ git clone https://github.com/3174N/stonecutter-electron.git
 $ cd stonecutter-electron
@@ -55,13 +52,13 @@ $ npm ci
 $ npm run make
 # Open your app
 ## macOS:
-$ open out/make/Stonecutter\ v0.1.0.dmg
+$ open out/Stonecutter-<i>&lt;version></i>.dmg
 ## Windows:
-$ "out\Stonecutter Setup <version>.exe"
+$ "out\Stonecutter Setup <i>&lt;version></i>.exe"
 ## Linux:
-$ tar out/stonecutter-electron-<version>.tar.gz
-$ out/stonecutter-electron-<version>/stonecutter-electron
-```
+$ tar -xvzf out/stonecutter-electron-<i>&lt;version></i>.tar.gz
+$ out/stonecutter-electron-<i>&lt;version></i>/stonecutter-electron
+</code></pre>
 
 ## Getting Help
 
