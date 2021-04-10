@@ -437,8 +437,7 @@ function updateHighlight() {
     extension = currentFile.split('.')[1];
 
     if (extension == 'md') highlight('markdown');
-    else if (extension == 'json') highlight('json'); // TODO: add more langueges
-    // else // TODO: add fallback method?
+    else if (extension == 'json' || extension == 'mcmeta') highlight('json'); // TODO: add mcfunction
 }
 
 // Menu Actions
