@@ -12,7 +12,10 @@
         "type": "git",
         "url": "git+https://github.com/3174N/stonecutter-electron.git"
     },
-    "author": "3174N and SFR",
+    "author": "3174N <3174n@protonmail.com>",
+    "contributors": [
+        "Sol Fisher Romanoff <sol@solfisher.com>"
+    ],
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/3174N/stonecutter-electron/issues"
