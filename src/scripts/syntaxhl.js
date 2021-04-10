@@ -1,6 +1,9 @@
-const hljs = require('highlight.js/lib/core')
+const hljs = require('highlight.js/lib/core');
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
-hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown'));
+hljs.registerLanguage(
+    'markdown',
+    require('highlight.js/lib/languages/markdown')
+);
 
 /**
  * Takes file-content and reformats it with hl.js annotations
@@ -9,9 +12,9 @@ hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown')
  * @return {void}
  */
 function highlight(language) {
-    let content = document.getElementById('file-content').textContent;
+    let content = $('.file-content').text();
     console.log('Unformatted: ' + content);
     highlightedCode = hljs.highlight(content, { language: language }).value;
     console.log('Formatted: ' + highlightedCode);
-    document.getElementById('file-content').innerHTML = highlightedCode;
+    $('.file-content').html(highlightedCode);
 }
