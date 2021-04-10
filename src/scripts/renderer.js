@@ -356,8 +356,9 @@ var isChanged = false;
 $('.file-content').bind('DOMSubtreeModified', () => {
     buffer = parseHTML($('.file-content').html()); // Save changes to buffer
     isChanged = true;
-    updateTitle();
 
+    updateTitle();
+    updateHighlight();
     updateGutter();
 });
 
@@ -430,6 +431,14 @@ function saveFileAs() {
             }
         });
     updateTitle();
+}
+
+function updateHighlight() {
+    extension = currentFile.split('.')[1];
+
+    if (extension == 'md') highlight('markdown');
+    else if (extension == 'json') highlight('json'); // TODO: add more langueges
+    // else // TODO: add fallback method?
 }
 
 // Menu Actions
