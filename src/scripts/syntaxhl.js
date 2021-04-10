@@ -1,10 +1,11 @@
+const hljs = require('highlight.js/lib/core')
 hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown'));
 
 /**
  * Takes file-content and reformats it with hl.js annotations
- * NOTE: currently does not actually change anything visually
  *
- * @param {string} language - The language to format for (TODO: more than json)
+ * @param {String} [language] - The language to format for
  * @return {void}
  */
 function highlight(language) {
