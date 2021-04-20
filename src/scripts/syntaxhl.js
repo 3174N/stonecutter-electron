@@ -13,8 +13,8 @@ hljs.registerLanguage(
  */
 function highlight(language) {
     let content = $('.file-content').text();
-    console.log('Unformatted: ' + content);
+    // console.log('Unformatted: ' + content);
     highlightedCode = hljs.highlight(content, { language: language }).value;
-    console.log('Formatted: ' + highlightedCode);
+    // console.log('Formatted: ' + highlightedCode);
     $('.file-content').html(highlightedCode);
 }

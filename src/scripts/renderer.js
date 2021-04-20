@@ -351,6 +351,7 @@ function updateGutter() {
 
 var buffer;
 var isChanged = false;
+var shouldUpdate = true;
 
 // Detect changes to current file
 $('.file-content').bind('DOMSubtreeModified', () => {
@@ -434,10 +435,23 @@ function saveFileAs() {
 }
 
 function updateHighlight() {
-    extension = currentFile.split('.')[1];
+    console.log(shouldUpdate);
 
-    if (extension == 'md') highlight('markdown');
-    else if (extension == 'json' || extension == 'mcmeta') highlight('json'); // TODO: add mcfunction
+    if (shouldUpdate) {
+        extension = currentFile.split('.')[1];
+
+        let caretPos = $('#file-content').caret();
+
+        if (extension == 'md') highlight('markdown');
+        else if (extension == 'json' || extension == 'mcmeta')
+            highlight('json'); // TODO: add mcfunction
+
+        $('#file-content').caret(caretPos);
+
+        shouldUpdate = false;
+    } else {
+        shouldUpdate = true;
+    }
 }
 
 // Menu Actions
