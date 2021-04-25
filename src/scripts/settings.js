@@ -47,28 +47,55 @@ function initSettings() {
             }
         );
     }
+
+    if (!fs.existsSync(path.join(settingsFolder, 'defaults.cutter'))) {
+        console.log('File defaults.cutter not found. Creating...');
+        fs.copyFile(
+            './src/defaults.cutter',
+            path.join(settingsFolder, 'defaults.cutter'),
+            (err) => {
+                return console.log(err);
+            }
+        );
+    }
 }
 
 initSettings();
 
 /**
- * Load settings from settings.cutter
- * into object 'settings'.
+ * Load settings from object into CSS
+ *
+ * @param {Object} [file] - Either defaults or settings
+ */
+function loadToCSS(file) {
+    $('.file-content').css({
+        'font-family': file.font.family,
+        'font-style': file.font.style,
+        'font-weight': file.font.weight,
+        'font-size': file.font.size,
+        'font-variant-ligatures': file.font.ligatures,
+    });
+}
+
+/**
+ * Load settings from defailts.cutter into object 'settings',
+ * then from settings.cutter.
  */
 try {
+    const defaults = yaml.load(
+        fs.readFileSync(path.join(settingsFolder, 'defaults.cutter'), 'utf8')
+    );
+    console.log('Loaded default settings.');
+
     const settings = yaml.load(
         fs.readFileSync(path.join(settingsFolder, 'settings.cutter'), 'utf8')
     );
     console.log('Loaded settings.');
-    // Apply CSS
-    $('.file-content').css({
-        'font-family': settings.font.family,
-        'font-style': settings.font.style,
-        'font-weight': settings.font.weight,
-        'font-size': settings.font.size,
-        'font-variant-ligatures': settings.font.ligatures,
-    });
+
+    loadToCSS(defaults);
+    loadToCSS(settings);
     console.log('Applied settings.');
 } catch (err) {
+    // TODO: If defaults not found, freak out, scream and crash
     throw err;
 }
