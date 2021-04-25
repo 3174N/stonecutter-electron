@@ -3,7 +3,6 @@
  * in the OS's respective configuration directory
  * if one does not already exist.
  */
-
 switch (process.platform) {
     case 'linux':
     case 'darwin':
@@ -58,6 +57,23 @@ function initSettings() {
             }
         );
     }
+
+    // ? Only run this on install?
+    if (
+        !fs.existsSync(path.join(settingsFolder, 'colorschemes/default.less'))
+    ) {
+        console.log('Default colorscheme not found. Creating...');
+        if (!fs.existsSync(path.join(settingsFolder, 'colorschemes'))) {
+            fs.mkdirSync(path.join(settingsFolder, 'colorschemes'));
+        }
+        fs.copyFile(
+            './src/styles/colorschemes/default.less',
+            path.join(settingsFolder, 'colorschemes/default.less'),
+            (err) => {
+                return console.log(err);
+            }
+        );
+    }
 }
 
 initSettings();
@@ -75,6 +91,15 @@ function loadToCSS(file) {
         'font-size': file.font.size,
         'font-variant-ligatures': file.font.ligatures,
     });
+
+    $('<link/>', {
+        rel: 'stylesheet/less',
+        type: 'text/css',
+        href: path.join(
+            settingsFolder,
+            `colorschemes/${file.colorscheme}.less`
+        ),
+    }).appendTo('head');
 }
 
 /**
