@@ -351,13 +351,15 @@ function updateGutter() {
 
 var buffer;
 var isChanged = false;
+var shouldUpdate = true;
 
 // Detect changes to current file
 $('.file-content').bind('DOMSubtreeModified', () => {
     buffer = parseHTML($('.file-content').html()); // Save changes to buffer
     isChanged = true;
-    updateTitle();
 
+    updateTitle();
+    updateHighlight();
     updateGutter();
 });
 
@@ -430,6 +432,26 @@ function saveFileAs() {
             }
         });
     updateTitle();
+}
+
+function updateHighlight() {
+    console.log(shouldUpdate);
+
+    if (shouldUpdate) {
+        extension = currentFile.split('.')[1];
+
+        let caretPos = $('#file-content').caret();
+
+        if (extension == 'md') highlight('markdown');
+        else if (extension == 'json' || extension == 'mcmeta')
+            highlight('json'); // TODO: add mcfunction
+
+        $('#file-content').caret(caretPos);
+
+        shouldUpdate = false;
+    } else {
+        shouldUpdate = true;
+    }
 }
 
 // Menu Actions
