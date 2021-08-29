@@ -1,0 +1,13 @@
+{
+    "commands": [
+        "say", "data"
+    ],
+
+    "specifiers": [
+        "block", "entity"
+    ],
+
+    "params": [
+        "modify", "remove", "merge", "get", "set", "append", "prepend", "insert", "from", "value"
+    ]
+}
