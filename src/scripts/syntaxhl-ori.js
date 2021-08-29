@@ -1,23 +1,19 @@
-
-
-console.log("syntaxhl works");
-
 let txtbox = $("div.file-content");
-//const commands = require("./linter/commandshl.json");
-
-
 
 function textUpdate(e) {
     if (e.code != "Space") {
         return;
     }
-    // saving the start and end point of the selection before messing it up
-    let range, start, end;
+    // saving the start
+    let range, start;
     if (typeof window.getSelection != "undefined") {
         range = window.getSelection().getRangeAt(0).cloneRange();
         start = range.startOffset;
-        end = range.endOffset;
-        console.log(start, end);
+        for (let i = 0; txtbox[0].childNodes[i] != range.startContainer; i++) {
+            console.log("childnode: ", txtbox[0].childNodes[i], "start container: ", range.startContainer, "length: ", txtbox[0].childNodes[i].textContent.length);
+            start += txtbox[0].childNodes[i].textContent.length;
+        }
+        console.log("start:", start);
     }
     
     // messing it up and marking the text need to be marked
@@ -31,17 +27,34 @@ function textUpdate(e) {
             html += words[i] + " ";
         }
     }
+
     // update html
     txtbox.html(html);
     
     // unmessing the selection
     if (typeof window.getSelection != undefined) {
         range = window.getSelection().getRangeAt(0);
-        range.setStart(range.startContainer.lastChild, range.endContainer.lastChild.length);
-        range.setEnd(range.endContainer.lastChild, range.endContainer.lastChild.length);
+
+        console.log("start:", start);
+        if (txtbox[0].childNodes.length <= 1) {
+            range.setStart(txtbox[0].childNodes[0], start);
+            range.setEnd(txtbox[0].childNodes[0], start);
+        }
+        else {
+            let sum = 0, i = -1;
+            while (sum < start) {
+                i++;
+                sum += txtbox[0].childNodes[i].textContent.length;
+            }
+            sum -= txtbox[0].childNodes[i].textContent.length;
+
+            range.setStart(txtbox[0].childNodes[i], start - sum);
+            range.setEnd(txtbox[0].childNodes[i], start - sum);
+        }
+        
         window.getSelection().removeAllRanges();
         window.getSelection().addRange(range);
-        console.log(range);
+        
     }
 }
 
