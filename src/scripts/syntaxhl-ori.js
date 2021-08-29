@@ -9,11 +9,10 @@ function textUpdate(e) {
     if (typeof window.getSelection != "undefined") {
         range = window.getSelection().getRangeAt(0).cloneRange();
         start = range.startOffset;
+        
         for (let i = 0; txtbox[0].childNodes[i] != range.startContainer; i++) {
-            console.log("childnode: ", txtbox[0].childNodes[i], "start container: ", range.startContainer, "length: ", txtbox[0].childNodes[i].textContent.length);
             start += txtbox[0].childNodes[i].textContent.length;
         }
-        console.log("start:", start);
     }
     
     // messing it up and marking the text need to be marked
@@ -35,7 +34,6 @@ function textUpdate(e) {
     if (typeof window.getSelection != undefined) {
         range = window.getSelection().getRangeAt(0);
 
-        console.log("start:", start);
         if (txtbox[0].childNodes.length <= 1) {
             range.setStart(txtbox[0].childNodes[0], start);
             range.setEnd(txtbox[0].childNodes[0], start);
